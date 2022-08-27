@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 namespace IReport.Models
 {
+    //github push test 7:37pm
     public class CaseInfoModel : ViewModelBase
     {
         ObservableCollection<CaseInfoModel> _assignedCasesInfolList;
