@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "9ohvksSVborI7XPCf2zQoreJKryO5dOGlTV6CbiyC3k+0L2wLAmL4KFcdPiuJZMMZm8Ofw6omCvi+PM6xxRRmA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jonathan\\Desktop\\yohanna familia\\IReport\\IReport.iOS\\IReport.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jonathan\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\unity\\5.11.10\\unity.5.11.10.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,2274 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IReport.ViewModels"
+             x:Class="IReport.Views.CaseInfoView">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform ="iOS" Value ="0,40,0,0"/>
+        </OnPlatform>
+        
+    </ContentPage.Padding>
+    <ContentPage.BindingContext>
+        <local:CaseInfoViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <!--READ FROM ASSIGNED CASES LINE 1342-->
+        <ScrollView>
+            <StackLayout BackgroundColor="White">
+
+                <!--<Button Text="CHECK CONNECTION"
+                        Command="{Binding CheckConnectionCommand}"
+                        CornerRadius="40"
+                        TextColor="White"
+                        BackgroundColor="SeaGreen"/>-->
+                <Grid BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="tiologo.png"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               HeightRequest="200"
+                               HorizontalOptions="CenterAndExpand"/>
+                </Grid>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Source="create.png"
+                                 HeightRequest="10"
+                                 Grid.Row="0"
+                        Grid.Column="0"
+                                 BackgroundColor="White">
+                    </ImageButton>
+                
+                <Button Text="CREATE CASE"
+                        Command="{Binding CreateNewCaseCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="Blue"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Grid.Row="0"
+                        Grid.Column="1"/>
+
+                    <ImageButton Source="read.png"
+                                 HeightRequest="1"
+                                 Grid.Row="0"
+                        Grid.Column="2"
+                                 BackgroundColor="White"/>
+
+                    <Button Text="READ CASES"
+                        Command="{Binding ReadSqlCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="DarkTurquoise"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Grid.Row="0"
+                        Grid.Column="3"/>
+
+                    <ImageButton Source="update.png"
+                                 HeightRequest="10"
+                                 Grid.Row="1"
+                        Grid.Column="0"
+                                 BackgroundColor="White"/>
+
+                    <Button Text="UPDATE CASES"
+                        Command="{Binding UpdateCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="DarkViolet"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Grid.Row="1"
+                        Grid.Column="1"/>
+
+                    <ImageButton Source="trash.png"
+                                 HeightRequest="10"
+                                 Grid.Row="1"
+                        Grid.Column="2"
+                                 BackgroundColor="White"/>
+
+                    <Button Text="DELETE CASE"
+                        Command="{Binding DeleteCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Grid.Row="1"
+                        Grid.Column="3"/>
+
+                    <ImageButton Source="search.png"
+                                 HeightRequest="10"
+                                 Grid.Row="2"
+                        Grid.Column="0"
+                                 BackgroundColor="White"/>
+
+                    <Button Text="ASSIGN A CASE"
+                        Command="{Binding AssignACaseCommand}"
+                        CornerRadius="40"
+                        TextColor="White"
+                        BackgroundColor="Green"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"/>
+                </Grid>
+                
+                
+                <!--THIS LIST IS TO READ FROM SQL-->
+
+                <StackLayout BackgroundColor="#FF00BFFF">
+
+                    <Label Text="EXISTING CASE:"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextDecorations="Underline"
+                           TextColor="White"
+                           IsVisible="{Binding CaseInfoModel.ReadingCase}"/>
+                    <ListView ItemsSource="{Binding CaseInfoModel.CaseInfoModelList}"
+                              Grid.Column="2"
+                              HasUnevenRows="True"
+                              Grid.ColumnSpan="1"
+                          IsVisible="{Binding CaseInfoModel.ReadingCase}">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout Orientation="Vertical">
+
+                                    <Label Text="IDENTIFIER"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Identifier}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+
+                                    <Label Text="CASE ID"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding CaseId}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="CLIENT NAME"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding ClientName}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="FIRST NAME"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding FirstName}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="MiddleName"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding MiddleName}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="LAST NAME"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding LastName}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="PhoneNumber"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding PhoneNumber}"
+                                           TextColor="White" 
+                                              MinimumWidthRequest="100" 
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+
+                                    <Label Text="HomeAddress"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding HomeAddress}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="HomeDescription"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding HomeDescription}"
+                                           TextColor="White"
+                                              MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="WorkAddress"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding WorkAddress}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="WorkDescription"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding WorkDescription}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="Height"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Height}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="Weight"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Weight}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="EyeColor"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding EyeColor}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="HairColor"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding HairColor}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="TattoDescription"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding TattooDescription}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="FrequentedPlaces"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding FrequentedPlaces}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="VehicleYear"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding VehicleYear}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="VehicleMake"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding VehicleMake}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="VehicleModel"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding VehicleModel}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="VehicleColor"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding VehicleColor}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="LicensePlateNumber"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding LicensePlateNumber}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="LicensePlateState"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding LicensePlateState}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="LicensePlateColor"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding LicensePlateColor}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="CaseDetails"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding CaseDetails}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="SelectedComplexion"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding SelectedComplexion}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="SelectedEthnicity"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding SelectedEthnicity}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="SelectedLanguage"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding SelectedLanguage}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="SelectedAwareness"
+                                           TextColor="Blue"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding SelectedAwareness}"
+                                           TextColor="White"
+                                               MinimumWidthRequest="100"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+
+                                    <Frame></Frame>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <!--DELETE FROM SQL-->
+
+                <Label Text="PLEASE ENTER THE IDENTIFIER OF THE CASE YOU WOULD LIKE TO DELETE:"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding CaseInfoModel.DeletingCase}"/>
+
+                <Label Text="--THIS ACTION CANNOT BE REVERSED--"
+                   TextColor="Red"
+                   FontSize="15"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold,Italic"
+                   IsVisible="{Binding CaseInfoModel.DeletingCase}"/>
+
+
+                <Entry Placeholder="ENTER IDENTIFIER TO DELETE HERE:"
+                   PlaceholderColor="LightGray"
+                   Text="{Binding ReportInfoModel.Identifier}"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   IsVisible="{Binding CaseInfoModel.DeletingCase}"/>
+
+
+                <Button Text="DELETE CASE"
+                    Command="{Binding DeleteSqlCommand}"
+                    CornerRadius="40"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    IsVisible="{Binding CaseInfoModel.DeletingCase}"/>
+
+
+
+
+                <Label Text="CASE DETAILS"
+                       FontSize="22"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       TextDecorations="Underline"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                <Label Text="UPDATE CASE DETAILS"
+                       FontSize="22"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       TextDecorations="Underline"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                <Label Text="IDENTIFIER TO UPDATE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-ENTER IDENTIFIER TO UPDATE-"
+                       Text="{Binding CaseInfoModel.Identifier}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+
+                    <Label Text="ENTER CASE ID:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-CASE ID-"
+                       Text="{Binding CaseInfoModel.CaseId}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    <Label Text="UPDATE CASE ID:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-CASE ID-"
+                       Text="{Binding CaseInfoModel.CaseId}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    <Label Text="ENTER CLIENT NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-CLIENT NAME-"
+                       Text="{Binding ClientInfoModel.ClientName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE CLIENT NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-CLIENT NAME TO UPDATE-"
+                       Text="{Binding ClientInfoModel.ClientName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S FIRST NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-FIRST NAME-"
+                       Text="{Binding CaseInfoModel.FirstName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+
+                    <Label Text="UPDATE SUBJECT'S FIRST NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-FIRST NAME-"
+                       Text="{Binding CaseInfoModel.FirstName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+
+
+
+                    <Label Text="ENTER SUBJECT'S MIDDLE NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-MIDDLE NAME-"
+                       Text="{Binding CaseInfoModel.MiddleName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S MIDDLE NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-MIDDLE NAME-"
+                       Text="{Binding CaseInfoModel.MiddleName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+
+
+
+                    <Label Text="ENTER SUBJECT'S LAST NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-LAST NAME-"
+                       Text="{Binding CaseInfoModel.LastName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S LAST NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-LAST NAME-"
+                       Text="{Binding CaseInfoModel.LastName}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S DATE OF BIRTH:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateOfBirth}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDateOfBirth}"
+                            Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                                        HorizontalOptions="FillAndExpand"/>
+
+
+                        </StackLayout>
+                    </Frame>
+                    
+                    <!--<DatePicker Date="{Binding CaseInfoModel.DateOfBirth}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDateOfBirth}"
+                        BackgroundColor="DarkBlue"
+                            Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"/>-->
+
+                <Label Text="UPDATE SUBJECT'S DATE OF BIRTH:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateOfBirth}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDateOfBirth}"
+                            Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<DatePicker Date="{Binding CaseInfoModel.DateOfBirth}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDateOfBirth}"
+                        BackgroundColor="DarkBlue"
+                            Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>-->
+
+                <Label Text="ENTER SUBJECT'S PHONE NUMBER:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-PHONE NUMBER-"
+                       Text="{Binding CaseInfoModel.PhoneNumber}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S PHONE NUMBER:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-PHONE NUMBER-"
+                       Text="{Binding CaseInfoModel.PhoneNumber}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S HOME ADDRESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-HOME ADDRESS-"
+                       Text="{Binding CaseInfoModel.HomeAddress}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S HOME ADDRESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-HOME ADDRESS-"
+                       Text="{Binding CaseInfoModel.HomeAddress}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S HOME DESCRIPTION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-HOME DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.HomeDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S HOME DESCRIPTION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-HOME DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.HomeDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+
+                    <Label Text="ENTER SUBJECT'S WORK ADDRESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-WORK ADDRESS-"
+                       Text="{Binding CaseInfoModel.WorkAddress}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S WORK ADDRESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-WORK ADDRESS-"
+                       Text="{Binding CaseInfoModel.WorkAddress}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S WORK DESCRIPTION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-WORK DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.WorkDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="black "
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE SUBJECT'S WORK DESCRIPTION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-WORK DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.WorkDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Image></Image>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                
+                    <Label Text="DESCRIBE THE SUBJECT:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"/>
+
+                        <Label Text="HEIGHT FORMAT: 5'11"
+                       TextColor="Red"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       FontSize="14"/>
+                        <Label Text="WEIGHT FORMAT: 250LBS"
+                       TextColor="Red"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalTextAlignment="End"
+                       FontSize="14"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                            <Entry Placeholder="-HEIGHT-"
+                       Text="{Binding CaseInfoModel.Height}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+
+                            <Entry Placeholder="-WEIGHT-"
+                       Text="{Binding CaseInfoModel.Weight}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+
+                            <Entry Placeholder="-EYE COLOR-"
+                       Text="{Binding CaseInfoModel.EyeColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+
+                            <Entry Placeholder="- HAIR COLOR-"
+                       Text="{Binding CaseInfoModel.HairColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="3"/>
+                    </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPDATE SUBJECT DESCRIPTION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"/>
+                    <Label Text="HEIGHT FORMAT: 5'11"
+                       TextColor="Red"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       FontSize="14"/>
+                    <Label Text="WEIGHT FORMAT: 250LBS"
+                       TextColor="Red"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalTextAlignment="End"
+                       FontSize="14"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                            <Entry Placeholder="-HEIGHT-"
+                       Text="{Binding CaseInfoModel.Height}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+
+                            <Entry Placeholder="-WEIGHT-"
+                       Text="{Binding CaseInfoModel.Weight}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+
+                            <Entry Placeholder="-EYE COLOR-"
+                       Text="{Binding CaseInfoModel.EyeColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+                    
+                    
+                    <Entry Placeholder="- HAIR COLOR-"
+                       Text="{Binding CaseInfoModel.HairColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="3"/>
+                </Grid>
+
+                <Label Text="ENTER SUBJECT'S SKIN COMPLEXION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Skin Complexion"
+                        TitleColor="DarkGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.SkinComplexionList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedComplexion}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select A Skin Complexion"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.SkinComplexionList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedComplexion}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+                <Label Text="UPDATE SUBJECT'S SKIN COMPLEXION:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Skin Complexion"
+                        TitleColor="LightGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.SkinComplexionList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedComplexion}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                        <!--<Picker Title="Please Tap Here To Select A Skin Complexion"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.SkinComplexionList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedComplexion}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+
+                        <Label Text="DESCRIBE ANY VISIBLE TATTOOS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-TATTOO DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.TattooDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    <Label Text="UPDATE ANY VISIBLE TATTOOS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-TATTOO DESCRIPTION-"
+                       Text="{Binding CaseInfoModel.TattooDescription}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="ENTER SUBJECT'S ETHNICITY:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select An Ethnicity"
+                        TitleColor="DarkGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.EthnicityList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedEthnicity}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select An Ethnicity"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.EthnicityList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedEthnicity}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+                <Label Text="UPDATE SUBJECT'S ETHNICITY:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select An Ethnicity"
+                        TitleColor="LightGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.EthnicityList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedEthnicity}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select An Ethnicity"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.EthnicityList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedEthnicity}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+                <Label Text="ENTER SUBJECT'S PREFERRED LANGUAGE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Language"
+                        TitleColor="DarkGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.LanguageList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select A Language"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.LanguageList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+                    
+                    
+
+                <Label Text="UPDATE SUBJECT'S PREFERRED LANGUAGE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Language"
+                        TitleColor="LightGray"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        ItemsSource="{Binding CaseInfoModel.LanguageList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select A Language"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.LanguageList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+                    
+                    
+
+                <Label Text="ENTER SUBJECT'S LEVEL OF AWARENESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Level of Awareness"
+                        TitleColor="DarkGray"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        ItemsSource="{Binding CaseInfoModel.LevelOfAwarenessList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedAwareness}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Select A Level of Awareness"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.LevelOfAwarenessList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedAwareness}"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+                    
+                    
+                    
+                    
+                    
+                <Label Text="UPDATE SUBJECT'S LEVEL OF AWARENESS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <Picker Title="Select A Level of Awareness"
+                        TitleColor="LightGray"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        ItemsSource="{Binding CaseInfoModel.LevelOfAwarenessList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedAwareness}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Picker Title="Please Tap Here To Select A Language"
+                        BackgroundColor="Black"
+                        TitleColor="Green"
+                        TextColor="Purple"
+                        ItemsSource="{Binding CaseInfoModel.LevelOfAwarenessList}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedItem="{Binding SelectedAwareness}"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalTextAlignment="Center"/>-->
+
+                <Label Text="ENTER SUBJECT'S FREQUENTED PLACES:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-FREQUENTED PLACES-"
+                       Text="{Binding CaseInfoModel.FrequentedPlaces}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    <Label Text="UPDATE SUBJECT'S FREQUENTED PLACES:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-FREQUENTED PLACES-"
+                       Text="{Binding CaseInfoModel.FrequentedPlaces}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                
+                <Label Text="ENTER SUBJECT'S VEHICLE DESCRIPTION:"
+                        TextColor="White"
+                        FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"/>
+                <Entry Placeholder="-YEAR-"
+                       Text="{Binding CaseInfoModel.VehicleYear}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <Entry Placeholder="-MAKE-"
+                       Text="{Binding CaseInfoModel.VehicleMake}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+                <Entry Placeholder="-MODEL-"
+                       Text="{Binding CaseInfoModel.VehicleModel}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                <Entry Placeholder="-COLOR-"
+                       Text="{Binding CaseInfoModel.VehicleColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+                    <Entry Placeholder="-LICENSE PLATE NUMBER-"
+                       Text="{Binding CaseInfoModel.LicensePlateNumber}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="3"/>
+                    <Entry Placeholder="-LICENSE PLATE STATE-"
+                       Text="{Binding CaseInfoModel.LicensePlateState}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="4"/>
+                    <Entry Placeholder="-LICENSE PLATE COLOR-"
+                       Text="{Binding CaseInfoModel.LicensePlateColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
+                </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPDATE SUBJECT'S VEHICLE DESCRIPTION:"
+                        TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"/>
+                    <Entry Placeholder="-YEAR-"
+                       Text="{Binding CaseInfoModel.VehicleYear}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                    <Entry Placeholder="-MAKE-"
+                       Text="{Binding CaseInfoModel.VehicleMake}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+                    <Entry Placeholder="-MODEL-"
+                       Text="{Binding CaseInfoModel.VehicleModel}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                    <Entry Placeholder="-COLOR-"
+                       Text="{Binding CaseInfoModel.VehicleColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+                    <Entry Placeholder="-LICENSE PLATE NUMBER-"
+                       Text="{Binding CaseInfoModel.LicensePlateNumber}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="3"/>
+                    <Entry Placeholder="-LICENSE PLATE STATE-"
+                       Text="{Binding CaseInfoModel.LicensePlateState}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="0"
+                       Grid.Row="4"/>
+                    <Entry Placeholder="-LICENSE PLATE COLOR-"
+                       Text="{Binding CaseInfoModel.LicensePlateColor}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
+                </Grid>
+                
+                    
+                <Label Text="ENTER CASE DESCRIPTION/DETAILS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <Entry Placeholder="-WRITE CASE DETAILS HERE-"
+                       Text="{Binding CaseInfoModel.CaseDetails}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    </Frame>
+                    
+                    
+                    <Label Text="UPDATE CASE DESCRIPTION/DETAILS:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <Entry Placeholder="-WRITE UPDATED CASE DETAILS HERE-"
+                       Text="{Binding CaseInfoModel.CaseDetails}"
+                       PlaceholderColor="LightGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+                    </Frame>
+                    
+                    <Label Text="ENTER DATE CASE WAS INITIALIZED:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateCaseInitialized}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    
+                    
+            <!--<DatePicker Date="{Binding CaseInfoModel.DateCaseInitialized}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        BackgroundColor="DarkBlue"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"/>-->
+
+                <Label Text="UPDATE DATE CASE WAS INITIALIZED:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateCaseInitialized}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <!--<DatePicker Date="{Binding CaseInfoModel.DateCaseInitialized}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        BackgroundColor="DarkBlue"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>-->
+
+                <Label Text="ENTER DATE OF SCHEDULED SURVEILLANCE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.CreatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateOfSurveillance}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<DatePicker Date="{Binding CaseInfoModel.DateOfSurveillance}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        BackgroundColor="DarkBlue"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"/>-->
+
+                    
+                <Label Text="UPDATE DATE OF SCHEDULED SURVEILLANCE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding  CaseInfoModel.UpdatingCase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker Date="{Binding CaseInfoModel.DateOfSurveillance}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<DatePicker Date="{Binding CaseInfoModel.DateOfSurveillance}"
+                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                        Format="d"
+                        BackgroundColor="DarkBlue"
+                        TextColor="Red"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>-->
+
+                <Button Text="UPDATE IN SQL DATABASE"
+                        Command="{Binding UpdateSqlCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="Purple"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
+
+                
+
+                <Button Text="SAVE IN SQL DATABASE"
+                        Command="{Binding CreateSqlCommand}"
+                        CornerRadius="40"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"/>
+                
+                <Button Text="START OVER"
+                        CornerRadius="40"
+                        BackgroundColor="Orange"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding CaseInfoModel.CreatingCase}"
+                        BorderColor="Red"
+                        BorderWidth="7"/>
+                
+                
+                
+                
+                
+
+                <!--THIS IS TO READ FROM ASSIGNED CASES-->
+                    <Label Text="ENTER IDENTIFIER TO DELETE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <Entry Placeholder="-IDENTIFIER TO DELETE-"
+                       Text="{Binding CaseInfoModel.Identifier}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    </Frame>
+                    
+                    <Label Text="ENTER IDENTIFIER TO UPDATE:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <Entry Placeholder="-IDENTIFIER TO UPDATE-"
+                       Text="{Binding CaseInfoModel.Identifier}"
+                       PlaceholderColor="DarkGray"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    </Frame>
+
+                    <Label Text="ASSIGNED EMPLOYEE NAME:"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       Margin="20,0"
+                       FontSize="20"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+
+                        <Entry Text="{Binding CaseInfoModel.AssignedEmployeeUsername}"
+                       PlaceholderColor="DarkGray"
+                       FontAttributes="Bold"
+                       Placeholder="ENTER EMPLOYEE NAME"
+                       TextColor="White"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    </Frame>
+                    
+                    <Label Text="ASSIGN CASE I.D.:"
+                       TextColor="White"
+                       Margin="20,0"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <Entry Text="{Binding CaseInfoModel.AssignedCaseId}"
+                       PlaceholderColor="DarkGray"
+                       FontAttributes="Bold"
+                       Placeholder="ENTER CASE I.D."
+                       TextColor="White"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    </Frame>
+                    
+                    <Label Text="ASSIGN CASE DATE:"
+                       TextColor="White"
+                       Margin="20,0"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="calendar.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <DatePicker BackgroundColor="White"
+                            Date="{Binding CaseInfoModel.AssignedDate}"
+                            IsVisible="{Binding CaseInfoModel.AssigningACase}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                            HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--<DatePicker BackgroundColor="White"
+                            Date="{Binding CaseInfoModel.AssignedDate}"
+                            IsVisible="{Binding CaseInfoModel.AssigningACase}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"/>-->
+
+                <Label Text="ASSIGN CASE TIME:"
+                       TextColor="White"
+                       Margin="20,0"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    
+                <!--<TimePicker BackgroundColor="White"
+                            Time="{Binding CaseInfoModel.AssignedTime}"
+                            IsVisible="{Binding CaseInfoModel.AssigningACase}"/>-->
+
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <StackLayout Orientation="Horizontal"
+                                 BackgroundColor="White"
+                                 HorizontalOptions="FillAndExpand">
+
+
+                            <ImageButton Source="clock.png"
+                                 HeightRequest="30"
+                                     BackgroundColor="White">
+
+                            </ImageButton>
+                            <TimePicker BackgroundColor="White"
+                            Time="{Binding CaseInfoModel.AssignedTime}"
+                            IsVisible="{Binding CaseInfoModel.AssigningACase}"
+                            HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+
+                        <Button Text="DELETE AN ASSIGNED CASE"
+                        Command="{Binding DeleteAssignedCasesSqlCommand}"
+                        CornerRadius="40"
+                        TextColor="White"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        BackgroundColor="DarkCyan"
+                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                        <Button Text="UPDATE ASSIGNED CASE"
+                        Command="{Binding UpdateAssignedCasesSqlCommand}"
+                        CornerRadius="40"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="Gray"
+                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+
+                    </StackLayout>
+                    <Frame HasShadow="True"
+                           CornerRadius="20"
+                           Margin="6"
+                           IsVisible="{Binding CaseInfoModel.AssigningACase}">
+                        <Button Text="SAVE ASSIGNMENT TO DATABASE"
+                        Command="{Binding CreateSqlAssignACaseCommand}"
+                        CornerRadius="40"
+                        TextColor="White"
+                        BackgroundColor="Green"
+                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
+                    </Frame>
+
+                    
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,1052 @@
+﻿using IReport.Models;
+using IReport.Models.Base;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Text;
+using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
+using IReport.Services;
+
+namespace IReport.ViewModels
+{
+    public class ReportInfoViewModel : ViewModelBase
+    {
+        
+        public ReportInfoViewModel()
+        {
+            ReportInfoModel = new ReportInfoModel();
+            CaseInfoModel = new CaseInfoModel(); ;
+            ClientInfoModel = new ClientInfoModel();
+            LoginModel = new LoginModel();
+            SqlModel = new SqlModel();
+
+            ReadSqlAssignedCasesCommand = new Command(ReadSqlAssignedCasesMethod);
+            CheckConnectionCommand = new Command(CheckConnectionMethod);
+            GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
+
+            CreateSqlCommand = new Command(CreateSqlMethod);
+            ReadSqlCommand = new Command(ReadSqlMethod);
+            UpdateSqlCommand = new Command(UpdateSqlMethod);
+            DeleteSqlCommand = new Command(DeleteSqlMethod);
+
+            //make the sql buttons visible
+            UpdateCommand = new Command(UpdateMethod);
+            DeleteCommand = new Command(DeleteMethod);
+            ReadAssignedCasesIsVisibleCommand = new Command(ReadAssignedCasesIsVisibleMethod);
+
+
+
+            //objects to read for the pickers
+            ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
+            CaseInfoModel.CaseInfoModelList = cases;
+
+            ObservableCollection<CaseInfoModel> assignedCases = new ObservableCollection<CaseInfoModel>();
+            CaseInfoModel.AssignedCasesInfolList = assignedCases;
+
+            ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
+            ClientInfoModel.ClientInfoModelList = clients;
+
+            ObservableCollection<ReportInfoModel> reports = new ObservableCollection<ReportInfoModel>();
+            ReportInfoModel.ReportInfoModelList = reports;
+
+
+
+
+            ReportInfoModel.YesNoPicker = GetYesNoPicker().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.MedicalDevicesUsed = GetMedicalDevicesUsed().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.VehiclesPresentAtStartLocation = GetVehiclesPresent().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.AttemptToConfirmSubjectWasHome = GetAttemptToConfirm().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.SurveillancePositions = GetSurveillanceDesc().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.MalesOrFemales = GetMaleOrFemale().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.Heights = GetHeights().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.Weights = GetWeights().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.Builds = GetBuilds().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.HairColors = GetHairColors().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.HairLengths = GetHairLengths().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.SurveillanceEndReasons = GetSurveillanceEndReason().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.TypesOfVideoObtained = GetTypeOfVideo().OrderBy(t => t.Value).ToList();
+            ReportInfoModel.SubjectVideoConfirmations = GetSubjectVideoConfirmation().OrderBy(t => t.Value).ToList();
+        }
+
+        //AFTER WEEKS OF TRYING
+        //THIS ALLOWED ME TO BIND MY CASEID TO THE PICKER'S ITEMDISPLAYBINDING
+        //THOUGHT OF IT MYSELF
+        BindingBase caseId;
+        BindingBase clientName;
+        LoginModel _loginModel;
+        //for selectedcase picker
+        CaseInfoModel _selectedCase;
+        //for selectedclient picker
+        ClientInfoModel _selectedClient;
+        ReportInfoModel _reportInfoModel;
+        CaseInfoModel _caseInfoModel;
+        ClientInfoModel _clientInfoModel;
+        SqlModel _sqlModel;
+
+
+        public BindingBase CaseId
+        {
+            get => caseId;
+            set
+            {
+                caseId = value;
+                OnPropertyChanged(nameof(CaseId));
+            }
+        }
+        //using ViewModelBase's SetProperty method
+        public BindingBase ClientName { get => clientName; set => SetProperty(ref clientName, value); }
+
+        public LoginModel LoginModel
+        {
+            get => _loginModel;
+            set
+            {
+                _loginModel = value;
+                OnPropertyChanged(nameof(LoginModel));
+            }
+        }
+
+        public CaseInfoModel SelectedCase
+        {
+            get => _selectedCase;
+            set
+            {
+                if (_selectedCase != value)
+                {
+                    _selectedCase = value;
+                }
+                OnPropertyChanged(nameof(SelectedCase));
+            }
+        }
+
+        public ClientInfoModel SelectedClient
+        {
+            get => _selectedClient;
+            set
+            {
+                if (_selectedClient != value)
+                {
+                    _selectedClient = value;
+                }
+                OnPropertyChanged(nameof(SelectedClient));
+            }
+        }
+
+        public ReportInfoModel ReportInfoModel
+        {
+            get => _reportInfoModel;
+            set
+            {
+                _reportInfoModel = value;
+                OnPropertyChanged(nameof(ReportInfoModel));
+
+            }
+        }
+
+
+        public CaseInfoModel CaseInfoModel
+        {
+            get => _caseInfoModel;
+            set
+            {
+                _caseInfoModel = value;
+                OnPropertyChanged(nameof(CaseInfoModel));
+
+            }
+        }
+
+        public ClientInfoModel ClientInfoModel
+        {
+            get => _clientInfoModel;
+            set
+            {
+                _clientInfoModel = value;
+                OnPropertyChanged(nameof(ClientInfoModel));
+            }
+        }
+
+        public SqlModel SqlModel
+        {
+            get => _sqlModel;
+            set
+            {
+                _sqlModel = value;
+            }
+        }
+
+        //makes assignedcases visible
+        public ICommand ReadAssignedCasesIsVisibleCommand { get; }
+
+        public void ReadAssignedCasesIsVisibleMethod()
+        {
+            ReportInfoModel.ReadingSqlAssignedCases = true;
+        }
+        //read from assignedcases
+        public ICommand ReadSqlAssignedCasesCommand { get; }
+
+        public async void ReadSqlAssignedCasesMethod()
+        {
+            
+            try
+            {
+                SqlModel.SqlConnection.Open();
+
+                SqlCommand assignedCasesCommand = new SqlCommand(SqlModel.AssignedCasesQuery, SqlModel.SqlConnection);
+                SqlDataReader assignedCasesReader = assignedCasesCommand.ExecuteReader();
+                if (LoginModel.EmployeeUsername == CaseInfoModel.AssignedEmployeeUsername)
+                {
+                    ReportInfoModel.ReadingSqlAssignedCases = true;
+
+                    while (assignedCasesReader.Read())
+                    {
+
+                        CaseInfoModel.AssignedCasesInfolList.Add(new CaseInfoModel
+                        {
+                            AssignedEmployeeUsername = assignedCasesReader["EmployeeName"].ToString(),
+                            AssignedCaseId = assignedCasesReader["CaseId"].ToString(),
+                            AssignedDate = Convert.ToDateTime(assignedCasesReader["Date"]),
+                            AssignedTime = Convert.ToDateTime(assignedCasesReader["Time"])
+                        });
+
+                    }
+
+                }
+
+
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("YOU'RE OFF", "YOU HAVE NO ASSIGNED CASES", "OK");
+
+                }
+
+
+               
+                assignedCasesReader.Close();
+                SqlModel.SqlConnection.Close();
+
+            }//END OF TRY BLOCK
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+
+            }
+        }
+
+        //read from caseinfotable AND clientinfotable TO GET clients and cases for picker
+        public ICommand GetClientAndCasePickersCommand { get; }
+        public async void GetClientAndCasePickersMethod()
+        {
+            
+            try
+            {
+                ReportInfoModel.CreatingReport = true;
+                ReportInfoModel.ReadingReport = false;
+
+                SqlModel.SqlConnection.Open();
+
+                SqlCommand caseCommand = new SqlCommand(SqlModel.CaseQuery, SqlModel.SqlConnection);
+
+                SqlDataReader caseReader = caseCommand.ExecuteReader();
+
+                    while (caseReader.Read())
+                    {
+
+                        CaseInfoModel.CaseInfoModelList.Insert(0, new CaseInfoModel
+                        {
+                            CaseId = caseReader["CaseId"].ToString()
+                        });
+
+
+                    }
+                    caseReader.Close();
+
+
+                    SqlCommand clientCommand = new SqlCommand(SqlModel.ClientQuery, SqlModel.SqlConnection);
+
+                    SqlDataReader clientReader = clientCommand.ExecuteReader();
+                    while (clientReader.Read())
+                    {
+                        ClientInfoModel.ClientInfoModelList.Insert(0, new ClientInfoModel
+                        {
+                            ClientName = clientReader["ClientName"].ToString()
+                        });
+                    }
+                    clientReader.Close();
+                    SqlModel.SqlConnection.Close();
+                
+                
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+
+        public ICommand CheckConnectionCommand { get; }
+        public async void CheckConnectionMethod()
+        {
+            try
+            {
+                SqlModel.SqlConnection.Open();
+                await Application.Current.MainPage.DisplayAlert("DONE", "YOU DID IT", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+
+        
+
+        public ICommand CreateSqlCommand { get; }
+        public async void CreateSqlMethod()
+        {
+            try
+            {
+                SqlModel.SqlConnection.Open();
+
+                if (CaseInfoModel.CaseId != string.Empty)
+                {
+                    using (SqlCommand sqlInsertCaseCommand = new SqlCommand(SqlModel.ReportInsertQuery, SqlModel.SqlConnection))
+                    {
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("CaseId", SelectedCase.CaseId));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("ClientName", SelectedClient.ClientName));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("SurveillanceDate", ReportInfoModel.SurveillanceDate.ToShortDateString()));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("StartTime", ReportInfoModel.StartTime.ToString()));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("EndTime", ReportInfoModel.EndTime.ToString()));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("TotalHoursOfSurveillance", ReportInfoModel.TotalHoursOfSurveillance));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("StartLocation", ReportInfoModel.StartLocation));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("EndLocation", ReportInfoModel.EndLocation));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("SubjectVideoObtained", SubjectVideoConfirmation.Value));
+
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("MedicalDevicesUsed", MedicalDeviceUsed.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("AddressWhereVideoWasObtained", ReportInfoModel.AddressWhereVideoWasObtained));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("VehiclesPresentAtStartLocation", SelectedYesNoPicker.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("NumberOfVehiclesAtStartLocation", VehiclePresentAtStartLocationDesc.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("StartLocationIsSubjectsResidence", SelectedYesNoPicker.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("AttemptedToConfirmSubjectWasHome", AttemptToConfirmSubjectHomeType.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("SurveillancePosition", SurveillancePositionDesc.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("SubjectSex", MaleOrFemale.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("ApproximateHeight", Height.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("ApproximateWeight", Weight.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("ApproximateBuild", Build.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("HairColor", HairColor.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("HairLength", HairLength.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("WhyWasSurveillanceEnded", SurveillanceEndReason.Value));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("SurveillanceSummary", ReportInfoModel.SurveillanceSummary));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("VideoObtainedDetails", ReportInfoModel.VideoObtainedDetails));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("VideoObtainedTime", ReportInfoModel.VideoObtainedTime.ToString()));
+                        sqlInsertCaseCommand.Parameters.Add(new SqlParameter("TypeOfVideoObtained", TypeOfVideoObtained.Value));
+
+                        sqlInsertCaseCommand.ExecuteNonQuery();
+                        await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY ADDED", "CLICK OK TO PROCEED", "OK");
+                    }
+
+                }
+                SqlModel.SqlConnection.Close();
+            }
+
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+        public ICommand ReadSqlCommand { get; }
+        public async void ReadSqlMethod()
+        {
+            ReportInfoModel.CreatingReport = false;
+            ReportInfoModel.DeletingReport = false;
+            ReportInfoModel.UpdatingReport = false;
+
+            ReportInfoModel.ReadingReport = true;
+            try
+            {
+                    SqlModel.SqlConnection.Open();
+
+                    SqlCommand reportCommand = new SqlCommand(SqlModel.ReportQuery, SqlModel.SqlConnection);
+
+                    SqlDataReader reportReader = reportCommand.ExecuteReader();
+
+                while (reportReader.Read())
+                {
+
+                    ReportInfoModel.ReportInfoModelList.Insert(0, new ReportInfoModel
+                    {
+                        CaseId = reportReader["CaseId"].ToString(),
+                        ClientName = reportReader["ClientName"].ToString(),
+                        SurveillanceDate = Convert.ToDateTime(reportReader["SurveillanceDate"]),
+                        StartLocation = reportReader["StartLocation"].ToString(),
+                        EndLocation = reportReader["EndLocation"].ToString(),
+                        AddressWhereVideoWasObtained = reportReader["AddressWhereVideoWasObtained"].ToString(),
+                        SubjectVideoConfirmation = reportReader["SubjectVideoObtained"].ToString(),
+                        MedicalDeviceUsed = reportReader["MedicalDevicesUsed"].ToString(),
+                        VehiclePresentAtStartLocationDesc = reportReader["VehiclesPresentAtStartLocation"].ToString(),
+                        SelectedYesNoPicker = reportReader["StartLocationIsSubjectsResidence"].ToString(),
+                        AttemptToConfirmSubjectHomeType = reportReader["AttemptedToConfirmSubjectWasHome"].ToString(),
+                        SurveillancePositionDesc = reportReader["SurveillancePosition"].ToString(),
+                        MaleOrFemale = reportReader["SubjectSex"].ToString(),
+                        Height = reportReader["ApproximateHeight"].ToString(),
+                        Weight = reportReader["ApproximateWeight"].ToString(),
+                        Build = reportReader["ApproximateBuild"].ToString(),
+                        HairColor = reportReader["HairColor"].ToString(),
+                        HairLength = reportReader["HairLength"].ToString(),
+                        SurveillanceEndReason = reportReader["WhyWasSurveillanceEnded"].ToString(),
+                        TypeOfVideoObtained = reportReader["TypeOfVideoObtained"].ToString(),
+                        VideoObtainedDetails = reportReader["VideoObtainedDetails"].ToString(),
+                        SurveillanceSummary = reportReader["SurveillanceSummary"].ToString(),
+                        Identifier = Convert.ToInt32(reportReader["Identifier"])
+
+                    });
+
+                }
+                reportReader.Close();
+                    SqlModel.SqlConnection.Close();
+
+                
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+        public ICommand UpdateCommand { get; }
+
+        public void UpdateMethod()
+        {
+            ReportInfoModel.UpdatingReport = true;
+            ReportInfoModel.CreatingReport = false;
+            ReportInfoModel.ReadingReport = false;
+            ReportInfoModel.DeletingReport = false;
+
+        }
+
+        public ICommand UpdateSqlCommand { get; }
+        public async void UpdateSqlMethod()
+        {
+            try
+            {
+                ReportInfoModel.CreatingReport = false;
+                ReportInfoModel.DeletingReport = false;
+                ReportInfoModel.ReadingReport = false;
+                SqlModel.SqlConnection.Open();
+
+
+                if( ReportInfoModel.EndLocationToBeUpdated != string.Empty)
+                {
+                    string queryString = $"UPDATE dbo.ReportInfoTable SET EndLocation = '{ReportInfoModel.EndLocationToBeUpdated}'  WHERE Identifier ='{ReportInfoModel.Identifier}'";
+
+                    using (SqlCommand command = new SqlCommand(queryString, SqlModel.SqlConnection))
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+
+                }
+                if (ReportInfoModel.StartLocationToBeUpdated != string.Empty)
+                {
+                    string queryString = $"UPDATE dbo.ReportInfoTable SET StartLocation = '{ReportInfoModel.StartLocationToBeUpdated}'  WHERE Identifier ='{ReportInfoModel.Identifier}'";
+
+                    using (SqlCommand command = new SqlCommand(queryString, SqlModel.SqlConnection))
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+
+                }
+
+
+                if (ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated != string.Empty)
+                {
+                    string queryString = $"UPDATE dbo.ReportInfoTable SET AddressWhereVideoWasObtained = '{ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}'  WHERE Identifier ='{ReportInfoModel.Identifier}'";
+
+                    using (SqlCommand command = new SqlCommand(queryString, SqlModel.SqlConnection))
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+
+                }
+                await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY UPDATED", "CLICK OK TO PROCEED", "OK");
+            }
+                    
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+
+        public ICommand DeleteCommand { get; }
+
+        public void DeleteMethod()
+        {
+            ReportInfoModel.DeletingReport = true;
+            ReportInfoModel.UpdatingReport = false;
+            ReportInfoModel.CreatingReport = false;
+            ReportInfoModel.ReadingReport = false;
+        }
+
+        public ICommand DeleteSqlCommand { get; }
+        public async void DeleteSqlMethod()
+        {
+            try
+            {
+                ReportInfoModel.UpdatingReport = false;
+                ReportInfoModel.CreatingReport = false;
+                ReportInfoModel.ReadingReport = false;
+                SqlModel.SqlConnection.Open();
+
+
+                using (SqlCommand deleteCommand = new SqlCommand($"Delete FROM dbo.ReportInfoTable WHERE Identifier = {ReportInfoModel.Identifier}", SqlModel.SqlConnection))
+                {
+                    deleteCommand.ExecuteNonQuery();
+                }
+                SqlModel.SqlConnection.Close();
+                await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY DELETED", "CLICK OK TO PROCEED", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+            }
+            finally
+            {
+                SqlModel.SqlConnection.Close();
+
+            }
+        }
+
+
+
+        ReportInfoModel _selectedYesNoPicker;
+        public ReportInfoModel SelectedYesNoPicker
+        {
+            get => _selectedYesNoPicker;
+            set
+            {
+                _selectedYesNoPicker = value;
+                OnPropertyChanged(nameof(SelectedYesNoPicker));
+            }
+        }
+
+        public List<ReportInfoModel> GetYesNoPicker()
+        {
+            var yesOrno = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "YES"},
+                new ReportInfoModel(){Key = 2, Value = "NO"},
+                new ReportInfoModel(){Key = 3, Value = "Not requested by client."}
+
+            };
+            return yesOrno;
+        }
+
+        //for the pickers to get values
+
+        ReportInfoModel _medicalDeviceUsed;
+        public ReportInfoModel MedicalDeviceUsed
+        {
+            get => _medicalDeviceUsed;
+            set
+            {
+                _medicalDeviceUsed = value;
+                OnPropertyChanged(nameof(MedicalDeviceUsed));
+            }
+        }
+
+        public List<ReportInfoModel> GetMedicalDevicesUsed()
+        {
+            var devicesUsed = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "The subject used NO visible medical devices."},
+                new ReportInfoModel(){Key = 2, Value = "The subject walked with the assistance of a cane."},
+                new ReportInfoModel(){Key = 3, Value = "The subject wore a sling."},
+                new ReportInfoModel(){Key = 4, Value = "The subject wore medicated shoes."},
+                new ReportInfoModel(){Key = 5, Value = "The subject was in a wheelchair."},
+                new ReportInfoModel(){Key = 6, Value = "The subject wore a neck brace."},
+                new ReportInfoModel(){Key = 7, Value = "The subject walked with the assistance of two crutches."},
+                new ReportInfoModel(){Key = 8, Value = "Not requested by client."}
+
+            };
+            return devicesUsed;
+        }
+
+        ReportInfoModel _vehiclePresentAtStartLocationDesc;
+        public ReportInfoModel VehiclePresentAtStartLocationDesc
+        {
+            get => _vehiclePresentAtStartLocationDesc;
+            set
+            {
+                _vehiclePresentAtStartLocationDesc = value;
+                OnPropertyChanged(nameof(VehiclePresentAtStartLocationDesc));
+            }
+        }
+
+        public List<ReportInfoModel> GetVehiclesPresent()
+        {
+            var vehiclesPresent = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "There was one vehicle."},
+                new ReportInfoModel(){Key = 2, Value = "There were two vehicles."},
+                new ReportInfoModel(){Key = 3, Value = "There were no vehicles."},
+                new ReportInfoModel(){Key = 4, Value = "There were three vehicles."},
+                new ReportInfoModel(){Key = 5, Value = "There were more than three vehicles."},
+                new ReportInfoModel(){Key = 6, Value = "Not requested by client."}
+
+            };
+            return vehiclesPresent;
+        }
+
+        ReportInfoModel _attemptToConfirmSubjectHomeType;
+        public ReportInfoModel AttemptToConfirmSubjectHomeType
+        {
+            get => _attemptToConfirmSubjectHomeType;
+            set
+            {
+                _attemptToConfirmSubjectHomeType = value;
+                OnPropertyChanged(nameof(AttemptToConfirmSubjectHomeType));
+            }
+        }
+
+        public List<ReportInfoModel> GetAttemptToConfirm()
+        {
+            var attemptToConfirm = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "Knocked on the door, but no one answered."},
+                new ReportInfoModel(){Key = 2, Value = "Yes I Tried, but I couldn't confirm the subject was home."},
+                new ReportInfoModel(){Key = 3, Value = "Yes, I confirmed the subject was home."},
+                new ReportInfoModel(){Key = 4, Value = "Not needed, subject was active."},
+                new ReportInfoModel(){Key = 5, Value = "Client requested that we do not confirm."},
+                new ReportInfoModel(){Key = 6, Value = "Not requested by client."}
+            };
+            return attemptToConfirm;
+        }
+
+        ReportInfoModel _surveillancePositionDesc;
+        public ReportInfoModel SurveillancePositionDesc
+        {
+            get => _surveillancePositionDesc;
+            set
+            {
+                _surveillancePositionDesc = value;
+                OnPropertyChanged(nameof(SurveillancePositionDesc));
+            }
+        }
+
+        public List<ReportInfoModel> GetSurveillanceDesc()
+        {
+            var attemptToConfirm = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "A stationary surveillance position was established with a direct view of the residence."},
+                new ReportInfoModel(){Key = 2, Value = "A stationary surveillance position was established witha partial view of the residence."},
+                new ReportInfoModel(){Key = 3, Value = "A stationary surveillance position was established at the main egress route."},
+                new ReportInfoModel(){Key = 4, Value = "There was no surveillance position available.  Multiple drive-bys of the residence were conducted throughout the day."},
+                new ReportInfoModel(){Key = 5, Value = "Client requested that we do not confirm."},
+                new ReportInfoModel(){Key = 6, Value = "Not requested by client."}
+            };
+            return attemptToConfirm;
+        }
+
+        ReportInfoModel _maleOrFemale;
+        public ReportInfoModel MaleOrFemale
+        {
+            get => _maleOrFemale;
+            set
+            {
+                _maleOrFemale = value;
+                OnPropertyChanged(nameof(MaleOrFemale));
+            }
+        }
+
+        public List<ReportInfoModel> GetMaleOrFemale()
+        {
+            var yesOrno = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "MALE"},
+                new ReportInfoModel(){Key = 2, Value = "FEMALE"},
+                new ReportInfoModel(){Key = 3, Value = "Not requested by client."}
+
+            };
+            return yesOrno;
+        }
+
+        ReportInfoModel _height;
+        public ReportInfoModel Height
+        {
+            get => _height;
+            set
+            {
+                _height = value;
+                OnPropertyChanged(nameof(Height));
+            }
+        }
+
+        public List<ReportInfoModel> GetHeights()
+        {
+            var heights = new List<ReportInfoModel>()
+            {
+                
+                new ReportInfoModel(){Key = 1, Value = "5'4"},
+                new ReportInfoModel(){Key = 2, Value = "5'5"},
+                new ReportInfoModel(){Key = 3, Value = "5'7"},
+                new ReportInfoModel(){Key = 4, Value = "5'8"},
+                new ReportInfoModel(){Key = 5, Value = "5'9"},
+                new ReportInfoModel(){Key = 6, Value = "5'10"},
+                new ReportInfoModel(){Key = 7, Value = "5'11"},
+                new ReportInfoModel(){Key = 8, Value = "6'0"},
+                new ReportInfoModel(){Key = 9, Value = "6'1"},
+                new ReportInfoModel(){Key = 10, Value = "6'2"},
+                new ReportInfoModel(){Key = 11, Value = "Not requested by client."}
+
+            };
+            return heights;
+        }
+
+        ReportInfoModel _weight;
+        public ReportInfoModel Weight
+        {
+            get => _weight;
+            set
+            {
+                _weight = value;
+                OnPropertyChanged(nameof(Weight));
+            }
+        }
+
+        public List<ReportInfoModel> GetWeights()
+        {
+            var weights = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "100LBS"},
+                new ReportInfoModel(){Key = 2, Value = "150LBS"},
+                new ReportInfoModel(){Key = 3, Value = "180LBS"},
+                new ReportInfoModel(){Key = 4, Value = "200LBS"},
+                new ReportInfoModel(){Key = 5, Value = "220LBS"},
+                new ReportInfoModel(){Key = 6, Value = "250LBS"},
+                new ReportInfoModel(){Key = 7, Value = "300LBS"},
+                new ReportInfoModel(){Key = 8, Value = "300LBS++"},
+                new ReportInfoModel(){Key = 9, Value = "Not requested by client."}
+
+            };
+            return weights;
+        }
+
+        ReportInfoModel _build;
+        public ReportInfoModel Build
+        {
+            get => _build;
+            set
+            {
+                _build = value;
+                OnPropertyChanged(nameof(Build));
+            }
+        }
+
+        public List<ReportInfoModel> GetBuilds()
+        {
+            var weights = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "AN UNKNOWN BUILD"},
+                new ReportInfoModel(){Key = 2, Value = "A THIN BUILD"},
+                new ReportInfoModel(){Key = 3, Value = "AN AVERAGE BUILD"},
+                new ReportInfoModel(){Key = 4, Value = "A FIT BUILD"},
+                new ReportInfoModel(){Key = 5, Value = "A MUSCULAR BUILD"},
+                new ReportInfoModel(){Key = 6, Value = "AN OVERWEIGHT BUILD"},
+                new ReportInfoModel(){Key = 7, Value = "AN OBESE BUILD"},
+                new ReportInfoModel(){Key = 8, Value = "Not requested by client."}
+
+            };
+            return weights;
+        }
+
+        ReportInfoModel _hairColor;
+        public ReportInfoModel HairColor
+        {
+            get => _hairColor;
+            set
+            {
+                _hairColor = value;
+                OnPropertyChanged(nameof(HairColor));
+            }
+        }
+
+        public List<ReportInfoModel> GetHairColors()
+        {
+            var hairColors = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "GRAY"},
+                new ReportInfoModel(){Key = 2, Value = "WHITE"},
+                new ReportInfoModel(){Key = 3, Value = "BLACK"},
+                new ReportInfoModel(){Key = 4, Value = "BROWN"},
+                new ReportInfoModel(){Key = 5, Value = "BLONDE"},
+                new ReportInfoModel(){Key = 6, Value = "BLACK AND GRAY"},
+                new ReportInfoModel(){Key = 7, Value = "DIRTY BLONDE"},
+                new ReportInfoModel(){Key = 8, Value = "Not requested by client."}
+
+            };
+            return hairColors;
+        }
+
+        ReportInfoModel _hairLength;
+        public ReportInfoModel HairLength
+        {
+            get => _hairLength;
+            set
+            {
+                _hairLength = value;
+                OnPropertyChanged(nameof(HairLength));
+            }
+        }
+
+        public List<ReportInfoModel> GetHairLengths()
+        {
+            var hairLengths = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "BUZZ CUT"},
+                new ReportInfoModel(){Key = 2, Value = "EAR LENGTH"},
+                new ReportInfoModel(){Key = 3, Value = "CHIN LENGTH"},
+                new ReportInfoModel(){Key = 4, Value = "SHOULDER LENGTH"},
+                new ReportInfoModel(){Key = 5, Value = "ARMPIT LENGTH"},
+                new ReportInfoModel(){Key = 6, Value = "MID-BACK LENGTH"},
+                new ReportInfoModel(){Key = 7, Value = "TAIL BONE LENGTH"},
+                new ReportInfoModel(){Key = 8, Value = "Not requested by client."}
+
+            };
+            return hairLengths;
+        }
+
+        ReportInfoModel _surveillanceEndReason;
+        public ReportInfoModel SurveillanceEndReason
+        {
+            get => _surveillanceEndReason;
+            set
+            {
+                _surveillanceEndReason = value;
+                OnPropertyChanged(nameof(SurveillanceEndReason));
+            }
+        }
+
+        public List<ReportInfoModel> GetSurveillanceEndReason()
+        {
+            var endReasons = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "With the subject remaining away from the residence, efforts were discontinued."},
+                new ReportInfoModel(){Key = 2, Value = "The subject was not observed on the outside of the residence. With no activity, on behalf of the subject, surveillance was discontinued."},
+                new ReportInfoModel(){Key = 3, Value = "Surveillance efforts were discontinued as the subject was neither observed nor confirmed."},
+                new ReportInfoModel(){Key = 4, Value = "With the subject containing their activities to the interior of the residence, and out of view, surveillance was discontinued."},
+                new ReportInfoModel(){Key = 5, Value = "Not requested by client."}
+
+            };
+            return endReasons;
+        }
+
+        ReportInfoModel _typeOfVideoObtained;
+        public ReportInfoModel TypeOfVideoObtained
+        {
+            get => _typeOfVideoObtained;
+            set
+            {
+                _typeOfVideoObtained = value;
+                OnPropertyChanged(nameof(TypeOfVideoObtained));
+            }
+        }
+
+        public List<ReportInfoModel> GetTypeOfVideo()
+        {
+            var typeofVideo = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "Covert video was obtained."},
+                new ReportInfoModel(){Key = 2, Value = "There was no video obtained."},
+                new ReportInfoModel(){Key = 3, Value = "Not requested by client."}
+
+            };
+            return typeofVideo;
+        }
+
+        ReportInfoModel _subjectVideoConfirmation;
+        public ReportInfoModel SubjectVideoConfirmation
+        {
+            get => _subjectVideoConfirmation;
+            set
+            {
+                _subjectVideoConfirmation = value;
+                OnPropertyChanged(nameof(SubjectVideoConfirmation));
+            }
+        }
+        public List<ReportInfoModel> GetSubjectVideoConfirmation()
+        {
+            var typeofVideo = new List<ReportInfoModel>()
+            {
+                new ReportInfoModel(){Key = 1, Value = "Yes, vidoe was obtained."},
+                new ReportInfoModel(){Key = 2, Value = "There was no video obtained."},
+                new ReportInfoModel(){Key = 3, Value = "Not requested by client."}
+
+            };
+            return typeofVideo;
+        }
+
+
+
+
+
+        //also tried: implements:ISql, IReportInfoServices
+        //ISql ISQL;
+        //IReportInfoModel _iReport;
+        //IReportInfoServices _iReportServices;
+        //ILoginModel _login;
+        //public ReportInfoViewModel(IReportInfoModel iReport, ISql _isql)
+        //{
+        //    ISQL = _isql;
+        //    _iReport = iReport;
+
+        //}
+
+        //public ReportInfoViewModel(IReportInfoModel iReport, ISql _isql, IReportInfoServices iReportservices, ILoginModel login)
+        //{
+        //    ISQL = _isql;
+        //    _iReport = iReport;
+        //    _iReportServices = iReportservices;
+        //    _login = login;
+
+        //    iReportservices = (IReportInfoServices)GetYesNoPicker().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetMedicalDevicesUsed().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetVehiclesPresent().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetAttemptToConfirm().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetSurveillanceDesc().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetMaleOrFemale().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetHeights().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetWeights().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetBuilds().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetHairColors().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetHairLengths().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetSurveillanceEndReason().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetTypeOfVideo().OrderBy(t => t.Value).ToList();
+        //    iReportservices = (IReportInfoServices)GetSubjectVideoConfirmation().OrderBy(t => t.Value).ToList();
+
+
+        //}
+
+
+        //ObservableCollection<CaseInfoModel> AssignedCasesInfolList = new ObservableCollection<CaseInfoModel>();
+        //CaseInfoModel.AssignedCasesInfolList = AssignedCasesInfolList;
+
+
+        /*//if (CaseInfoModel.AssignedEmployeeUsername == LoginModel.EmployeeUsername)
+                if (CaseInfoModel.ReadingCase == true)
+                {
+                    ReportInfoModel.ReadingSqlAssignedCases = true;
+
+                    SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.AssignedCasesInfoTable WHERE EmployeeName = '" + CaseInfoModel.AssignedEmployeeUsername + "' AND CaseId = '" + CaseInfoModel.AssignedCaseId + "'AND Date = '" + CaseInfoModel.AssignedDate + "' AND Time = '" + CaseInfoModel.AssignedTime + "'", SqlModel.SqlConnection);
+
+                    SqlModel.SqlDataReader = sqlSaveAndReadCommand.ExecuteReader();
+
+                    while (SqlModel.SqlDataReader.Read())
+                    {
+
+                        CaseInfoModel.AssignedCasesInfolList.Add(new CaseInfoModel
+                        {
+                            AssignedEmployeeUsername = SqlModel.SqlDataReader["EmployeeName"].ToString(),
+                            AssignedCaseId = SqlModel.SqlDataReader["CaseId"].ToString(),
+                            AssignedDate = (DateTime)SqlModel.SqlDataReader["Date"],
+                            AssignedTime = (DateTime)SqlModel.SqlDataReader["Time"]
+                        });
+
+                        await Application.Current.MainPage.DisplayAlert($"YOU HAVE CASE {CaseInfoModel.AssignedCaseId} ON {CaseInfoModel.AssignedDate} AT {CaseInfoModel.AssignedTime}", "ARE YOU READY FOR YOUR SURVEILLANCE?", "I AM READY!");
+                    }
+
+
+                    SqlModel.SqlDataReader.Close();
+                    SqlModel.SqlConnection.Close();
+
+                }//END OF FIRST IF*/
+
+
+
+        //if (ReportInfoModel.StartTimeToBeUpdated.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET StartTime = '{ReportInfoModel.StartTimeToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (ReportInfoModel.SurveillanceDate.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET SurveillanceDate = '{ReportInfoModel.SurveillanceDate}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (ReportInfoModel.StartLocation != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET StartLocation = '{ReportInfoModel.StartLocationToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (ReportInfoModel.EndLocation != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET EndLocation = '{ReportInfoModel.EndLocationToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (SubjectVideoConfirmation.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET SubjectVideoObtained = '{SubjectVideoConfirmation.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (MedicalDeviceUsed.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET MedicalDevicesUsed = '{MedicalDeviceUsed.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (ReportInfoModel.EndLocation != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET AddressWhereVideoWasObtained = '{ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (AttemptToConfirmSubjectHomeType.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET AttemptedToConfirmSubjectWasHome = '{AttemptToConfirmSubjectHomeType.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (MaleOrFemale.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET SubjectSex = '{MaleOrFemale.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (VehiclePresentAtStartLocationDesc.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET VehiclesPresentAtStartLocation = '{VehiclePresentAtStartLocationDesc.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+        //if (TypeOfVideoObtained.ToString() != string.Empty)
+        //{
+        //    string query = $"UPDATE dbo.ReportInfoTable SET TypeOfVideoObtained = '{TypeOfVideoObtained.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
+        //}
+
+
+
+
+
+
+    }
+}
