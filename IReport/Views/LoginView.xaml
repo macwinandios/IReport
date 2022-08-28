@@ -78,7 +78,7 @@
             </StackLayout>
 
             
-            <Label Text="Don't have an account? No worries..."
+            <Label Text="Don't have an account?"
                    FontSize="18"/>
             <Label Text="Enter a Username and Password and click SIGNUP!"
                    FontSize="16"/>
