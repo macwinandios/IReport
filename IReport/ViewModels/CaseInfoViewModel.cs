@@ -21,7 +21,7 @@ namespace IReport.ViewModels
             CaseInfoModel = new CaseInfoModel();
             ClientInfoModel = new ClientInfoModel();
             CreateSqlCommand = new Command(CreateSqlMethod);
-            CreateCommand = new Command(CreateMethod);
+            //CreateCommand = new Command(CreateMethod);
             ReadSqlCommand = new Command(ReadSqlMethod);
             UpdateSqlCommand = new Command(UpdateSqlMethod);
             UpdateCommand = new Command(UpdateMethod);
@@ -31,7 +31,7 @@ namespace IReport.ViewModels
             DeleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod);
             UpdateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod);
             SqlModel = new SqlModel();
-            CheckConnectionCommand = new Command(CheckConnectionMethod);
+            //CheckConnectionCommand = new Command(CheckConnectionMethod);
             GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
 
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
@@ -44,9 +44,25 @@ namespace IReport.ViewModels
             CaseInfoModel.LanguageList = GetLanguage().OrderBy(t => t.Value).ToList();
             CaseInfoModel.LevelOfAwarenessList = GetAwareness().OrderBy(t => t.Value).ToList();
         }
-        //temporary
-        ReportInfoModel _reportInfoModel;
 
+
+        ReportInfoModel _reportInfoModel;
+        CaseInfoModel _caseInfoModel;
+        ClientInfoModel _clientInfoModel;
+        SqlModel _sqlModel;
+
+        CaseInfoModel _selectedAwareness;
+        CaseInfoModel _selectedEthnicity;
+        CaseInfoModel _selectedComplexion;
+        CaseInfoModel _selectedLanguage;
+
+        //233-342 CREATE METHOD SQL SERVER
+        //346-419 READ METHOD FOR SQL
+        //433-466 UPDATE METHOD FOR SQL
+        //481-509 DELETE METHOD FOR SQL
+
+
+        
         public ReportInfoModel ReportInfoModel
         {
             get => _reportInfoModel;
@@ -58,111 +74,9 @@ namespace IReport.ViewModels
             }
         }
 
-        CaseInfoModel _selectedAwareness;
-        public CaseInfoModel SelectedAwareness
-        {
-            get => _selectedAwareness;
-            set
-            {
-                _selectedAwareness = value;
-                OnPropertyChanged(nameof(SelectedAwareness));
-            }
-        }
-        CaseInfoModel _selectedEthnicity;
-        public CaseInfoModel SelectedEthnicity
-        {
-            get => _selectedEthnicity;
-            set
-            {
-                    _selectedEthnicity = value;
-                OnPropertyChanged(nameof(SelectedEthnicity));
-            }
-        }
+       
 
-        CaseInfoModel _selectedComplexion;
-        public CaseInfoModel SelectedComplexion
-        {
-            get => _selectedComplexion;
-            set
-            {
-                    _selectedComplexion = value;
-                
-                OnPropertyChanged(nameof(SelectedComplexion));
-            }
-        }
 
-        CaseInfoModel _selectedLanguage;
-        public CaseInfoModel SelectedLanguage
-        {
-            get => _selectedLanguage;
-            set
-            {
-                _selectedLanguage = value;
-
-                OnPropertyChanged(nameof(SelectedLanguage));
-            }
-        }
-
-        public List<CaseInfoModel> GetAwareness()
-        {
-            var awareness = new List<CaseInfoModel>()
-            {
-                new CaseInfoModel(){Key = 1, Value = "Extremely Aware"},
-                new CaseInfoModel(){Key = 2, Value = "Very Aware"},
-                new CaseInfoModel(){Key = 3, Value = "A Little Aware"},
-                new CaseInfoModel(){Key = 4, Value = "Not Aware At All"},
-            };
-            return awareness;
-        }
-        public List<CaseInfoModel> GetComplexions()
-        {
-            var complexions = new List<CaseInfoModel>()
-            {
-                new CaseInfoModel(){Key = 1, Value = "Very Light Skin"},
-                new CaseInfoModel(){Key = 2, Value = "Light Skin"},
-                new CaseInfoModel(){Key = 3, Value = "Tanned Skin"},
-                new CaseInfoModel(){Key = 4, Value = "Brown Skin"},
-                new CaseInfoModel(){Key = 5, Value = "Very Brown Skin"},
-                new CaseInfoModel(){Key = 6, Value = "We Don't Know"}
-            };
-            return complexions;
-        }
-
-        public List<CaseInfoModel> GetEthnicity()
-        {
-            var ethnicities = new List<CaseInfoModel>()
-            {
-                new CaseInfoModel(){Key = 1, Value = "African American"},
-                new CaseInfoModel(){Key = 2, Value = "White"},
-                new CaseInfoModel(){Key = 3, Value = "Asian"},
-                new CaseInfoModel(){Key = 4, Value = "South American"},
-                new CaseInfoModel(){Key = 5, Value = "Indian"},
-                new CaseInfoModel(){Key = 6, Value = "African"},
-                new CaseInfoModel(){Key = 7, Value = "European"},
-                new CaseInfoModel(){Key = 8, Value = "Eastern European"},
-                new CaseInfoModel(){Key = 9, Value = "Caribbean Islands"}
-            };
-            return ethnicities;
-        }
-
-        public List<CaseInfoModel> GetLanguage()
-        {
-            var languages = new List<CaseInfoModel>()
-            {
-                new CaseInfoModel(){Key = 1, Value = "English"},
-                new CaseInfoModel(){Key = 2, Value = "Spanish"},
-                new CaseInfoModel(){Key = 3, Value = "Russian"},
-                new CaseInfoModel(){Key = 4, Value = "French"},
-                new CaseInfoModel(){Key = 5, Value = "Chinese"},
-                new CaseInfoModel(){Key = 6, Value = "Hindi"},
-                new CaseInfoModel(){Key = 7, Value = "Arabic"},
-                new CaseInfoModel(){Key = 8, Value = "Bengali"},
-                new CaseInfoModel(){Key = 9, Value = "German"}
-            };
-            return languages;
-        }
-
-        private CaseInfoModel _caseInfoModel;
         public CaseInfoModel CaseInfoModel
         {
             get => _caseInfoModel;
@@ -176,7 +90,6 @@ namespace IReport.ViewModels
 
 
 
-        private ClientInfoModel _clientInfoModel;
         public ClientInfoModel ClientInfoModel
         {
             get => _clientInfoModel;
@@ -187,7 +100,6 @@ namespace IReport.ViewModels
             }
         }
 
-        private SqlModel _sqlModel;
         public SqlModel SqlModel
         {
             get => _sqlModel;
@@ -196,19 +108,50 @@ namespace IReport.ViewModels
                 _sqlModel = value;
             }
         }
-        public ICommand AssignACaseCommand { get; }
 
-        public void AssignACaseMethod()
+        public CaseInfoModel SelectedAwareness
         {
-            CaseInfoModel.AssigningACase = true;
-
-            CaseInfoModel.CreatingCase = false;
-            CaseInfoModel.UpdatingCase = false;
-            CaseInfoModel.ReadingCase = false;
-            CaseInfoModel.DeletingCase = false;
-
-
+            get => _selectedAwareness;
+            set
+            {
+                _selectedAwareness = value;
+                OnPropertyChanged(nameof(SelectedAwareness));
+            }
         }
+        public CaseInfoModel SelectedEthnicity
+        {
+            get => _selectedEthnicity;
+            set
+            {
+                _selectedEthnicity = value;
+                OnPropertyChanged(nameof(SelectedEthnicity));
+            }
+        }
+
+        public CaseInfoModel SelectedComplexion
+        {
+            get => _selectedComplexion;
+            set
+            {
+                _selectedComplexion = value;
+
+                OnPropertyChanged(nameof(SelectedComplexion));
+            }
+        }
+
+        public CaseInfoModel SelectedLanguage
+        {
+            get => _selectedLanguage;
+            set
+            {
+                _selectedLanguage = value;
+
+                OnPropertyChanged(nameof(SelectedLanguage));
+            }
+        }
+
+
+        //Reads from SQL to populate the picker
         public ICommand GetClientAndCasePickersCommand { get; }
         public async void GetClientAndCasePickersMethod()
         {
@@ -243,25 +186,27 @@ namespace IReport.ViewModels
         }
 
 
-        public ICommand CheckConnectionCommand { get; }
-        public async void CheckConnectionMethod()
-        {
-            try
-            {
-                SqlModel.SqlConnection.Open();
-                await Application.Current.MainPage.DisplayAlert("DONE", "YOU DID IT", "OK");
-            }
-            catch(Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+        //public ICommand CheckConnectionCommand { get; }
+        //public async void CheckConnectionMethod()
+        //{
+        //    try
+        //    {
+        //        SqlModel.SqlConnection.Open();
+        //        await Application.Current.MainPage.DisplayAlert("DONE", "YOU DID IT", "OK");
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
 
-            }
-            finally
-            {
-                SqlModel.SqlConnection.Close();
+        //    }
+        //    finally
+        //    {
+        //        SqlModel.SqlConnection.Close();
 
-            }
-        }
+        //    }
+        //}
+
+
         public ICommand CreateNewCaseCommand { get; }
         public void CreateNewCaseMethod()
         {
@@ -274,17 +219,17 @@ namespace IReport.ViewModels
 
         }
 
-        public ICommand CreateCommand { get; }
+        //public ICommand CreateCommand { get; }
 
-        public void CreateMethod()
-        {
-            CaseInfoModel.CreatingCase = true;
-            CaseInfoModel.UpdatingCase = false;
-            CaseInfoModel.ReadingCase = false;
-            CaseInfoModel.DeletingCase = false;
-            CaseInfoModel.AssigningACase = false;
+        //public void CreateMethod()
+        //{
+        //    CaseInfoModel.CreatingCase = true;
+        //    CaseInfoModel.UpdatingCase = false;
+        //    CaseInfoModel.ReadingCase = false;
+        //    CaseInfoModel.DeletingCase = false;
+        //    CaseInfoModel.AssigningACase = false;
 
-        }
+        //}
         public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
@@ -417,10 +362,6 @@ namespace IReport.ViewModels
                 SqlDataReader clientReader = clientCommand.ExecuteReader();
                 while (clientReader.Read())
                 {
-                    //ClientInfoModel.ClientInfoModelList.Add(new ClientInfoModel
-                    //{
-                    //    ClientName = clientReader["ClientName"].ToString()
-                    //});
 
                     CaseInfoModel.CaseInfoModelList.Add(new CaseInfoModel
                     {
@@ -498,7 +439,7 @@ namespace IReport.ViewModels
                 CaseInfoModel.AssigningACase = false;
 
                 string queryString = $"UPDATE dbo.CaseInfoTable SET CaseId = '{CaseInfoModel.CaseId}' , ClientName = '{ClientInfoModel.ClientName}' ,FirstName = '{CaseInfoModel.FirstName}' , MiddleName = '{CaseInfoModel.MiddleName}' , LastName = '{CaseInfoModel.LastName}' , PhoneNumber = '{CaseInfoModel.PhoneNumber}' , HomeAddress = '{CaseInfoModel.HomeAddress}' , HomeDescription = '{CaseInfoModel.HomeDescription}' , WorkAddress = '{CaseInfoModel.WorkAddress}' , WorkDescription = '{CaseInfoModel.WorkDescription}' , Height = '{CaseInfoModel.Height}' , Weight = '{CaseInfoModel.Weight}' , EyeColor = '{CaseInfoModel.EyeColor}' , HairColor = '{CaseInfoModel.HairColor}' , TattooDescription = '{CaseInfoModel.TattooDescription}' , FrequentedPlaces = '{CaseInfoModel.FrequentedPlaces}' , VehicleYear = '{CaseInfoModel.VehicleYear}' , VehicleMake = '{CaseInfoModel.VehicleMake}' , VehicleModel = '{CaseInfoModel.VehicleModel}' , VehicleColor = '{CaseInfoModel.VehicleColor}' , LicensePlateNumber = '{CaseInfoModel.LicensePlateNumber}' ,LicensePlateState = '{CaseInfoModel.LicensePlateState}' , LicensePlateColor = '{CaseInfoModel.LicensePlateColor}' , CaseDetails = '{CaseInfoModel.CaseDetails}' , SelectedComplexion = '{CaseInfoModel.SelectedComplexion}' , SelectedEthnicity = '{CaseInfoModel.SelectedEthnicity}' , SelectedLanguage = '{CaseInfoModel.SelectedLanguage}' , SelectedAwareness = '{CaseInfoModel.SelectedAwareness}' WHERE Identifier ='{CaseInfoModel.Identifier}'";
-                //it may be that i wasnt adding the confirm subject home i kept forgetting to add an updated vbalue 
+
                 using (SqlCommand command = new SqlCommand(queryString, SqlModel.SqlConnection))
                 {
                     command.ExecuteNonQuery();
@@ -598,7 +539,7 @@ namespace IReport.ViewModels
             {
                 SqlModel.SqlConnection.Open();
                 string queryString = $"UPDATE dbo.AssignedCasesInfoTable SET EmployeeName = '{CaseInfoModel.AssignedEmployeeUsername}' , CaseId = '{CaseInfoModel.AssignedCaseId}' ,Date = '{CaseInfoModel.AssignedDate}' , Time = '{CaseInfoModel.AssignedTime}'  WHERE Identifier ='{CaseInfoModel.Identifier}'";
-                //it may be that i wasnt adding the confirm subject home i kept forgetting to add an updated vbalue 
+
                 using (SqlCommand command = new SqlCommand(queryString, SqlModel.SqlConnection))
                 {
                     command.ExecuteNonQuery();
@@ -620,6 +561,22 @@ namespace IReport.ViewModels
 
             }
         }
+
+        //isvisible for assign a case
+        public ICommand AssignACaseCommand { get; }
+
+        public void AssignACaseMethod()
+        {
+            CaseInfoModel.AssigningACase = true;
+
+            CaseInfoModel.CreatingCase = false;
+            CaseInfoModel.UpdatingCase = false;
+            CaseInfoModel.ReadingCase = false;
+            CaseInfoModel.DeletingCase = false;
+
+
+        }
+
 
         public ICommand CreateSqlAssignACaseCommand { get; }
 
@@ -682,6 +639,68 @@ namespace IReport.ViewModels
 
             }
         }
+
+
+        //public List Properties for the Pickers
+        public List<CaseInfoModel> GetAwareness()
+        {
+            var awareness = new List<CaseInfoModel>()
+            {
+                new CaseInfoModel(){Key = 1, Value = "Extremely Aware"},
+                new CaseInfoModel(){Key = 2, Value = "Very Aware"},
+                new CaseInfoModel(){Key = 3, Value = "A Little Aware"},
+                new CaseInfoModel(){Key = 4, Value = "Not Aware At All"},
+            };
+            return awareness;
+        }
+        public List<CaseInfoModel> GetComplexions()
+        {
+            var complexions = new List<CaseInfoModel>()
+            {
+                new CaseInfoModel(){Key = 1, Value = "Very Light Skin"},
+                new CaseInfoModel(){Key = 2, Value = "Light Skin"},
+                new CaseInfoModel(){Key = 3, Value = "Tanned Skin"},
+                new CaseInfoModel(){Key = 4, Value = "Brown Skin"},
+                new CaseInfoModel(){Key = 5, Value = "Very Brown Skin"},
+                new CaseInfoModel(){Key = 6, Value = "We Don't Know"}
+            };
+            return complexions;
+        }
+
+        public List<CaseInfoModel> GetEthnicity()
+        {
+            var ethnicities = new List<CaseInfoModel>()
+            {
+                new CaseInfoModel(){Key = 1, Value = "African American"},
+                new CaseInfoModel(){Key = 2, Value = "White"},
+                new CaseInfoModel(){Key = 3, Value = "Asian"},
+                new CaseInfoModel(){Key = 4, Value = "South American"},
+                new CaseInfoModel(){Key = 5, Value = "Indian"},
+                new CaseInfoModel(){Key = 6, Value = "African"},
+                new CaseInfoModel(){Key = 7, Value = "European"},
+                new CaseInfoModel(){Key = 8, Value = "Eastern European"},
+                new CaseInfoModel(){Key = 9, Value = "Caribbean Islands"}
+            };
+            return ethnicities;
+        }
+
+        public List<CaseInfoModel> GetLanguage()
+        {
+            var languages = new List<CaseInfoModel>()
+            {
+                new CaseInfoModel(){Key = 1, Value = "English"},
+                new CaseInfoModel(){Key = 2, Value = "Spanish"},
+                new CaseInfoModel(){Key = 3, Value = "Russian"},
+                new CaseInfoModel(){Key = 4, Value = "French"},
+                new CaseInfoModel(){Key = 5, Value = "Chinese"},
+                new CaseInfoModel(){Key = 6, Value = "Hindi"},
+                new CaseInfoModel(){Key = 7, Value = "Arabic"},
+                new CaseInfoModel(){Key = 8, Value = "Bengali"},
+                new CaseInfoModel(){Key = 9, Value = "German"}
+            };
+            return languages;
+        }
+
 
     }
 }

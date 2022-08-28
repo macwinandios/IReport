@@ -76,15 +76,35 @@ namespace IReport.ViewModels
         //THOUGHT OF IT MYSELF
         BindingBase caseId;
         BindingBase clientName;
-        LoginModel _loginModel;
-        //for selectedcase picker
+        //FOR SELECTED CASE PICKER
         CaseInfoModel _selectedCase;
-        //for selectedclient picker
+
+        //FOR SELECTED CLIENT PICKER
         ClientInfoModel _selectedClient;
+
+        //PRIVATE MEMBERS OF EACH MODEL
         ReportInfoModel _reportInfoModel;
         CaseInfoModel _caseInfoModel;
         ClientInfoModel _clientInfoModel;
+        LoginModel _loginModel;
         SqlModel _sqlModel;
+
+        //READ LISTS FOR PICKERS FROM SQL
+        ReportInfoModel _selectedYesNoPicker;
+        ReportInfoModel _medicalDeviceUsed;
+        ReportInfoModel _vehiclePresentAtStartLocationDesc;
+        ReportInfoModel _attemptToConfirmSubjectHomeType;
+        ReportInfoModel _surveillancePositionDesc;
+        ReportInfoModel _maleOrFemale;
+        ReportInfoModel _height;
+        ReportInfoModel _weight;
+        ReportInfoModel _build;
+        ReportInfoModel _hairColor;
+        ReportInfoModel _hairLength;
+        ReportInfoModel _surveillanceEndReason;
+        ReportInfoModel _typeOfVideoObtained;
+        ReportInfoModel _subjectVideoConfirmation;
+
 
 
         public BindingBase CaseId
@@ -554,7 +574,6 @@ namespace IReport.ViewModels
 
 
 
-        ReportInfoModel _selectedYesNoPicker;
         public ReportInfoModel SelectedYesNoPicker
         {
             get => _selectedYesNoPicker;
@@ -579,7 +598,6 @@ namespace IReport.ViewModels
 
         //for the pickers to get values
 
-        ReportInfoModel _medicalDeviceUsed;
         public ReportInfoModel MedicalDeviceUsed
         {
             get => _medicalDeviceUsed;
@@ -607,7 +625,6 @@ namespace IReport.ViewModels
             return devicesUsed;
         }
 
-        ReportInfoModel _vehiclePresentAtStartLocationDesc;
         public ReportInfoModel VehiclePresentAtStartLocationDesc
         {
             get => _vehiclePresentAtStartLocationDesc;
@@ -633,7 +650,6 @@ namespace IReport.ViewModels
             return vehiclesPresent;
         }
 
-        ReportInfoModel _attemptToConfirmSubjectHomeType;
         public ReportInfoModel AttemptToConfirmSubjectHomeType
         {
             get => _attemptToConfirmSubjectHomeType;
@@ -658,7 +674,6 @@ namespace IReport.ViewModels
             return attemptToConfirm;
         }
 
-        ReportInfoModel _surveillancePositionDesc;
         public ReportInfoModel SurveillancePositionDesc
         {
             get => _surveillancePositionDesc;
@@ -683,7 +698,6 @@ namespace IReport.ViewModels
             return attemptToConfirm;
         }
 
-        ReportInfoModel _maleOrFemale;
         public ReportInfoModel MaleOrFemale
         {
             get => _maleOrFemale;
@@ -706,7 +720,6 @@ namespace IReport.ViewModels
             return yesOrno;
         }
 
-        ReportInfoModel _height;
         public ReportInfoModel Height
         {
             get => _height;
@@ -738,7 +751,6 @@ namespace IReport.ViewModels
             return heights;
         }
 
-        ReportInfoModel _weight;
         public ReportInfoModel Weight
         {
             get => _weight;
@@ -767,7 +779,6 @@ namespace IReport.ViewModels
             return weights;
         }
 
-        ReportInfoModel _build;
         public ReportInfoModel Build
         {
             get => _build;
@@ -795,7 +806,6 @@ namespace IReport.ViewModels
             return weights;
         }
 
-        ReportInfoModel _hairColor;
         public ReportInfoModel HairColor
         {
             get => _hairColor;
@@ -823,7 +833,6 @@ namespace IReport.ViewModels
             return hairColors;
         }
 
-        ReportInfoModel _hairLength;
         public ReportInfoModel HairLength
         {
             get => _hairLength;
@@ -851,7 +860,6 @@ namespace IReport.ViewModels
             return hairLengths;
         }
 
-        ReportInfoModel _surveillanceEndReason;
         public ReportInfoModel SurveillanceEndReason
         {
             get => _surveillanceEndReason;
@@ -876,7 +884,6 @@ namespace IReport.ViewModels
             return endReasons;
         }
 
-        ReportInfoModel _typeOfVideoObtained;
         public ReportInfoModel TypeOfVideoObtained
         {
             get => _typeOfVideoObtained;
@@ -899,7 +906,6 @@ namespace IReport.ViewModels
             return typeofVideo;
         }
 
-        ReportInfoModel _subjectVideoConfirmation;
         public ReportInfoModel SubjectVideoConfirmation
         {
             get => _subjectVideoConfirmation;
@@ -920,130 +926,6 @@ namespace IReport.ViewModels
             };
             return typeofVideo;
         }
-
-
-
-
-
-        //also tried: implements:ISql, IReportInfoServices
-        //ISql ISQL;
-        //IReportInfoModel _iReport;
-        //IReportInfoServices _iReportServices;
-        //ILoginModel _login;
-        //public ReportInfoViewModel(IReportInfoModel iReport, ISql _isql)
-        //{
-        //    ISQL = _isql;
-        //    _iReport = iReport;
-
-        //}
-
-        //public ReportInfoViewModel(IReportInfoModel iReport, ISql _isql, IReportInfoServices iReportservices, ILoginModel login)
-        //{
-        //    ISQL = _isql;
-        //    _iReport = iReport;
-        //    _iReportServices = iReportservices;
-        //    _login = login;
-
-        //    iReportservices = (IReportInfoServices)GetYesNoPicker().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetMedicalDevicesUsed().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetVehiclesPresent().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetAttemptToConfirm().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetSurveillanceDesc().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetMaleOrFemale().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetHeights().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetWeights().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetBuilds().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetHairColors().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetHairLengths().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetSurveillanceEndReason().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetTypeOfVideo().OrderBy(t => t.Value).ToList();
-        //    iReportservices = (IReportInfoServices)GetSubjectVideoConfirmation().OrderBy(t => t.Value).ToList();
-
-
-        //}
-
-
-        //ObservableCollection<CaseInfoModel> AssignedCasesInfolList = new ObservableCollection<CaseInfoModel>();
-        //CaseInfoModel.AssignedCasesInfolList = AssignedCasesInfolList;
-
-
-        /*//if (CaseInfoModel.AssignedEmployeeUsername == LoginModel.EmployeeUsername)
-                if (CaseInfoModel.ReadingCase == true)
-                {
-                    ReportInfoModel.ReadingSqlAssignedCases = true;
-
-                    SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.AssignedCasesInfoTable WHERE EmployeeName = '" + CaseInfoModel.AssignedEmployeeUsername + "' AND CaseId = '" + CaseInfoModel.AssignedCaseId + "'AND Date = '" + CaseInfoModel.AssignedDate + "' AND Time = '" + CaseInfoModel.AssignedTime + "'", SqlModel.SqlConnection);
-
-                    SqlModel.SqlDataReader = sqlSaveAndReadCommand.ExecuteReader();
-
-                    while (SqlModel.SqlDataReader.Read())
-                    {
-
-                        CaseInfoModel.AssignedCasesInfolList.Add(new CaseInfoModel
-                        {
-                            AssignedEmployeeUsername = SqlModel.SqlDataReader["EmployeeName"].ToString(),
-                            AssignedCaseId = SqlModel.SqlDataReader["CaseId"].ToString(),
-                            AssignedDate = (DateTime)SqlModel.SqlDataReader["Date"],
-                            AssignedTime = (DateTime)SqlModel.SqlDataReader["Time"]
-                        });
-
-                        await Application.Current.MainPage.DisplayAlert($"YOU HAVE CASE {CaseInfoModel.AssignedCaseId} ON {CaseInfoModel.AssignedDate} AT {CaseInfoModel.AssignedTime}", "ARE YOU READY FOR YOUR SURVEILLANCE?", "I AM READY!");
-                    }
-
-
-                    SqlModel.SqlDataReader.Close();
-                    SqlModel.SqlConnection.Close();
-
-                }//END OF FIRST IF*/
-
-
-
-        //if (ReportInfoModel.StartTimeToBeUpdated.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET StartTime = '{ReportInfoModel.StartTimeToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (ReportInfoModel.SurveillanceDate.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET SurveillanceDate = '{ReportInfoModel.SurveillanceDate}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (ReportInfoModel.StartLocation != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET StartLocation = '{ReportInfoModel.StartLocationToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (ReportInfoModel.EndLocation != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET EndLocation = '{ReportInfoModel.EndLocationToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (SubjectVideoConfirmation.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET SubjectVideoObtained = '{SubjectVideoConfirmation.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (MedicalDeviceUsed.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET MedicalDevicesUsed = '{MedicalDeviceUsed.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (ReportInfoModel.EndLocation != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET AddressWhereVideoWasObtained = '{ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (AttemptToConfirmSubjectHomeType.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET AttemptedToConfirmSubjectWasHome = '{AttemptToConfirmSubjectHomeType.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (MaleOrFemale.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET SubjectSex = '{MaleOrFemale.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (VehiclePresentAtStartLocationDesc.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET VehiclesPresentAtStartLocation = '{VehiclePresentAtStartLocationDesc.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-        //if (TypeOfVideoObtained.ToString() != string.Empty)
-        //{
-        //    string query = $"UPDATE dbo.ReportInfoTable SET TypeOfVideoObtained = '{TypeOfVideoObtained.Value}' WHERE Identifier ='{ReportInfoModel.Identifier}'";
-        //}
-
-
 
 
 

@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
+using System.Security.Cryptography;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace IReport.Models
 {
@@ -18,7 +21,16 @@ namespace IReport.Models
             CaseQueryCommand = new SqlCommand(CaseQuery, SqlConnection);
             ReportQueryCommand = new SqlCommand(ReportQuery, SqlConnection);
         }
+        public static string HashedString(string _stringToHash)
+        {
+            SHA1CryptoServiceProvider _sHA1CryptoServiceProvider = new SHA1CryptoServiceProvider();
 
+            byte[] _stringBytes = Encoding.ASCII.GetBytes(_stringToHash);
+            byte[] _encryptedBytes = _sHA1CryptoServiceProvider.ComputeHash(_stringBytes);   
+            return Convert.ToBase64String(_encryptedBytes);
+        } 
+
+       
         public static string ServerName { get; set; } = "172.23.192.1";
         public  static string DatabaseName { get; set; } = "CompanyDB";
         public static string ServerUsername { get; set; } = "Johnny";

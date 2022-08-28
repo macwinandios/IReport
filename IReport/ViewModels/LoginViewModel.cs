@@ -25,9 +25,7 @@ namespace IReport.ViewModels
             SignUpCreateSqlCommand = new Command(SignUpCreateSqlMethod);
         }
 
-
-        public ICommand LoginCommand { get; }
-        private LoginModel _loginModel;
+        LoginModel _loginModel;
         public LoginModel LoginModel
         {
             get => _loginModel;
@@ -44,7 +42,7 @@ namespace IReport.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new TabAccessor());
         }
 
-
+        public ICommand LoginCommand { get; }
         public async void LoginMethod()
         {
            try
@@ -130,12 +128,12 @@ namespace IReport.ViewModels
                         using (SqlCommand sqlInsertCommand = new SqlCommand("INSERT INTO dbo.LoginInfoTable VALUES (@EmployeeUsername, @EmployeePassword)", SqlModel.SqlConnection))
                         {
                             sqlInsertCommand.Parameters.Add(new SqlParameter("EmployeeUsername", LoginModel.Username));
-                            sqlInsertCommand.Parameters.Add(new SqlParameter("EmployeePassword", LoginModel.Password));
+                            sqlInsertCommand.Parameters.Add(new SqlParameter("EmployeePassword", SqlModel.HashedString(LoginModel.Password)));
 
                             SqlModel.SqlDataReader.Close();
                             sqlInsertCommand.ExecuteNonQuery();
 
-                            await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY ADDED", "ALMOST RICH", "OK");
+                            await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY ADDED", "CLICK OK TO CONTINUE", "OK");
                             LoginModel.Username = string.Empty;
                             LoginModel.Password = string.Empty;
                         }//END OF USING

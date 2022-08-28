@@ -27,7 +27,7 @@ namespace IReport.ViewModels
             UpdateCommand = new Command(UpdateMethod);
             DeleteCommand = new Command(DeleteMethod);
             SqlModel = new SqlModel();
-            CheckConnectionCommand = new Command(CheckConnectionMethod);
+            //CheckConnectionCommand = new Command(CheckConnectionMethod);
             GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
 
 
@@ -37,30 +37,16 @@ namespace IReport.ViewModels
             ClientInfoModel.YesNoIDontKnowPicker = GetYesNoIDontKnowPicker().OrderBy(t => t.Value).ToList();
 
         }
+
         //for picker selecteditem
         ClientInfoModel _selectedYesNoIDontKnowPicker;
-        public ClientInfoModel SelectedYesNoIDontKnowPicker
-        {
-            get => _selectedYesNoIDontKnowPicker;
-            set
-            {
-                _selectedYesNoIDontKnowPicker = value;
-                OnPropertyChanged(nameof(SelectedYesNoIDontKnowPicker));
-            }
-        } 
-        public List<ClientInfoModel> GetYesNoIDontKnowPicker()
-        {
-            var yesOrno = new List<ClientInfoModel>()
-            {
-                new ClientInfoModel(){Key = 1, Value = "YES"},
-                new ClientInfoModel(){Key = 2, Value = "NO"},
-                new ClientInfoModel(){Key = 3, Value = "I Don't Know"}
-            };
-            return yesOrno;
-        }
 
+        SqlModel _sqlModel;
+        ClientInfoModel _clientInfoModel;
+        CaseInfoModel _caseInfoModel;
 
-        private SqlModel _sqlModel;
+        
+        
         public SqlModel SqlModel
         {
             get => _sqlModel;
@@ -70,7 +56,6 @@ namespace IReport.ViewModels
             }
         }
 
-        private ClientInfoModel _clientInfoModel;
         public ClientInfoModel ClientInfoModel
         {
             get => _clientInfoModel;
@@ -82,7 +67,6 @@ namespace IReport.ViewModels
             }
         }
 
-        private CaseInfoModel _caseInfoModel;
         public CaseInfoModel CaseInfoModel
         {
             get => _caseInfoModel;
@@ -202,25 +186,25 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand CheckConnectionCommand { get; }
-        public async void CheckConnectionMethod()
-        {
-            try
-            {
-                SqlModel.SqlConnection.Open();
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
-                SqlModel.SqlConnection.Close();
+        //public ICommand CheckConnectionCommand { get; }
+        //public async void CheckConnectionMethod()
+        //{
+        //    try
+        //    {
+        //        SqlModel.SqlConnection.Open();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
+        //        SqlModel.SqlConnection.Close();
 
-            }
-            finally
-            {
-                SqlModel.SqlConnection.Close();
+        //    }
+        //    finally
+        //    {
+        //        SqlModel.SqlConnection.Close();
 
-            }
-        }
+        //    }
+        //}
 
 
         public ICommand ReadSqlCommand { get; }
@@ -286,150 +270,6 @@ namespace IReport.ViewModels
             {
                 SqlModel.SqlConnection.Open();
 
-                //if (ClientInfoModel.ClientName != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientName = '{ClientInfoModel.ClientName}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.ClientEmail != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientEmail = '{ClientInfoModel.ClientEmail}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-
-                //if (ClientInfoModel.ClientPhoneNumber != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientPhoneNumber = '{ClientInfoModel.ClientPhoneNumber}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.ClientAddress != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientAddress = '{ClientInfoModel.ClientAddress}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.ClientMainContactName != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientMainContactName = '{ClientInfoModel.ClientMainContactName}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.ClientMainContactPhoneNumber != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientMainContactPhoneNumber = '{ClientInfoModel.ClientMainContactPhoneNumber}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.PricePerHour.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET PricePerHour = '{ClientInfoModel.PricePerHour}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.NumberOfHoursBilledToDate.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET NumberOfHoursBilledToDate = '{ClientInfoModel.NumberOfHoursBilledToDate}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.TotalAmountBilledToDate.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET TotalAmountBilledToDate = '{ClientInfoModel.TotalAmountBilledToDate}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.TotalPaidToDate.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET TotalPaidToDate = '{ClientInfoModel.TotalPaidToDate}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.BalanceDue.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET BalanceDue = '{ClientInfoModel.BalanceDue}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
-
-                //if (ClientInfoModel.ClientSince.ToString() != string.Empty)
-                //{
-                //    string queryString1 = $"UPDATE dbo.ClientInfoTable SET ClientSince = '{ClientInfoModel.ClientSince}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
-
-                //    using (SqlCommand command = new SqlCommand(queryString1, SqlModel.SqlConnection))
-                //    {
-                //        command.ExecuteNonQuery();
-
-                //    }
-
-                //}
 
                 string queryString = $"UPDATE dbo.ClientInfoTable SET ClientName = '{ClientInfoModel.ClientName}' , ClientEmail = '{ClientInfoModel.ClientEmail}' , ClientPhoneNumber = '{ClientInfoModel.ClientPhoneNumber}' , ClientAddress = '{ClientInfoModel.ClientAddress}' , ClientMainContactName = '{ClientInfoModel.ClientMainContactName}' , ClientMainContactPhoneNumber = '{ClientInfoModel.ClientMainContactPhoneNumber}' , PricePerHour = '{ClientInfoModel.PricePerHour}' , NumberOfHoursBilledToDate = '{ClientInfoModel.NumberOfHoursBilledToDate}' , TotalAmountBilledToDate = '{ClientInfoModel.TotalAmountBilledToDate}' , TotalPaidToDate = '{ClientInfoModel.TotalPaidToDate}' , BalanceDue = '{ClientInfoModel.BalanceDue}' , ClientSince = '{ClientInfoModel.ClientSince}' , SelectedYesNoIDontKnowPicker = '{SelectedYesNoIDontKnowPicker.Value}'  WHERE Identifier ='{ClientInfoModel.Identifier}'";
 
@@ -537,8 +377,25 @@ namespace IReport.ViewModels
 
             }
         }
+        public ClientInfoModel SelectedYesNoIDontKnowPicker
+        {
+            get => _selectedYesNoIDontKnowPicker;
+            set
+            {
+                _selectedYesNoIDontKnowPicker = value;
+                OnPropertyChanged(nameof(SelectedYesNoIDontKnowPicker));
+            }
+        }
+        public List<ClientInfoModel> GetYesNoIDontKnowPicker()
+        {
+            var yesOrno = new List<ClientInfoModel>()
+            {
+                new ClientInfoModel(){Key = 1, Value = "YES"},
+                new ClientInfoModel(){Key = 2, Value = "NO"},
+                new ClientInfoModel(){Key = 3, Value = "I Don't Know"}
+            };
+            return yesOrno;
+        }
 
-
-        
     }
 }
