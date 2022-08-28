@@ -190,6 +190,7 @@
                     IsVisible="{Binding ReportInfoModel.CreatingReport}"
                     TitleColor="DarkGray"
                     TextColor="Black"
+                                
                     HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -261,7 +262,6 @@
                         MaximumDate="{Binding CaseInfoModel.MaximumDate}"
                         Format="d"
                         TextColor="DarkGray"
-                        
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
@@ -283,9 +283,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -296,6 +294,7 @@
                         </ImageButton>
                         <TimePicker Time="{Binding ReportInfoModel.StartTime}"
                                 TextColor="DarkGray"
+                                   
                                 IsVisible="{Binding ReportInfoModel.CreatingReport}"
                                 HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
@@ -649,7 +648,10 @@
 
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
+                                 HorizontalOptions="FillAndExpand"
+                                 
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                                 Margin="7">
 
 
                         <ImageButton Source="dropdownarrow.png"
@@ -667,7 +669,6 @@
                         ItemsSource="{Binding ReportInfoModel.SurveillancePositions}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding SurveillancePositionDesc}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
 
@@ -693,9 +694,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -710,7 +709,6 @@
                         ItemsSource="{Binding ReportInfoModel.MalesOrFemales}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding MaleOrFemale}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -728,9 +726,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -745,7 +741,6 @@
                         ItemsSource="{Binding ReportInfoModel.Heights}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding Height}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -764,9 +759,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -781,7 +774,6 @@
                         ItemsSource="{Binding ReportInfoModel.Weights}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding Weight}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -798,9 +790,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -815,7 +805,6 @@
                         ItemsSource="{Binding ReportInfoModel.Builds}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding Build}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -832,9 +821,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -849,7 +836,6 @@
                         ItemsSource="{Binding ReportInfoModel.HairColors}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding HairColor}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -866,9 +852,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -883,10 +867,10 @@
                         ItemsSource="{Binding ReportInfoModel.HairLengths}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding HairLength}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
+                    
                     <Label Text="VIDEO OBTAINED DETAILS:"
                        TextColor="White"
                        FontAttributes="Bold"
@@ -920,9 +904,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -934,7 +916,6 @@
                         <TimePicker Time="{Binding ReportInfoModel.VideoObtainedTime}"
                             TextColor="Red"
                             BackgroundColor="White"
-                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
                             HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -959,9 +940,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -976,7 +955,6 @@
                         ItemsSource="{Binding ReportInfoModel.TypesOfVideoObtained}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding TypeOfVideoObtained}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -1001,9 +979,7 @@
                     <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
                                  HorizontalOptions="FillAndExpand"
-                                 
                                  Margin="7"
-                                 
                     IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
@@ -1018,7 +994,6 @@
                         ItemsSource="{Binding ReportInfoModel.SurveillanceEndReasons}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding SurveillanceEndReason}"
-                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
                     </StackLayout>
@@ -1128,7 +1103,7 @@
                                            FontSize="18"
                                            FontAttributes="Bold"/>
 
-                                    <Label Text="END LOCATION"
+                                        <Label Text="END LOCATION"
                                            TextColor="Blue"
                                            FontSize="20"
                                            FontAttributes="Bold"/>
@@ -1337,28 +1312,17 @@
                        HorizontalTextAlignment="Center"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
             
-                <!--<Entry Placeholder="-ENTER IDENTIFIER TO UPDATE-"
-                       Text="{Binding ReportInfoModel.Identifier}"
-                       PlaceholderColor="Aquamarine"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Orange"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <Entry Placeholder="-ENTER IDENTIFIER TO UPDATE-"
+                    <Entry Placeholder="-ENTER IDENTIFIER TO UPDATE-"
                        Text="{Binding ReportInfoModel.Identifier}"
                        PlaceholderColor="DarkGray"
                        HorizontalTextAlignment="Center"
                        TextColor="Black"
+                       Margin="7"
+                       BackgroundColor="White"
                        FontSize="18"
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    </Frame>
 
                     <Label Text="UPDATE DATE OF SURVEILLANCE:"
                        TextColor="White"
@@ -1368,42 +1332,28 @@
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
                     
                     
-                    
 
-                <!--<DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
-                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
-                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
-                        BackgroundColor="DarkBlue"
-                        Format="d"
-                        TextColor="Red"
-                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
-
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
+                                 HorizontalOptions="FillAndExpand"
+                                 Margin="7"
+                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
 
 
-                            <ImageButton Source="calendar.png"
+                        <ImageButton Source="calendar.png"
                                  HeightRequest="30"
                                      BackgroundColor="White">
 
-                            </ImageButton>
-                            <DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
+                        </ImageButton>
+                        <DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
                         MinimumDate="{Binding CaseInfoModel.MinimumDate}"
                         MaximumDate="{Binding CaseInfoModel.MaximumDate}"
                         Format="d"
                         TextColor="Red"
-                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        
                         HorizontalOptions="FillAndExpand"/>
 
-                        </StackLayout>
-                    </Frame>
-
-
+                    </StackLayout>
 
                     <!--<Label Text="UPDATE SURVEILLANCE START TIME:"
                        TextColor="White"
@@ -1412,12 +1362,12 @@
                        HorizontalTextAlignment="Center"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
 
-                --><!--<TimePicker Time="{Binding ReportInfoModel.StartTimeToBeUpdated}"
+                <TimePicker Time="{Binding ReportInfoModel.StartTime}"
                             TextColor="Red"
                             BackgroundColor="DarkBlue"
-                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>--><!--
+                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Frame HasShadow="True"
+                    <!--<Frame HasShadow="True"
                            CornerRadius="20"
                            Margin="6"
                            IsVisible="{Binding ReportInfoModel.UpdatingReport}">
@@ -1449,19 +1399,16 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <Entry Placeholder="-UPDATE START LOCATION HERE-"
+                    <Entry Placeholder="-UPDATE START LOCATION HERE-"
                        Text="{Binding ReportInfoModel.StartLocationToBeUpdated}"
                        PlaceholderColor="DarkGray"
                        HorizontalTextAlignment="Center"
                        TextColor="Black"
+                       Margin="7"
+                       BackgroundColor="White"
                        FontSize="18"
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    </Frame>
 
                     <!--<Entry Placeholder="-UPDATE END LOCATION HERE-"
                        Text="{Binding ReportInfoModel.EndLocationToBeUpdated}"
@@ -1472,19 +1419,16 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <Entry Placeholder="-UPDATE END LOCATION HERE-"
+                    <Entry Placeholder="-UPDATE END LOCATION HERE-"
                        Text="{Binding ReportInfoModel.EndLocationToBeUpdated}"
                        PlaceholderColor="DarkGray"
                        HorizontalTextAlignment="Center"
                        TextColor="Black"
+                       Margin="7"
+                       BackgroundColor="White"
                        FontSize="18"
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    </Frame>
 
                     <Label Text="UPDATE WAS THERE VIDEO OBTAINED:"
                        TextColor="White"
@@ -1504,21 +1448,19 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
+                                 HorizontalOptions="FillAndExpand"
+                                 Margin="7"
+                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
 
 
-                            <ImageButton Source="dropdownarrow.png"
+                        <ImageButton Source="dropdownarrow.png"
                                  HeightRequest="30"
                                      BackgroundColor="White">
 
-                            </ImageButton>
-                            <Picker Title="Please Select An Option..."
+                        </ImageButton>
+                        <Picker Title="Please Select An Option..."
                         TitleColor="LightGray"
                         TextColor="Black"
                         ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
@@ -1527,8 +1469,7 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
-                        </StackLayout>
-                    </Frame>
+                    </StackLayout>
 
                     <!--<Entry Placeholder="-UPDATE WHERE VIDEO WAS OBTAINED-"
                        Text="{Binding ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}"
@@ -1539,19 +1480,16 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <Entry Placeholder="-UPDATE WHERE VIDEO WAS OBTAINED-"
+                    <Entry Placeholder="-UPDATE WHERE VIDEO WAS OBTAINED-"
                        Text="{Binding ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}"
                        PlaceholderColor="DarkGray"
                        HorizontalTextAlignment="Center"
                        TextColor="Black"
+                       Margin="7"
+                       BackgroundColor="White"
                        FontSize="18"
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    </Frame>
 
                     <!--<Label Text="UPDATE VEHICLES PRESENT AT START LOCATION:"
                        TextColor="White"
@@ -1616,21 +1554,19 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
+                                 HorizontalOptions="FillAndExpand"
+                                 Margin="7"
+                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
 
 
-                            <ImageButton Source="dropdownarrow.png"
+                        <ImageButton Source="dropdownarrow.png"
                                  HeightRequest="30"
                                      BackgroundColor="White">
 
-                            </ImageButton>
-                            <Picker Title="Please Select An Option..."
+                        </ImageButton>
+                        <Picker Title="Please Select An Option..."
                         TitleColor="LightGray"
                         FontAttributes="Bold"
                         TextColor="Black"
@@ -1640,8 +1576,7 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
-                        </StackLayout>
-                    </Frame>
+                    </StackLayout>
 
                     <Label Text="UPDATE YOUR ATTEMPT TO CONFIRM IF SUBJECT WAS HOME:"
                        TextColor="White"
@@ -1661,21 +1596,19 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                        <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
+                                 HorizontalOptions="FillAndExpand"
+                                 Margin="7"
+                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
 
 
-                            <ImageButton Source="dropdownarrow.png"
+                        <ImageButton Source="dropdownarrow.png"
                                  HeightRequest="30"
                                      BackgroundColor="White">
 
-                            </ImageButton>
-                            <Picker Title="Please Select An Option..."
+                        </ImageButton>
+                        <Picker Title="Please Select An Option..."
                         TitleColor="LightGray"
                                     FontAttributes="Bold"
                         TextColor="Black"
@@ -1685,10 +1618,9 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalOptions="FillAndExpand"/>
 
-                        </StackLayout>
-                    </Frame>
-                    
-                    
+                    </StackLayout>
+
+
 
                     <!--<Picker Title="Subject Sex..."
                         BackgroundColor="Black"

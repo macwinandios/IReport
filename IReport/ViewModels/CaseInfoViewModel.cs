@@ -363,7 +363,7 @@ namespace IReport.ViewModels
                 while (clientReader.Read())
                 {
 
-                    CaseInfoModel.CaseInfoModelList.Add(new CaseInfoModel
+                    CaseInfoModel.CaseInfoModelList.Insert(0, new CaseInfoModel
                     {
                         Identifier = Convert.ToInt32(clientReader["Identifier"]),
                         CaseId = clientReader["CaseId"].ToString(),

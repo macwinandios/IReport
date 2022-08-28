@@ -202,7 +202,6 @@ namespace IReport.Models
             {
                 _pricePerHour = value;
                 OnPropertyChanged(PricePerHour.ToString());
-                OnPropertyChanged(TotalAmountBilledToDate.ToString());
 
 
             }
