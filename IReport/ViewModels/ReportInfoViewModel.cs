@@ -23,22 +23,6 @@ namespace IReport.ViewModels
             LoginModel = new LoginModel();
             SqlModel = new SqlModel();
 
-            ReadSqlAssignedCasesCommand = new Command(ReadSqlAssignedCasesMethod);
-            CheckConnectionCommand = new Command(CheckConnectionMethod);
-            GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
-
-            CreateSqlCommand = new Command(CreateSqlMethod);
-            ReadSqlCommand = new Command(ReadSqlMethod);
-            UpdateSqlCommand = new Command(UpdateSqlMethod);
-            DeleteSqlCommand = new Command(DeleteSqlMethod);
-
-            //make the sql buttons visible
-            UpdateCommand = new Command(UpdateMethod);
-            DeleteCommand = new Command(DeleteMethod);
-            ReadAssignedCasesIsVisibleCommand = new Command(ReadAssignedCasesIsVisibleMethod);
-
-
-
             //objects to read for the pickers
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
             CaseInfoModel.CaseInfoModelList = cases;
@@ -54,7 +38,7 @@ namespace IReport.ViewModels
 
 
 
-
+            //LINQ to populate the pickers with key-value pairs
             ReportInfoModel.YesNoPicker = GetYesNoPicker().OrderBy(t => t.Value).ToList();
             ReportInfoModel.MedicalDevicesUsed = GetMedicalDevicesUsed().OrderBy(t => t.Value).ToList();
             ReportInfoModel.VehiclesPresentAtStartLocation = GetVehiclesPresent().OrderBy(t => t.Value).ToList();
@@ -71,16 +55,19 @@ namespace IReport.ViewModels
             ReportInfoModel.SubjectVideoConfirmations = GetSubjectVideoConfirmation().OrderBy(t => t.Value).ToList();
         }
 
+
         //AFTER WEEKS OF TRYING
-        //THIS ALLOWED ME TO BIND MY CASEID TO THE PICKER'S ITEMDISPLAYBINDING
+        //THIS ALLOWED ME TO BIND MY CASE ID TO THE PICKER'S ITEMDISPLAYBINDING
         //THOUGHT OF IT MYSELF
         BindingBase caseId;
         BindingBase clientName;
         //FOR SELECTED CASE PICKER
         CaseInfoModel _selectedCase;
 
+
         //FOR SELECTED CLIENT PICKER
         ClientInfoModel _selectedClient;
+
 
         //PRIVATE MEMBERS OF EACH MODEL
         ReportInfoModel _reportInfoModel;
@@ -88,6 +75,7 @@ namespace IReport.ViewModels
         ClientInfoModel _clientInfoModel;
         LoginModel _loginModel;
         SqlModel _sqlModel;
+
 
         //READ LISTS FOR PICKERS FROM SQL
         ReportInfoModel _selectedYesNoPicker;
@@ -106,7 +94,22 @@ namespace IReport.ViewModels
         ReportInfoModel _subjectVideoConfirmation;
 
 
+        //private members for each command
+        //the public properties for these private members are at the end of this class to avoid clutter
+        private ICommand _readSqlAssignedCasesCommand;
+        private ICommand _readSqlCommand;
+        private ICommand _createSqlCommand;
+        private ICommand _getClientAndCasePickersCommand;
+        private ICommand _updateSqlCommand;
+        private ICommand _deleteSqlCommand;
+        private ICommand _updateCommand;
+        private ICommand _deleteCommand;
+        private ICommand _readAssignedCasesIsVisibleCommand;
 
+
+        
+
+        //public properties begin
         public BindingBase CaseId
         {
             get => caseId;
@@ -116,7 +119,6 @@ namespace IReport.ViewModels
                 OnPropertyChanged(nameof(CaseId));
             }
         }
-        //using ViewModelBase's SetProperty method
         public BindingBase ClientName { get => clientName; set => SetProperty(ref clientName, value); }
 
         public LoginModel LoginModel
@@ -198,14 +200,12 @@ namespace IReport.ViewModels
         }
 
         //makes assignedcases visible
-        public ICommand ReadAssignedCasesIsVisibleCommand { get; }
 
         public void ReadAssignedCasesIsVisibleMethod()
         {
             ReportInfoModel.ReadingSqlAssignedCases = true;
         }
         //read from assignedcases
-        public ICommand ReadSqlAssignedCasesCommand { get; }
 
         public async void ReadSqlAssignedCasesMethod()
         {
@@ -261,7 +261,6 @@ namespace IReport.ViewModels
         }
 
         //read from caseinfotable AND clientinfotable TO GET clients and cases for picker
-        public ICommand GetClientAndCasePickersCommand { get; }
         public async void GetClientAndCasePickersMethod()
         {
             
@@ -316,29 +315,6 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand CheckConnectionCommand { get; }
-        public async void CheckConnectionMethod()
-        {
-            try
-            {
-                SqlModel.SqlConnection.Open();
-                await Application.Current.MainPage.DisplayAlert("DONE", "YOU DID IT", "OK");
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
-
-            }
-            finally
-            {
-                SqlModel.SqlConnection.Close();
-
-            }
-        }
-
-        
-
-        public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
             try
@@ -397,7 +373,6 @@ namespace IReport.ViewModels
 
             }
         }
-        public ICommand ReadSqlCommand { get; }
         public async void ReadSqlMethod()
         {
             ReportInfoModel.CreatingReport = false;
@@ -461,7 +436,6 @@ namespace IReport.ViewModels
 
             }
         }
-        public ICommand UpdateCommand { get; }
 
         public void UpdateMethod()
         {
@@ -472,7 +446,6 @@ namespace IReport.ViewModels
 
         }
 
-        public ICommand UpdateSqlCommand { get; }
         public async void UpdateSqlMethod()
         {
             try
@@ -533,7 +506,6 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand DeleteCommand { get; }
 
         public void DeleteMethod()
         {
@@ -543,7 +515,7 @@ namespace IReport.ViewModels
             ReportInfoModel.ReadingReport = false;
         }
 
-        public ICommand DeleteSqlCommand { get; }
+        //public ICommand DeleteSqlCommand { get; }
         public async void DeleteSqlMethod()
         {
             try
@@ -572,7 +544,8 @@ namespace IReport.ViewModels
             }
         }
 
-
+        //public properties and lists
+        //each pair of property/list is for the pickers to get these values using LINQ
 
         public ReportInfoModel SelectedYesNoPicker
         {
@@ -595,8 +568,6 @@ namespace IReport.ViewModels
             };
             return yesOrno;
         }
-
-        //for the pickers to get values
 
         public ReportInfoModel MedicalDeviceUsed
         {
@@ -927,7 +898,16 @@ namespace IReport.ViewModels
             return typeofVideo;
         }
 
-
+        //public properties of type ICommand that create an instance of the Command class and calls it's shared-named method
+        public ICommand ReadSqlAssignedCasesCommand => _readSqlAssignedCasesCommand ?? (_readSqlAssignedCasesCommand = new Command(ReadSqlAssignedCasesMethod));
+        public ICommand ReadSqlCommand => _readSqlCommand ?? (_readSqlCommand = new Command(ReadSqlMethod));
+        public ICommand CreateSqlCommand => _createSqlCommand ?? (_createSqlCommand = new Command(CreateSqlMethod));
+        public ICommand GetClientAndCasePickersCommand => _getClientAndCasePickersCommand ?? (_getClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod));
+        public ICommand UpdateSqlCommand => _updateSqlCommand ?? (_updateSqlCommand = new Command(UpdateSqlMethod));
+        public ICommand DeleteSqlCommand => _deleteSqlCommand ?? (_deleteSqlCommand = new Command(DeleteSqlMethod));
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(DeleteSqlMethod));
+        public ICommand UpdateCommand => _updateCommand ?? (_updateCommand = new Command(UpdateMethod));
+        public ICommand ReadAssignedCasesIsVisibleCommand => _readAssignedCasesIsVisibleCommand ?? (_readAssignedCasesIsVisibleCommand = new Command(ReadAssignedCasesIsVisibleMethod));
 
 
     }

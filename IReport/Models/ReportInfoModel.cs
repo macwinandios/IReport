@@ -342,12 +342,9 @@ namespace IReport.Models
                 OnPropertyChanged(nameof(ReportInfoModelList));
             }
         }
-
+        //these properties are to read from the ReportInfoTable in sql
         public string CaseId { get; internal set; }
-        public string CaseIdToBeUpdated { get; internal set; }
-
         public string ClientName { get; internal set; }
-        public string ClientNameToBeUpdated { get; internal set; }
         public string SubjectVideoConfirmation { get; internal set; }
         public string MedicalDeviceUsed { get; internal set; }
         public string VehiclePresentAtStartLocationDesc { get; internal set; }

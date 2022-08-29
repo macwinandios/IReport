@@ -16,23 +16,27 @@ namespace IReport.ViewModels
     {
         public CaseInfoViewModel()
         {
-            CreateSqlAssignACaseCommand = new Command(CreateSqlAssignACaseMethod);
-            AssignACaseCommand = new Command(AssignACaseMethod);
+            
+
+
             CaseInfoModel = new CaseInfoModel();
             ClientInfoModel = new ClientInfoModel();
-            CreateSqlCommand = new Command(CreateSqlMethod);
-            //CreateCommand = new Command(CreateMethod);
-            ReadSqlCommand = new Command(ReadSqlMethod);
-            UpdateSqlCommand = new Command(UpdateSqlMethod);
-            UpdateCommand = new Command(UpdateMethod);
-            DeleteSqlCommand = new Command(DeleteSqlMethod);
-            DeleteCommand = new Command(DeleteMethod);
-            CreateNewCaseCommand = new Command(CreateNewCaseMethod);
-            DeleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod);
-            UpdateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod);
-            SqlModel = new SqlModel();
-            //CheckConnectionCommand = new Command(CheckConnectionMethod);
-            GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
+
+            //CreateSqlAssignACaseCommand = new Command(CreateSqlAssignACaseMethod);
+            //AssignACaseCommand = new Command(AssignACaseMethod);
+            //CreateSqlCommand = new Command(CreateSqlMethod);
+            ////CreateCommand = new Command(CreateMethod);
+            //ReadSqlCommand = new Command(ReadSqlMethod);
+            //UpdateSqlCommand = new Command(UpdateSqlMethod);
+            //UpdateCommand = new Command(UpdateMethod);
+            //DeleteSqlCommand = new Command(DeleteSqlMethod);
+            //DeleteCommand = new Command(DeleteMethod);
+            //CreateNewCaseCommand = new Command(CreateNewCaseMethod);
+            //DeleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod);
+            //UpdateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod);
+            //SqlModel = new SqlModel();
+            ////CheckConnectionCommand = new Command(CheckConnectionMethod);
+            //GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
 
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
             CaseInfoModel.CaseInfoModelList = cases;
@@ -44,7 +48,19 @@ namespace IReport.ViewModels
             CaseInfoModel.LanguageList = GetLanguage().OrderBy(t => t.Value).ToList();
             CaseInfoModel.LevelOfAwarenessList = GetAwareness().OrderBy(t => t.Value).ToList();
         }
+        private ICommand _createSqlAssignACaseCommand;
+        private ICommand _assignACaseCommand;
+        private ICommand _createSqlCommand;
+        private ICommand _readSqlCommand;
+        private ICommand _updateSqlCommand;
+        private ICommand _deleteSqlCommand;
+        private ICommand _deleteCommand; 
+        private ICommand _createNewCaseCommand;
+        private ICommand _deleteAssignedCasesSqlCommand;
+        private ICommand _updateAssignedCasesSqlCommand;
+        private ICommand _getClientAndCasePickersCommand;
 
+        
 
         ReportInfoModel _reportInfoModel;
         CaseInfoModel _caseInfoModel;
@@ -152,7 +168,7 @@ namespace IReport.ViewModels
 
 
         //Reads from SQL to populate the picker
-        public ICommand GetClientAndCasePickersCommand { get; }
+        //public ICommand GetClientAndCasePickersCommand { get; }
         public async void GetClientAndCasePickersMethod()
         {
             try
@@ -207,7 +223,7 @@ namespace IReport.ViewModels
         //}
 
 
-        public ICommand CreateNewCaseCommand { get; }
+        //public ICommand CreateNewCaseCommand { get; }
         public void CreateNewCaseMethod()
         {
             CaseInfoModel.CreatingCase = true;
@@ -230,7 +246,7 @@ namespace IReport.ViewModels
         //    CaseInfoModel.AssigningACase = false;
 
         //}
-        public ICommand CreateSqlCommand { get; }
+        //public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
             try
@@ -343,7 +359,7 @@ namespace IReport.ViewModels
         }
 
 
-        public ICommand ReadSqlCommand { get; }
+        //public ICommand ReadSqlCommand { get; }
         public async void ReadSqlMethod()
         {
             try
@@ -426,7 +442,7 @@ namespace IReport.ViewModels
 
         }
 
-        public ICommand UpdateSqlCommand { get; }
+        //public ICommand UpdateSqlCommand { get; }
         public async void UpdateSqlMethod()
         {
             try
@@ -462,7 +478,7 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand DeleteCommand { get; }
+        //public ICommand DeleteCommand { get; }
 
         public void DeleteMethod()
         {
@@ -474,7 +490,7 @@ namespace IReport.ViewModels
 
         }
 
-        public ICommand DeleteSqlCommand { get; }
+        //public ICommand DeleteSqlCommand { get; }
         public async void DeleteSqlMethod()
         {
             try
@@ -506,7 +522,7 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand DeleteAssignedCasesSqlCommand { get; }
+        //public ICommand DeleteAssignedCasesSqlCommand { get; }
         public async void DeleteAssignedCasesSqlMethod()
         {
             try
@@ -532,7 +548,7 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand UpdateAssignedCasesSqlCommand { get; }
+        //public ICommand UpdateAssignedCasesSqlCommand { get; }
         public async void UpdateAssignedCasesSqlMethod()
         {
             try
@@ -563,7 +579,7 @@ namespace IReport.ViewModels
         }
 
         //isvisible for assign a case
-        public ICommand AssignACaseCommand { get; }
+        //public ICommand AssignACaseCommand { get; }
 
         public void AssignACaseMethod()
         {
@@ -578,7 +594,7 @@ namespace IReport.ViewModels
         }
 
 
-        public ICommand CreateSqlAssignACaseCommand { get; }
+        //public ICommand CreateSqlAssignACaseCommand { get; }
 
         public async void CreateSqlAssignACaseMethod()
         {
@@ -701,6 +717,25 @@ namespace IReport.ViewModels
             return languages;
         }
 
+        public ICommand CreateSqlAssignACaseCommand => _createSqlAssignACaseCommand ?? (_createSqlAssignACaseCommand = new Command(CreateSqlAssignACaseMethod));
 
+        public ICommand AssignACaseCommand => _assignACaseCommand ?? (_assignACaseCommand = new Command(AssignACaseMethod));
+
+        public ICommand CreateSqlCommand => _createSqlCommand ?? (_createSqlCommand = new Command(CreateSqlMethod));
+        public ICommand ReadSqlCommand => _readSqlCommand ?? (_readSqlCommand = new Command(ReadSqlMethod));
+
+        public ICommand UpdateSqlCommand => _updateSqlCommand ?? (_updateSqlCommand = new Command(UpdateSqlMethod));
+
+        public ICommand DeleteSqlCommand => _deleteSqlCommand ?? (_deleteSqlCommand = new Command(DeleteSqlMethod));
+
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(DeleteMethod));
+
+        public ICommand CreateNewCaseCommand => _createNewCaseCommand ?? (_createNewCaseCommand = new Command(CreateNewCaseMethod));
+
+        public ICommand DeleteAssignedCasesSqlCommand => _deleteAssignedCasesSqlCommand ?? (_deleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod));
+
+        public ICommand UpdateAssignedCasesSqlCommand => _updateAssignedCasesSqlCommand ?? (_updateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod));
+
+        public ICommand GetClientAndCasePickersCommand => _getClientAndCasePickersCommand ?? (_getClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod));
     }
 }
