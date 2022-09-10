@@ -222,6 +222,7 @@ namespace IReport.ViewModels
                 SqlDataReader clientReader = clientCommand.ExecuteReader();
                 while (clientReader.Read())
                 {
+
                     ClientInfoModel.ClientInfoModelList.Insert(0, new ClientInfoModel
                     {
                         Identifier = Convert.ToInt32(clientReader["Identifier"]),
