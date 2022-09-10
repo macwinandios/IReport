@@ -10,6 +10,7 @@
         </OnPlatform>
         
     </ContentPage.Padding>
+    
     <ContentPage.BindingContext>
         <local:CaseInfoViewModel/>
     </ContentPage.BindingContext>
@@ -477,7 +478,7 @@
                    BackgroundColor="White"
                    Margin="7"
                    Text="{Binding ReportInfoModel.Identifier}"
-                   TextColor="White"
+                   TextColor="Black"
                    FontSize="20"
                    FontAttributes="Bold"
                    IsVisible="{Binding CaseInfoModel.DeletingCase}"/>
@@ -628,7 +629,7 @@
                        FontSize="18"
                        HorizontalTextAlignment="Center"
                        IsVisible="{Binding CaseInfoModel.UpdatingCase}"/>
-
+ 
 
                     <Entry Placeholder="-FIRST NAME-"
                        Text="{Binding CaseInfoModel.FirstName}"
@@ -2033,7 +2034,7 @@
                 
 
                 <!--THIS IS TO READ FROM ASSIGNED CASES-->
-                    <Label Text="ENTER IDENTIFIER TO DELETE:"
+                    <Label Text="DELETE AN ASSIGNED CASE:"
                        TextColor="White"
                        FontAttributes="Bold"
                        FontSize="20"
@@ -2053,7 +2054,7 @@
                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
                     
                     
-                    <Label Text="ENTER IDENTIFIER TO UPDATE:"
+                    <Label Text="UPDATE AN ASSIGNED CASE:"
                        TextColor="White"
                        FontAttributes="Bold"
                        FontSize="20"
@@ -2083,9 +2084,11 @@
                     
 
                         <Entry Text="{Binding CaseInfoModel.AssignedEmployeeUsername}"
-                       PlaceholderColor="DarkGray"
+                       PlaceholderColor="LightGray"
                        FontAttributes="Bold"
-                       Placeholder="ENTER EMPLOYEE NAME"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="--ENTER EMPLOYEE NAME--"
                        TextColor="White"
                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
                     
@@ -2099,9 +2102,11 @@
 
                     
                         <Entry Text="{Binding CaseInfoModel.AssignedCaseId}"
-                       PlaceholderColor="DarkGray"
+                       PlaceholderColor="LightGray"
                        FontAttributes="Bold"
-                       Placeholder="ENTER CASE I.D."
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="--ENTER CASE I.D.--"
                        TextColor="White"
                        IsVisible="{Binding CaseInfoModel.AssigningACase}"/>
                     
@@ -2168,7 +2173,7 @@
                     <StackLayout Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
 
-                        <Button Text="DELETE AN ASSIGNED CASE"
+                        <Button Text="DELETE ASSIGNED CASE"
                         Command="{Binding DeleteAssignedCasesSqlCommand}"
                         CornerRadius="40"
                         TextColor="White"

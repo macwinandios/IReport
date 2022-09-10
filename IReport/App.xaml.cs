@@ -26,20 +26,7 @@ namespace IReport
 
         protected override void OnStart()
         {
-            //IUnityContainer unityContainer = new UnityContainer();
 
-            //unityContainer = new UnityContainer().AddExtension(new Diagnostic());
-
-            //unityContainer.RegisterType<ISql, ReportInfoViewModel>();
-            //unityContainer.RegisterType<ISql, CaseInfoViewModel>();
-            //unityContainer.RegisterType<ISql, ClientInfoViewModel>();
-            //unityContainer.RegisterType<ISql, LoginViewModel>();
-
-            //unityContainer.RegisterSingleton<IReportInfoModel, ReportInfoModel>();
-            //unityContainer.RegisterSingleton<ReportInfoViewModel>();
-
-
-            //ReportInfoViewModel report = unityContainer.Resolve<ReportInfoViewModel>();
 
         }
 

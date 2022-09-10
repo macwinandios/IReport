@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IReport.Models
 {
-    public class LoginModel : ViewModelBase, ILoginModel
+    public class LoginModel : ViewModelBase
     {
         string _adminUsername; 
         public string AdminUsername

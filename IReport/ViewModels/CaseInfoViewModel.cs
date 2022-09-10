@@ -12,31 +12,33 @@ using IReport.Services;
 
 namespace IReport.ViewModels
 {
-    public class CaseInfoViewModel : ViewModelBase
+    /// <summary>
+    /// VIEWMODEL FOR CASEINFOVIEW
+
+    /// ADD A LINE DIRECTORY
+    //CREATE METHOD SQL SERVER IS ON LINE:
+    //READ METHOD FOR SQL IS ON LINE:
+    // UPDATE METHOD FOR SQL IS ON LINE:
+    // DELETE METHOD FOR SQL IS ON LINE:
+    /// </summary>
+
+
+    public class CaseInfoViewModel : ViewModelBase, ISql
     {
+        public CaseInfoViewModel(ISql isql)
+        {
+            _isql = isql;
+
+        }
+        ISql _isql;
+
         public CaseInfoViewModel()
         {
-            
-
 
             CaseInfoModel = new CaseInfoModel();
             ClientInfoModel = new ClientInfoModel();
-
-            //CreateSqlAssignACaseCommand = new Command(CreateSqlAssignACaseMethod);
-            //AssignACaseCommand = new Command(AssignACaseMethod);
-            //CreateSqlCommand = new Command(CreateSqlMethod);
-            ////CreateCommand = new Command(CreateMethod);
-            //ReadSqlCommand = new Command(ReadSqlMethod);
-            //UpdateSqlCommand = new Command(UpdateSqlMethod);
-            //UpdateCommand = new Command(UpdateMethod);
-            //DeleteSqlCommand = new Command(DeleteSqlMethod);
-            //DeleteCommand = new Command(DeleteMethod);
-            //CreateNewCaseCommand = new Command(CreateNewCaseMethod);
-            //DeleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod);
-            //UpdateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod);
-            //SqlModel = new SqlModel();
-            ////CheckConnectionCommand = new Command(CheckConnectionMethod);
-            //GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
+            ReportInfoModel = new ReportInfoModel();
+            SqlModel = new SqlModel();
 
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
             CaseInfoModel.CaseInfoModelList = cases;
@@ -48,11 +50,15 @@ namespace IReport.ViewModels
             CaseInfoModel.LanguageList = GetLanguage().OrderBy(t => t.Value).ToList();
             CaseInfoModel.LevelOfAwarenessList = GetAwareness().OrderBy(t => t.Value).ToList();
         }
+
+        //PRIVATE MEMBERS FOR EACH COMMAND
+        //the public properties for these private members are at the end of this class to avoid clutter
         private ICommand _createSqlAssignACaseCommand;
         private ICommand _assignACaseCommand;
         private ICommand _createSqlCommand;
         private ICommand _readSqlCommand;
         private ICommand _updateSqlCommand;
+        private ICommand _updateCommand;
         private ICommand _deleteSqlCommand;
         private ICommand _deleteCommand; 
         private ICommand _createNewCaseCommand;
@@ -60,25 +66,22 @@ namespace IReport.ViewModels
         private ICommand _updateAssignedCasesSqlCommand;
         private ICommand _getClientAndCasePickersCommand;
 
-        
 
+        //PRIVATE MEMBERS OF MODELS AND SQL INTERFACE
         ReportInfoModel _reportInfoModel;
         CaseInfoModel _caseInfoModel;
         ClientInfoModel _clientInfoModel;
         SqlModel _sqlModel;
 
+        //PRIVATE MEMBERS FOR PICKERS LIST
         CaseInfoModel _selectedAwareness;
         CaseInfoModel _selectedEthnicity;
         CaseInfoModel _selectedComplexion;
         CaseInfoModel _selectedLanguage;
 
-        //233-342 CREATE METHOD SQL SERVER
-        //346-419 READ METHOD FOR SQL
-        //433-466 UPDATE METHOD FOR SQL
-        //481-509 DELETE METHOD FOR SQL
 
 
-        
+        //PUBLIC PROPERTIES BEGIN
         public ReportInfoModel ReportInfoModel
         {
             get => _reportInfoModel;
@@ -90,9 +93,6 @@ namespace IReport.ViewModels
             }
         }
 
-       
-
-
         public CaseInfoModel CaseInfoModel
         {
             get => _caseInfoModel;
@@ -103,8 +103,6 @@ namespace IReport.ViewModels
 
             }
         }
-
-
 
         public ClientInfoModel ClientInfoModel
         {
@@ -125,47 +123,7 @@ namespace IReport.ViewModels
             }
         }
 
-        public CaseInfoModel SelectedAwareness
-        {
-            get => _selectedAwareness;
-            set
-            {
-                _selectedAwareness = value;
-                OnPropertyChanged(nameof(SelectedAwareness));
-            }
-        }
-        public CaseInfoModel SelectedEthnicity
-        {
-            get => _selectedEthnicity;
-            set
-            {
-                _selectedEthnicity = value;
-                OnPropertyChanged(nameof(SelectedEthnicity));
-            }
-        }
-
-        public CaseInfoModel SelectedComplexion
-        {
-            get => _selectedComplexion;
-            set
-            {
-                _selectedComplexion = value;
-
-                OnPropertyChanged(nameof(SelectedComplexion));
-            }
-        }
-
-        public CaseInfoModel SelectedLanguage
-        {
-            get => _selectedLanguage;
-            set
-            {
-                _selectedLanguage = value;
-
-                OnPropertyChanged(nameof(SelectedLanguage));
-            }
-        }
-
+        
 
         //Reads from SQL to populate the picker
         //public ICommand GetClientAndCasePickersCommand { get; }
@@ -201,29 +159,7 @@ namespace IReport.ViewModels
             }
         }
 
-
-        //public ICommand CheckConnectionCommand { get; }
-        //public async void CheckConnectionMethod()
-        //{
-        //    try
-        //    {
-        //        SqlModel.SqlConnection.Open();
-        //        await Application.Current.MainPage.DisplayAlert("DONE", "YOU DID IT", "OK");
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
-
-        //    }
-        //    finally
-        //    {
-        //        SqlModel.SqlConnection.Close();
-
-        //    }
-        //}
-
-
-        //public ICommand CreateNewCaseCommand { get; }
+        //ISVISIBLE BUTTON
         public void CreateNewCaseMethod()
         {
             CaseInfoModel.CreatingCase = true;
@@ -234,19 +170,8 @@ namespace IReport.ViewModels
 
 
         }
+        //CREATE OR POST TO CASEINFOTABLE
 
-        //public ICommand CreateCommand { get; }
-
-        //public void CreateMethod()
-        //{
-        //    CaseInfoModel.CreatingCase = true;
-        //    CaseInfoModel.UpdatingCase = false;
-        //    CaseInfoModel.ReadingCase = false;
-        //    CaseInfoModel.DeletingCase = false;
-        //    CaseInfoModel.AssigningACase = false;
-
-        //}
-        //public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
             try
@@ -358,8 +283,7 @@ namespace IReport.ViewModels
             }
         }
 
-
-        //public ICommand ReadSqlCommand { get; }
+        //READ FROM SQL CASEINFOTABLE
         public async void ReadSqlMethod()
         {
             try
@@ -430,8 +354,8 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand UpdateCommand { get; }
 
+        //ISVISIBLE BUTTON
         public void UpdateMethod()
         {
             CaseInfoModel.UpdatingCase = true;
@@ -442,7 +366,7 @@ namespace IReport.ViewModels
 
         }
 
-        //public ICommand UpdateSqlCommand { get; }
+        //UPDATE SQL CASEINFOTABLE
         public async void UpdateSqlMethod()
         {
             try
@@ -478,8 +402,7 @@ namespace IReport.ViewModels
             }
         }
 
-        //public ICommand DeleteCommand { get; }
-
+        //ISVISIBLE BUTTON
         public void DeleteMethod()
         {
             CaseInfoModel.DeletingCase = true;
@@ -489,20 +412,12 @@ namespace IReport.ViewModels
             CaseInfoModel.AssigningACase = false;
 
         }
-
-        //public ICommand DeleteSqlCommand { get; }
+        //DELETE FROM SQL CASEINFOTABLE
         public async void DeleteSqlMethod()
         {
             try
             {
                 SqlModel.SqlConnection.Open();
-
-                CaseInfoModel.UpdatingCase = false;
-                CaseInfoModel.CreatingCase = false;
-                CaseInfoModel.ReadingCase = false;
-                CaseInfoModel.AssigningACase = false;
-
-                //ill have to make an identifier for these tables too for this to work
 
                 using (SqlCommand deleteCommand = new SqlCommand($"Delete FROM dbo.CaseInfoTable WHERE Identifier = {CaseInfoModel.Identifier}", SqlModel.SqlConnection))
                 {
@@ -522,14 +437,14 @@ namespace IReport.ViewModels
             }
         }
 
-        //public ICommand DeleteAssignedCasesSqlCommand { get; }
+        //DELETE FROM SQL ASSIGNEDCASESINFOTABLE
         public async void DeleteAssignedCasesSqlMethod()
         {
             try
             {
                 SqlModel.SqlConnection.Open();
-                //ill have to make an identifier for these tables too for this to work
 
+                 
                 using (SqlCommand deleteCommand = new SqlCommand($"Delete FROM dbo.AssignedCasesInfoTable WHERE Identifier = {CaseInfoModel.Identifier}", SqlModel.SqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();
@@ -548,7 +463,8 @@ namespace IReport.ViewModels
             }
         }
 
-        //public ICommand UpdateAssignedCasesSqlCommand { get; }
+        //UPDATE SQL ASSIGNEDCASESINFOTABLE
+
         public async void UpdateAssignedCasesSqlMethod()
         {
             try
@@ -579,8 +495,6 @@ namespace IReport.ViewModels
         }
 
         //isvisible for assign a case
-        //public ICommand AssignACaseCommand { get; }
-
         public void AssignACaseMethod()
         {
             CaseInfoModel.AssigningACase = true;
@@ -593,8 +507,7 @@ namespace IReport.ViewModels
 
         }
 
-
-        //public ICommand CreateSqlAssignACaseCommand { get; }
+        //CREATE OR POST TO SQL ASSIGNEDCASESINFOTABLE
 
         public async void CreateSqlAssignACaseMethod()
         {
@@ -657,7 +570,19 @@ namespace IReport.ViewModels
         }
 
 
-        //public List Properties for the Pickers
+        //PUBLIC LIST PROPERTIES TO POPULATE PICKERS
+        ////public properties and lists
+        ////each pair of property/list is for the pickers to get these values using LINQ
+
+        public CaseInfoModel SelectedAwareness
+        {
+            get => _selectedAwareness;
+            set
+            {
+                _selectedAwareness = value;
+                OnPropertyChanged(nameof(SelectedAwareness));
+            }
+        }
         public List<CaseInfoModel> GetAwareness()
         {
             var awareness = new List<CaseInfoModel>()
@@ -668,6 +593,16 @@ namespace IReport.ViewModels
                 new CaseInfoModel(){Key = 4, Value = "Not Aware At All"},
             };
             return awareness;
+        }
+        public CaseInfoModel SelectedComplexion
+        {
+            get => _selectedComplexion;
+            set
+            {
+                _selectedComplexion = value;
+
+                OnPropertyChanged(nameof(SelectedComplexion));
+            }
         }
         public List<CaseInfoModel> GetComplexions()
         {
@@ -683,6 +618,15 @@ namespace IReport.ViewModels
             return complexions;
         }
 
+        public CaseInfoModel SelectedEthnicity
+        {
+            get => _selectedEthnicity;
+            set
+            {
+                _selectedEthnicity = value;
+                OnPropertyChanged(nameof(SelectedEthnicity));
+            }
+        }
         public List<CaseInfoModel> GetEthnicity()
         {
             var ethnicities = new List<CaseInfoModel>()
@@ -700,6 +644,16 @@ namespace IReport.ViewModels
             return ethnicities;
         }
 
+        public CaseInfoModel SelectedLanguage
+        {
+            get => _selectedLanguage;
+            set
+            {
+                _selectedLanguage = value;
+
+                OnPropertyChanged(nameof(SelectedLanguage));
+            }
+        }
         public List<CaseInfoModel> GetLanguage()
         {
             var languages = new List<CaseInfoModel>()
@@ -717,6 +671,8 @@ namespace IReport.ViewModels
             return languages;
         }
 
+
+        //public properties of type ICommand that create an instance of the Command class and calls it's shared-named method
         public ICommand CreateSqlAssignACaseCommand => _createSqlAssignACaseCommand ?? (_createSqlAssignACaseCommand = new Command(CreateSqlAssignACaseMethod));
 
         public ICommand AssignACaseCommand => _assignACaseCommand ?? (_assignACaseCommand = new Command(AssignACaseMethod));
@@ -730,6 +686,7 @@ namespace IReport.ViewModels
 
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(DeleteMethod));
 
+        public ICommand UpdateCommand => _updateCommand ?? (_updateCommand = new Command(UpdateMethod));
         public ICommand CreateNewCaseCommand => _createNewCaseCommand ?? (_createNewCaseCommand = new Command(CreateNewCaseMethod));
 
         public ICommand DeleteAssignedCasesSqlCommand => _deleteAssignedCasesSqlCommand ?? (_deleteAssignedCasesSqlCommand = new Command(DeleteAssignedCasesSqlMethod));
@@ -737,5 +694,7 @@ namespace IReport.ViewModels
         public ICommand UpdateAssignedCasesSqlCommand => _updateAssignedCasesSqlCommand ?? (_updateAssignedCasesSqlCommand = new Command(UpdateAssignedCasesSqlMethod));
 
         public ICommand GetClientAndCasePickersCommand => _getClientAndCasePickersCommand ?? (_getClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod));
+
+
     }
 }

@@ -16,15 +16,24 @@ namespace IReport.ViewModels
 
         public LoginViewModel()
         {
-            //BEFORE CREATING AN INSTANCE OF THE CLASS USING THE PROPERTY,
-            //IT WAS CRASHING SAYING OBJECT OF CLASS NOT CREATED OR SOMETHING
-            
+
             LoginModel = new LoginModel();
-            LoginCommand = new Command(LoginMethod);
-            GuestLoginCommand = new Command(GuestLoginMethod);
-            SignUpCreateSqlCommand = new Command(SignUpCreateSqlMethod);
+
+            //LoginCommand = new Command(LoginMethod);
+            //GuestLoginCommand = new Command(GuestLoginMethod);
+            //SignUpCreateSqlCommand = new Command(SignUpCreateSqlMethod);
         }
 
+
+        //private members for each command
+        //the public properties for these private members are at the end of this class to avoid clutter
+        private ICommand _loginCommand;
+        private ICommand _guestLoginCommand;
+        private ICommand _signUpCreateSqlCommand;
+
+        
+
+        //PUBLIC PROPERTY BEGINS
         LoginModel _loginModel;
         public LoginModel LoginModel
         {
@@ -35,14 +44,14 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand GuestLoginCommand { get; }
 
+        //METHOD FOR GUESTLOGIN BUTTON-PUSHASYNC TO BYPASS LOGIN CREDENTIALS
         public async void GuestLoginMethod()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new TabAccessor());
         }
 
-        public ICommand LoginCommand { get; }
+        //LOGIN METHOD READS FROM SQL. ONLY IF USERNAME IS IN DATABASE ACCESS IS GRANTED.
         public async void LoginMethod()
         {
            try
@@ -88,7 +97,7 @@ namespace IReport.ViewModels
                     
                 }
 
-            }//END OF TRY BLOCK
+            }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
@@ -102,10 +111,11 @@ namespace IReport.ViewModels
 
             }
         }
-        public ICommand SignUpCreateSqlCommand { get; }
+
+        //SIGNUP METHOD.  READS USERNAMES FROM SQL.  IF USERNAME ENTERED DOES NOT EXIST, IT POSTS TO SQL AND CREATES (INSERTS) THE ENTERED USERNAME. 
         public async void SignUpCreateSqlMethod()
         {
-            //posts to sql
+
             try
             {
                 SqlModel.SqlConnection.Open();
@@ -136,21 +146,22 @@ namespace IReport.ViewModels
                             await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY ADDED", "CLICK OK TO CONTINUE", "OK");
                             LoginModel.Username = string.Empty;
                             LoginModel.Password = string.Empty;
-                        }//END OF USING
+                        }
 
-                    }//END OF ELSE
+                    }
 
                     SqlModel.SqlConnection.Close();
 
-                }//END OF FIRST IF
+                }
 
-            }//END OF TRY BLOCK
+            }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
                 LoginModel.Username = string.Empty;
                 LoginModel.Password = string.Empty;
             }
+
             finally
             {
                 SqlModel.SqlConnection.Close();
@@ -158,5 +169,10 @@ namespace IReport.ViewModels
             }
         }
 
+
+        //public properties of type ICommand that create an instance of the Command class and calls it's shared-named method
+        public ICommand LoginCommand => _loginCommand ?? (_loginCommand = new Command(LoginMethod));
+        public ICommand GuestLoginCommand => _guestLoginCommand ?? (_guestLoginCommand = new Command(GuestLoginMethod));
+        public ICommand SignUpCreateSqlCommand => _signUpCreateSqlCommand ?? (_signUpCreateSqlCommand = new Command(SignUpCreateSqlMethod));
     }
 }

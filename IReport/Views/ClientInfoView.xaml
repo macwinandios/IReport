@@ -789,6 +789,7 @@
                     FontSize="14"
                     IsVisible="{Binding ClientInfoModel.DeletingClient}"/>
 
+                    
                 <Label Text="EXISTING CLIENT'S DETAILS:"
                        IsVisible="{Binding ClientInfoModel.ReadingClient}"
                        FontAttributes="Bold"
@@ -949,7 +950,7 @@
 
             </StackLayout>
             </StackLayout>
-        </ScrollView>
 
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

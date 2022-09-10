@@ -15,6 +15,8 @@ namespace IReport.Views
         public CaseInfoView()
         {
             InitializeComponent();
+            ///BindingContext = App.Locator.CaseInfoViewModel;
+
         }
     }
 }

@@ -15,6 +15,8 @@ namespace IReport.Views
         public ClientInfoView()
         {
             InitializeComponent();
+            //BindingContext = App.Locator.ClientInfoViewModel;
+
         }
     }
 }

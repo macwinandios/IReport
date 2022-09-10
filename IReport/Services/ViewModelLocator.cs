@@ -15,33 +15,32 @@
 //        {
 //            _container = new UnityContainer();
 //            ReportInfoViewModel viewModel = new ReportInfoViewModel();
-//            ReportInfoModel model = new ReportInfoModel();
-//            _container.RegisterType<IReportInfoModel, ReportInfoModel>();
-//            _container.RegisterType<IReportInfoServices, ReportInfoViewModel>();
+//            CaseInfoViewModel caseviewModel = new CaseInfoViewModel();
+//            ClientInfoViewModel clientviewModel = new ClientInfoViewModel();
+
+
 //            _container.RegisterType<ISql, ReportInfoViewModel>();
+//            _container.RegisterType<ISql, CaseInfoViewModel>();
+//            _container.RegisterType<ISql, ClientInfoViewModel>();
 
-//            _container.RegisterType<ILoginModel, LoginModel>();
-//            _container.RegisterType<ILoginServices, LoginViewModel>();
-//            _container.RegisterType<ISql, LoginViewModel>();
+//            //checks for error - did not work properly
 //            _container = new UnityContainer().AddExtension(new Diagnostic());
-
-
 
 //        }
 
 //        public ReportInfoViewModel ReportInfoViewModel
 //        {
-//           get { return _container.Resolve<ReportInfoViewModel>(); }
+//            get { return _container.Resolve<ReportInfoViewModel>(); }
 //        }
 
-//        public LoginViewModel LoginViewModel
+//        public CaseInfoViewModel CaseInfoViewModel
 //        {
-//            get { return _container.Resolve<LoginViewModel>(); }
+//            get { return _container.Resolve<CaseInfoViewModel>(); }
 //        }
 
-//        public ReportInfoModel ReportInfoModel
+//        public ClientInfoViewModel ClientInfoViewModel
 //        {
-//            get { return _container.Resolve<ReportInfoModel>(); }
+//            get { return _container.Resolve<ClientInfoViewModel>(); }
 //        }
 //    }
 //}

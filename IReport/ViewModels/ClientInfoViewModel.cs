@@ -12,13 +12,32 @@ using IReport.Services;
 
 namespace IReport.ViewModels
 {
-    public  class ClientInfoViewModel : ViewModelBase
+    /// <summary>
+    /// VIEWMODEL FOR CLIENTINFOVIEW
+
+    /// ADD A LINE DIRECTORY
+    //CREATE METHOD SQL SERVER IS ON LINE:
+    //READ METHOD FOR SQL IS ON LINE:
+    // UPDATE METHOD FOR SQL IS ON LINE:
+    // DELETE METHOD FOR SQL IS ON LINE:
+    /// </summary>
+    /// 
+    public class ClientInfoViewModel : ViewModelBase, ISql
     {
-        
+        public ClientInfoViewModel(ISql isql)
+        {
+            _isql = isql;
+
+        }
+        ISql _isql;
+
         public ClientInfoViewModel()
         {
+            SqlModel = new SqlModel();
             ClientInfoModel = new ClientInfoModel();
             CaseInfoModel = new CaseInfoModel();
+
+
             CreateSqlCommand = new Command(CreateSqlMethod);
             ReadSqlCommand = new Command(ReadSqlMethod);
             UpdateSqlCommand = new Command(UpdateSqlMethod);
@@ -26,8 +45,6 @@ namespace IReport.ViewModels
             CreateCommand = new Command(CreateMethod);
             UpdateCommand = new Command(UpdateMethod);
             DeleteCommand = new Command(DeleteMethod);
-            SqlModel = new SqlModel();
-            //CheckConnectionCommand = new Command(CheckConnectionMethod);
             GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
 
 
@@ -37,16 +54,16 @@ namespace IReport.ViewModels
             ClientInfoModel.YesNoIDontKnowPicker = GetYesNoIDontKnowPicker().OrderBy(t => t.Value).ToList();
 
         }
-
-        //for picker selecteditem
+        //PRIVATE MEMBER OF PICKER'S SELECTED ITEM
         ClientInfoModel _selectedYesNoIDontKnowPicker;
 
+        //PRIVATE MEMBERS OF MODELS
         SqlModel _sqlModel;
         ClientInfoModel _clientInfoModel;
         CaseInfoModel _caseInfoModel;
 
         
-        
+        //PUBLIC PROPERTIES BEGIN
         public SqlModel SqlModel
         {
             get => _sqlModel;
@@ -103,6 +120,7 @@ namespace IReport.ViewModels
 
         public ICommand CreateCommand { get; }
 
+        //isvisble CREATE A CLIENT BUTTON
         public void CreateMethod()
         {
             ClientInfoModel.DeletingClient = false;
@@ -111,6 +129,7 @@ namespace IReport.ViewModels
             ClientInfoModel.ReadingClient = false;
         }
 
+        //CREATE OR POST TO SQL CLIENTINFOTABLE
         public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
@@ -186,27 +205,7 @@ namespace IReport.ViewModels
             }
         }
 
-        //public ICommand CheckConnectionCommand { get; }
-        //public async void CheckConnectionMethod()
-        //{
-        //    try
-        //    {
-        //        SqlModel.SqlConnection.Open();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
-        //        SqlModel.SqlConnection.Close();
-
-        //    }
-        //    finally
-        //    {
-        //        SqlModel.SqlConnection.Close();
-
-        //    }
-        //}
-
-
+        //READ FROM SQL CLIENTINFOTABLE
         public ICommand ReadSqlCommand { get; }
         public async void ReadSqlMethod()
         {
@@ -255,7 +254,7 @@ namespace IReport.ViewModels
         }
 
         public ICommand UpdateCommand { get; }
-
+        //isvisble UPDATE CLIENT BUTTON
         public void UpdateMethod()
         {
             ClientInfoModel.DeletingClient = false;
@@ -263,6 +262,7 @@ namespace IReport.ViewModels
             ClientInfoModel.CreatingNewClient = false;
             ClientInfoModel.ReadingClient = false;
         }
+        //UPDATE SQL CLIENTINFOTABLE
         public ICommand UpdateSqlCommand { get; }
         public async void UpdateSqlMethod()
         {
@@ -295,7 +295,7 @@ namespace IReport.ViewModels
 
             }
         }
-
+        //isvisble DELETE CLIENT BUTTON
         public ICommand DeleteCommand { get; }
 
         public void DeleteMethod()
@@ -306,6 +306,7 @@ namespace IReport.ViewModels
             ClientInfoModel.ReadingClient = false;
         }
 
+        //DELETE FROM SQL CLIENTINFOTABLE
         public ICommand DeleteSqlCommand { get; }
         public async void DeleteSqlMethod()
         {
@@ -332,7 +333,7 @@ namespace IReport.ViewModels
             }
         }
 
-
+        //READS FROM CASEINFOTABLE AND CLIENTINFOTABLE TO POPULATE BOTH PICKERS
         public ICommand GetClientAndCasePickersCommand { get; }
         public async void GetClientAndCasePickersMethod()
         {
@@ -377,6 +378,10 @@ namespace IReport.ViewModels
 
             }
         }
+
+        ////PUBLIC PROPERTY AND LIST TO POPULATE PICKER
+        ////each pair of property/list is for the pickers to get these values using LINQ
+
         public ClientInfoModel SelectedYesNoIDontKnowPicker
         {
             get => _selectedYesNoIDontKnowPicker;
