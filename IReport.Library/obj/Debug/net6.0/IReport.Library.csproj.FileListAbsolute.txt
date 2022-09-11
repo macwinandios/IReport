@@ -1,0 +1,12 @@
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\bin\Debug\net6.0\IReport.Library.deps.json
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\bin\Debug\net6.0\IReport.Library.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\bin\Debug\net6.0\IReport.Library.pdb
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.csproj.AssemblyReference.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.AssemblyInfoInputs.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.AssemblyInfo.cs
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.csproj.CoreCompileInputs.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\refint\IReport.Library.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\IReport.Library.pdb
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Library\obj\Debug\net6.0\ref\IReport.Library.dll

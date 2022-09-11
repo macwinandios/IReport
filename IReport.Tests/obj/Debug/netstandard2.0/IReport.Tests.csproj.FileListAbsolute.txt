@@ -1,0 +1,17 @@
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\xunit.runner.visualstudio.testadapter.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\xunit.runner.reporters.net452.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\xunit.runner.utility.net452.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\xunit.abstractions.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\IReport.Tests.deps.json
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\IReport.Tests.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\IReport.Tests.pdb
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\IReport.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\bin\Debug\netstandard2.0\IReport.pdb
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.csproj.AssemblyReference.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.AssemblyInfoInputs.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.AssemblyInfo.cs
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.csproj.CopyComplete
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Tests\obj\Debug\netstandard2.0\IReport.Tests.pdb
