@@ -38,17 +38,18 @@ namespace IReport.ViewModels
             CaseInfoModel = new CaseInfoModel();
 
 
-            CreateSqlCommand = new Command(CreateSqlMethod);
-            ReadSqlCommand = new Command(ReadSqlMethod);
-            UpdateSqlCommand = new Command(UpdateSqlMethod);
-            DeleteSqlCommand = new Command(DeleteSqlMethod);
-            CreateCommand = new Command(CreateMethod);
-            UpdateCommand = new Command(UpdateMethod);
-            DeleteCommand = new Command(DeleteMethod);
-            GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
+            //CreateSqlCommand = new Command(CreateSqlMethod);
+            //ReadSqlCommand = new Command(ReadSqlMethod);
+            //UpdateSqlCommand = new Command(UpdateSqlMethod);
+            //DeleteSqlCommand = new Command(DeleteSqlMethod);
+            //CreateCommand = new Command(CreateMethod);
+            //UpdateCommand = new Command(UpdateMethod);
+            //DeleteCommand = new Command(DeleteMethod);
+            //GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
+        
 
 
-            ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
+        ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
             ClientInfoModel.ClientInfoModelList = clients;
 
             ClientInfoModel.YesNoIDontKnowPicker = GetYesNoIDontKnowPicker().OrderBy(t => t.Value).ToList();
@@ -62,7 +63,18 @@ namespace IReport.ViewModels
         ClientInfoModel _clientInfoModel;
         CaseInfoModel _caseInfoModel;
 
-        
+        //PRIVATE ICOMMAND MEMBERS
+        private ICommand _createSqlCommand;
+        private ICommand _readSqlCommand;
+        private ICommand _updateSqlCommand;
+        private ICommand _deleteSqlCommand;
+        private ICommand _createCommand;
+        private ICommand _updateCommand;
+        private ICommand _deleteCommand;
+        private ICommand _getClientAndCasePickersCommand;
+       
+
+
         //PUBLIC PROPERTIES BEGIN
         public SqlModel SqlModel
         {
@@ -118,8 +130,6 @@ namespace IReport.ViewModels
             ClientInfoModel.DeletingClient = true;
         }
 
-        public ICommand CreateCommand { get; }
-
         //isvisble CREATE A CLIENT BUTTON
         public void CreateMethod()
         {
@@ -130,7 +140,6 @@ namespace IReport.ViewModels
         }
 
         //CREATE OR POST TO SQL CLIENTINFOTABLE
-        public ICommand CreateSqlCommand { get; }
         public async void CreateSqlMethod()
         {
             try
@@ -206,7 +215,6 @@ namespace IReport.ViewModels
         }
 
         //READ FROM SQL CLIENTINFOTABLE
-        public ICommand ReadSqlCommand { get; }
         public async void ReadSqlMethod()
         {
             try
@@ -254,7 +262,6 @@ namespace IReport.ViewModels
             }
         }
 
-        public ICommand UpdateCommand { get; }
         //isvisble UPDATE CLIENT BUTTON
         public void UpdateMethod()
         {
@@ -264,7 +271,6 @@ namespace IReport.ViewModels
             ClientInfoModel.ReadingClient = false;
         }
         //UPDATE SQL CLIENTINFOTABLE
-        public ICommand UpdateSqlCommand { get; }
         public async void UpdateSqlMethod()
         {
             try
@@ -297,7 +303,6 @@ namespace IReport.ViewModels
             }
         }
         //isvisble DELETE CLIENT BUTTON
-        public ICommand DeleteCommand { get; }
 
         public void DeleteMethod()
         {
@@ -308,7 +313,6 @@ namespace IReport.ViewModels
         }
 
         //DELETE FROM SQL CLIENTINFOTABLE
-        public ICommand DeleteSqlCommand { get; }
         public async void DeleteSqlMethod()
         {
             try
@@ -335,7 +339,6 @@ namespace IReport.ViewModels
         }
 
         //READS FROM CASEINFOTABLE AND CLIENTINFOTABLE TO POPULATE BOTH PICKERS
-        public ICommand GetClientAndCasePickersCommand { get; }
         public async void GetClientAndCasePickersMethod()
         {
             try
@@ -403,5 +406,14 @@ namespace IReport.ViewModels
             return yesOrno;
         }
 
+        //INSTANCES OF THE COMMAND CLASS CALLING EACH METHOD
+        public ICommand CreateSqlCommand => _createSqlCommand ?? (_createSqlCommand = new Command(CreateSqlMethod));
+        public ICommand ReadSqlCommand => _readSqlCommand ?? (_readSqlCommand = new Command(ReadSqlMethod));
+        public ICommand UpdateSqlCommand => _updateSqlCommand ?? (_updateSqlCommand = new Command(UpdateSqlMethod));
+        public ICommand DeleteSqlCommand => _deleteSqlCommand ?? (_deleteSqlCommand = new Command(DeleteSqlMethod));
+        public ICommand CreateCommand => _createCommand ?? (_createCommand = new Command(CreateMethod));
+        public ICommand UpdateCommand => _updateCommand ?? (_updateCommand = new Command(UpdateMethod));
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(DeleteMethod));
+        public ICommand GetClientAndCasePickersCommand => _getClientAndCasePickersCommand ?? (_getClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod));
     }
 }

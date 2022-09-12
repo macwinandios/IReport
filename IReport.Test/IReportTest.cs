@@ -1,21 +1,38 @@
-﻿using IReport.Library;
+﻿
+using IReport.Services;
+using IReport.ViewModels;
+using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace IReport.Test
 {
     public class IReportTest
     {
+
         [Fact]
 
         public void AssertAllSqlMethods()
         {
-           // int i = 1;
-           // Assert.Equal(1, i);
-           Assert.Equal(3,MockSql.CreateSqlMethod());
-           Assert.Equal(3,MockSql.ReadSqlMethod());
-           Assert.Equal(3,MockSql.UpdateSqlMethod());
-           Assert.Equal(3,MockSql.DeleteSqlMethod());
-           Assert.Equal(3,MockSql.GetClientAndCasePickersMethod());
+
+            //Arrange
+            Mock<CaseInfoViewModel> mockCaseInfoViewModel = new Mock<CaseInfoViewModel>();
+            Mock<ClientInfoViewModel> mockClientInfoViewModel = new Mock<ClientInfoViewModel>();
+            Mock<ReportInfoViewModel> mockReportInfoViewModel = new Mock<ReportInfoViewModel>();
+
+            var _caseInfoViewModelInstance = new CaseInfoViewModel(mockCaseInfoViewModel.Object);
+            var _clientInfoViewModelInstance = new ClientInfoViewModel(mockClientInfoViewModel.Object);
+            var _reportInfoViewModelInstance = new ReportInfoViewModel(mockReportInfoViewModel.Object);
+
+            //Act
+
+
+
+            //Assert
+            _caseInfoViewModelInstance.Should().NotBeNull();
+            _clientInfoViewModelInstance.Should().NotBeNull();
+            _reportInfoViewModelInstance.Should().NotBeNull();
+
 
         }
     }
