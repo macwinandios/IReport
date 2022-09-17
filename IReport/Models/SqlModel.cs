@@ -31,7 +31,7 @@ namespace IReport.Models
         } 
 
        
-        public static string ServerName { get; set; } = "172.23.192.1";
+        public static string ServerName { get; set; } = "172.20.160.1";
         public  static string DatabaseName { get; set; } = "CompanyDB";
         public static string ServerUsername { get; set; } = "Johnny";
         public static string ServerPassword { get; set; } = "Nov2022";

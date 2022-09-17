@@ -16,7 +16,7 @@ namespace IReport.Test
         {
 
             //Arrange
-            Mock<CaseInfoViewModel> mockCaseInfoViewModel = new Mock<CaseInfoViewModel>();
+            Mock<CaseInfoViewModel> mockCaseInfoViewModel = new();
             Mock<ClientInfoViewModel> mockClientInfoViewModel = new Mock<ClientInfoViewModel>();
             Mock<ReportInfoViewModel> mockReportInfoViewModel = new Mock<ReportInfoViewModel>();
 
