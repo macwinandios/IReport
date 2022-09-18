@@ -21,6 +21,8 @@ com.google.android.material.bottomnavigation.BottomNavigationView;C:\Users\Jonat
 com.google.android.material.tabs.TabLayout;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\layout\fallbacktabbardonotuse.xml
 com.google.android.material.tabs.TabLayout;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\layout\rootlayout.xml
 com.google.android.material.tabs.TabLayout;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\layout\tabbar.xml
+crc643f46942d9dd1fff9.ShellFlyoutLayout;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\layout\flyoutcontent.xml
+crc64720bb2db43a66fe9.FormsViewPager;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\layout\rootlayout.xml
 declare-styleable;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\54\jl\res\values\attrs.xml
 external-cache-path;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\53\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 external-path;C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\lp\53\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
