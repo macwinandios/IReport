@@ -31,10 +31,10 @@ namespace IReport.Models
         } 
 
        
-        public static string ServerName { get; set; } = "172.20.160.1";
+        public static string ServerName { get; set; } = "172.31.0.1";
         public  static string DatabaseName { get; set; } = "CompanyDB";
         public static string ServerUsername { get; set; } = "Johnny";
-        public static string ServerPassword { get; set; } = "Nov2022";
+        public static string ServerPassword { get; set; } = "November15";
         public static string ClientQuery { get; set; } = "Select * from dbo.ClientInfoTable";
         public static string CaseQuery { get; set; } = "Select * from dbo.CaseInfoTable";
         public static string ReportQuery { get; set; } = "Select * from dbo.ReportInfoTable";

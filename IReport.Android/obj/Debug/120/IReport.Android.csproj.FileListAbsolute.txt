@@ -117,6 +117,7 @@ C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\mscorlib.dll
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\mscorlib.pdb
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\netstandard.dll
+C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\Newtonsoft.Json.dll
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\System.ComponentModel.Composition.dll
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\System.ComponentModel.Composition.pdb
 C:\Users\Jonathan\Desktop\yohanna familia\IReport\IReport.Android\obj\Debug\120\android\assets\System.Core.dll

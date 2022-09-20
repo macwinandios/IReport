@@ -5,6 +5,7 @@ public class MonoPackageManager_Resources {
 		"IReport.Android.dll",
 		"FormsViewGroup.dll",
 		"IReport.dll",
+		"Newtonsoft.Json.dll",
 		"Unity.Abstractions.dll",
 		"Unity.Container.dll",
 		"Xamarin.AndroidX.Activity.dll",

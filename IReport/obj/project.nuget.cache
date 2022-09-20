@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JICgpznYTy++hjVWpqXMJe01mXYTTWko6qyLGYhVeV+lHDCN/JS2lJlmMAeHp0KEH7WNAUqRG6dzALcSfqfrYA==",
+  "dgSpecHash": "zuXcGCvIbbnVNlfsYHPZiT5LLKvflbSdSUqJeoCPDGst5sf2BtrGvleLjzsFvF0EfcaXF7ZHUeCR12vq38/yPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jonathan\\Desktop\\yohanna familia\\IReport\\IReport\\IReport.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

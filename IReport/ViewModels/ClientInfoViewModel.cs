@@ -9,45 +9,25 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using IReport.Services;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace IReport.ViewModels
 {
     /// <summary>
     /// VIEWMODEL FOR CLIENTINFOVIEW
 
-    /// ADD A LINE DIRECTORY
-    //CREATE METHOD SQL SERVER IS ON LINE:
-    //READ METHOD FOR SQL IS ON LINE:
-    // UPDATE METHOD FOR SQL IS ON LINE:
-    // DELETE METHOD FOR SQL IS ON LINE:
     /// </summary>
     /// 
-    public class ClientInfoViewModel : ViewModelBase, ISql
+    public class ClientInfoViewModel : ViewModelBase
     {
-        public ClientInfoViewModel(ISql isql)
-        {
-            _isql = isql;
-
-        }
-        ISql _isql;
+        
 
         public ClientInfoViewModel()
         {
             SqlModel = new SqlModel();
             ClientInfoModel = new ClientInfoModel();
             CaseInfoModel = new CaseInfoModel();
-
-
-            //CreateSqlCommand = new Command(CreateSqlMethod);
-            //ReadSqlCommand = new Command(ReadSqlMethod);
-            //UpdateSqlCommand = new Command(UpdateSqlMethod);
-            //DeleteSqlCommand = new Command(DeleteSqlMethod);
-            //CreateCommand = new Command(CreateMethod);
-            //UpdateCommand = new Command(UpdateMethod);
-            //DeleteCommand = new Command(DeleteMethod);
-            //GetClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod);
-        
-
 
         ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
             ClientInfoModel.ClientInfoModelList = clients;
@@ -64,6 +44,7 @@ namespace IReport.ViewModels
         CaseInfoModel _caseInfoModel;
 
         //PRIVATE ICOMMAND MEMBERS
+        //PUBLIC ICOMMAND PROPERTIES AT END OF CLASS
         private ICommand _createSqlCommand;
         private ICommand _readSqlCommand;
         private ICommand _updateSqlCommand;
@@ -74,8 +55,6 @@ namespace IReport.ViewModels
         private ICommand _getClientAndCasePickersCommand;
        
 
-
-        //PUBLIC PROPERTIES BEGIN
         public SqlModel SqlModel
         {
             get => _sqlModel;
@@ -415,5 +394,44 @@ namespace IReport.ViewModels
         public ICommand UpdateCommand => _updateCommand ?? (_updateCommand = new Command(UpdateMethod));
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new Command(DeleteMethod));
         public ICommand GetClientAndCasePickersCommand => _getClientAndCasePickersCommand ?? (_getClientAndCasePickersCommand = new Command(GetClientAndCasePickersMethod));
+
+
+
+        //ATTEMPT AT RESTFUL WEB SERVICE - FINAL STEP
+
+        //private async void GetClients()
+        //{
+
+        //    using ( var httpClient = new HttpClient())
+        //    {
+        //        //send and get request
+        //        var uri = "http://geturi";
+        //        var response = await httpClient.GetStringAsync(uri);
+
+        //        //handle response
+        //        var ClientList = JsonConvert.DeserializeObject<List<ClientInfoModel>>(response);
+
+        //        ClientJsonModels = new ObservableCollection<ClientInfoModel>(ClientList);
+        //    }
+
+
+        //}
+
+        //ObservableCollection<ClientInfoModel> _clientModels;
+
+        //public ObservableCollection<ClientInfoModel> ClientJsonModels
+        //{
+        //    //this was suggested
+        //    //get => _clientModels ?? (_clientModels = new ObservableCollection<ClientInfoModel>());  
+
+        //    get => _clientModels;
+        //    set
+        //    {
+        //        _clientModels = value;
+        //        OnPropertyChanged(nameof(ClientJsonModels));
+        //    }
+        //}
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using IReport.Models.Base;
+﻿using IReport.Models;
+using IReport.Models.Base;
 using IReport.ViewModels;
 using IReport.Views;
 using System;
@@ -30,6 +31,7 @@ namespace Reports.Locator
             Register<ClientInfoViewModel, ClientInfoView>();
             Register<LoginViewModel, LoginView>();
             Register<ReportInfoViewModel, ReportInfoView>();
+
 
             //REGISTER SERVICES (SERVICES ARE REGISTERED AS SINGLETONS BY DEFAULT)
             //_container.RegisterType<INavigationService, NavigationService>();

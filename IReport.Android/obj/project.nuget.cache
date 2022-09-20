@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "e30hUScMdgbHE+j4dHe5ypLbjOnj2pWC8a+vwHpTA3FRWtBkbNGD8Ro52zErySm5Tj9Dj+JAtu7pvGPrYnVo+g==",
+  "dgSpecHash": "8b85eJ16E4liUYaPV4vVHHAlMXe3T+rmftAhPz2GYiKJD7tbkJ9d+NIvAUEhSPGnwraODpCq4sPEFAgVOk74TQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jonathan\\Desktop\\yohanna familia\\IReport\\IReport.Android\\IReport.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Jonathan\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",

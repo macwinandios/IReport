@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9ohvksSVborI7XPCf2zQoreJKryO5dOGlTV6CbiyC3k+0L2wLAmL4KFcdPiuJZMMZm8Ofw6omCvi+PM6xxRRmA==",
+  "dgSpecHash": "skcqskJ6uwABiAFdF+Np/iClUxoSiWX7A7APKEJbeHSZKHKFu1dFmIMracxGdaiNBNEZ310dBWfqfe4gJY2CTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jonathan\\Desktop\\yohanna familia\\IReport\\IReport.iOS\\IReport.iOS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Jonathan\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Jonathan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
