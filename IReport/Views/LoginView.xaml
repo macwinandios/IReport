@@ -1,90 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:IReport.ViewModels"
-             x:Class="IReport.Views.LoginView">
+<ContentPage
+    x:Class="IReport.Views.LoginView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <ContentPage.BindingContext>
-        <local:LoginViewModel/>
-    </ContentPage.BindingContext>
-    
-    
     <ContentPage.Content>
-
-
-
-        <StackLayout Padding="50"
-                     Orientation="Vertical"
-                     VerticalOptions="Center">
+        <StackLayout
+            Padding="50"
+            Orientation="Vertical"
+            VerticalOptions="Center">
 
             <Grid BackgroundColor="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
 
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
 
-                <Frame Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
-                       CornerRadius="40"
-                       HasShadow="True">
-                    
-                    <Image Source="tiologo.png"
-                       HeightRequest="200"
-                       HorizontalOptions="CenterAndExpand"/>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    CornerRadius="40"
+                    HasShadow="True">
+
+                    <Image
+                        HeightRequest="200"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="tiologo.png" />
                 </Frame>
             </Grid>
 
-            <Entry Placeholder="Enter Username:"
-                   Text="{Binding LoginModel.Username}"
-                   TextColor="Blue"
-                   HorizontalOptions="CenterAndExpand"
-                   FontSize="24"/>
+            <Entry
+                FontSize="24"
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="Enter Username:"
+                Text="{Binding LoginModel.Username}"
+                TextColor="Blue" />
 
-            <Entry Placeholder="Enter Password:"
-                   IsPassword="True"
-                   Text="{Binding LoginModel.Password}"
-                   TextColor="Blue"
-                   HorizontalOptions="CenterAndExpand"
-                   FontSize="24"/>
+            <Entry
+                FontSize="24"
+                HorizontalOptions="CenterAndExpand"
+                IsPassword="True"
+                Placeholder="Enter Password:"
+                Text="{Binding LoginModel.Password}"
+                TextColor="Blue" />
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="LOGIN"
+                <Button
                     Command="{Binding LoginCommand}"
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="15"
-                    FontAttributes="Bold"/>
-
-                <Button Text="SIGNUP"
-                    Command="{Binding SignUpCreateSqlCommand}"
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="15"
-                    FontAttributes="Bold"/>
-
-                <Button Text="GUEST LOGIN"
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="15"
                     FontAttributes="Bold"
-                    Command="{Binding GuestLoginCommand}"/>
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="LOGIN" />
+
+                <Button
+                    Command="{Binding SignUpCreateSqlCommand}"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="SIGNUP" />
+
+                <Button
+                    Command="{Binding GuestLoginCommand}"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="GUEST LOGIN" />
             </StackLayout>
 
-            
-            <Label Text="Don't have an account?"
-                   FontSize="18"/>
-            <Label Text="Enter a Username and Password and click SIGNUP!"
-                   FontSize="16"/>
-            <Label Text="To explore uninhibitedly, click GUEST LOGIN!"
-                   FontSize="14"
-                   TextColor="Blue"/>
+
+            <Label FontSize="18" Text="Don't have an account?" />
+            <Label FontSize="16" Text="Enter a Username and Password and click SIGNUP!" />
+            <Label
+                FontSize="14"
+                Text="To explore uninhibitedly, click GUEST LOGIN!"
+                TextColor="Blue" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

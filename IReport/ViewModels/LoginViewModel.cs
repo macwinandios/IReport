@@ -1,23 +1,20 @@
 ﻿using IReport.Models;
 using IReport.Models.Base;
 using IReport.Views;
+using Reports.Locator;
 using System;
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using IReport.Services;
 
 namespace IReport.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
 
-        public LoginViewModel()
+        public LoginViewModel(LoginModel loginModel)
         {
-
-            LoginModel = new LoginModel();
+            LoginModel = loginModel;
 
             //LoginCommand = new Command(LoginMethod);
             //GuestLoginCommand = new Command(GuestLoginMethod);
@@ -27,21 +24,18 @@ namespace IReport.ViewModels
 
         //private members for each command
         //the public properties for these private members are at the end of this class to avoid clutter
-        private ICommand _loginCommand;
-        private ICommand _guestLoginCommand;
-        private ICommand _signUpCreateSqlCommand;
+        ICommand _loginCommand;
+        ICommand _guestLoginCommand;
+        ICommand _signUpCreateSqlCommand;
 
-        
+
 
         //PUBLIC PROPERTY BEGINS
         LoginModel _loginModel;
         public LoginModel LoginModel
         {
             get => _loginModel;
-            set
-            {
-                _loginModel = value;
-            }
+            set => SetProperty(ref _loginModel, value);
         }
 
 
@@ -54,10 +48,10 @@ namespace IReport.ViewModels
         //LOGIN METHOD READS FROM SQL. ONLY IF USERNAME IS IN DATABASE ACCESS IS GRANTED.
         public async void LoginMethod()
         {
-           try
-           {
+            try
+            {
 
-            SqlModel.SqlConnection.Open();
+                SqlModel.SqlConnection.Open();
                 if (LoginModel.Username == LoginModel.AdminUsername && LoginModel.Password == LoginModel.AdminPassword)
                 {
                     await Application.Current.MainPage.DisplayAlert($"Welcome, {LoginModel.Username}", "For support call 800 Support 24/7!", "I WILL");
@@ -65,7 +59,7 @@ namespace IReport.ViewModels
                     LoginModel.Username = string.Empty;
                     LoginModel.Password = string.Empty;
                 }
-                
+
                 if (LoginModel.Username != string.Empty)
                 {
                     SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.LoginInfoTable WHERE EmployeeUsername = '" + LoginModel.Username + "' AND EmployeePassword = '" + LoginModel.Password + "'", SqlModel.SqlConnection);
@@ -77,13 +71,16 @@ namespace IReport.ViewModels
                     if (SqlModel.SqlDataReader.Read())
                     {
                         SqlModel.SqlConnection.Close();
-                        
+
                         await Application.Current.MainPage.DisplayAlert($"Welcome, {LoginModel.Username}", "We hope you enjoy your experience with us!", "I WILL");
-                        await Application.Current.MainPage.Navigation.PushAsync(new ReportInfoView());
+
+                        var reportInfoView = ViewModelLocator.Resolve<ReportInfoView>();
+
+                        await Application.Current.MainPage.Navigation.PushAsync(reportInfoView);
                         LoginModel.Username = string.Empty;
                         LoginModel.Password = string.Empty;
                     }
-                    else 
+                    else
                     {
                         SqlModel.SqlDataReader.Read();
                         SqlModel.SqlConnection.Close();
@@ -94,7 +91,7 @@ namespace IReport.ViewModels
                     }
                     SqlModel.SqlConnection.Close();
 
-                    
+
                 }
 
             }
@@ -121,7 +118,7 @@ namespace IReport.ViewModels
                 SqlModel.SqlConnection.Open();
                 if (LoginModel.Username != string.Empty && LoginModel.Password != string.Empty)
                 {
-                    SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.LoginInfoTable WHERE EmployeeUsername = '" + LoginModel.Username + "' AND EmployeePassword = '"+LoginModel.Password+"'", SqlModel.SqlConnection);
+                    SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.LoginInfoTable WHERE EmployeeUsername = '" + LoginModel.Username + "' AND EmployeePassword = '" + LoginModel.Password + "'", SqlModel.SqlConnection);
 
                     SqlModel.SqlDataReader = sqlSaveAndReadCommand.ExecuteReader();
 

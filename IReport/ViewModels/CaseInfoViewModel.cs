@@ -1,14 +1,13 @@
 ﻿using IReport.Models;
 using IReport.Models.Base;
+using IReport.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using IReport.Services;
 
 namespace IReport.ViewModels
 {
@@ -28,17 +27,15 @@ namespace IReport.ViewModels
         public CaseInfoViewModel(ISql isql)
         {
             _isql = isql;
-
         }
-        ISql _isql;
 
-        public CaseInfoViewModel()
+        public CaseInfoViewModel(CaseInfoModel caseInfoModel, ClientInfoModel clientInfoModel, ReportInfoModel reportInfoModel, SqlModel sqlModel)
         {
 
-            CaseInfoModel = new CaseInfoModel();
-            ClientInfoModel = new ClientInfoModel();
-            ReportInfoModel = new ReportInfoModel();
-            SqlModel = new SqlModel();
+            CaseInfoModel = caseInfoModel;
+            ClientInfoModel = clientInfoModel;
+            ReportInfoModel = reportInfoModel;
+            SqlModel = sqlModel;
 
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
             CaseInfoModel.CaseInfoModelList = cases;
@@ -51,6 +48,8 @@ namespace IReport.ViewModels
             CaseInfoModel.LevelOfAwarenessList = GetAwareness().OrderBy(t => t.Value).ToList();
         }
 
+        ISql _isql;
+
         //PRIVATE MEMBERS FOR EACH COMMAND
         //the public properties for these private members are at the end of this class to avoid clutter
         private ICommand _createSqlAssignACaseCommand;
@@ -60,7 +59,7 @@ namespace IReport.ViewModels
         private ICommand _updateSqlCommand;
         private ICommand _updateCommand;
         private ICommand _deleteSqlCommand;
-        private ICommand _deleteCommand; 
+        private ICommand _deleteCommand;
         private ICommand _createNewCaseCommand;
         private ICommand _deleteAssignedCasesSqlCommand;
         private ICommand _updateAssignedCasesSqlCommand;
@@ -123,7 +122,7 @@ namespace IReport.ViewModels
             }
         }
 
-        
+
 
         //Reads from SQL to populate the picker
         //public ICommand GetClientAndCasePickersCommand { get; }
@@ -131,7 +130,7 @@ namespace IReport.ViewModels
         {
             try
             {
-                
+
                 SqlModel.SqlConnection.Open();
                 SqlCommand caseCommand = new SqlCommand(SqlModel.CaseQuery, SqlModel.SqlConnection);
 
@@ -253,7 +252,7 @@ namespace IReport.ViewModels
                             CaseInfoModel.VehicleModel = string.Empty;
                             CaseInfoModel.VehicleColor = string.Empty;
                             CaseInfoModel.LicensePlateNumber = string.Empty;
-                            CaseInfoModel.LicensePlateState= string.Empty;
+                            CaseInfoModel.LicensePlateState = string.Empty;
                             CaseInfoModel.LicensePlateColor = string.Empty;
                             CaseInfoModel.CaseDetails = string.Empty;
                             SelectedComplexion.Value = string.Empty;
@@ -444,7 +443,7 @@ namespace IReport.ViewModels
             {
                 SqlModel.SqlConnection.Open();
 
-                 
+
                 using (SqlCommand deleteCommand = new SqlCommand($"Delete FROM dbo.AssignedCasesInfoTable WHERE Identifier = {CaseInfoModel.Identifier}", SqlModel.SqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();

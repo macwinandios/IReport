@@ -1,228 +1,225 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:IReport.ViewModels"
-             x:Class="IReport.Views.ReportInfoView">
+<ContentPage
+    x:Class="IReport.Views.ReportInfoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform ="iOS" Value ="0,40,0,0"/>
+            <On Platform="iOS" Value="0,40,0,0" />
         </OnPlatform>
     </ContentPage.Padding>
-    
-    <ContentPage.BindingContext>
-        <local:ReportInfoViewModel/>
-    </ContentPage.BindingContext>
-    
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="White">
 
-            <!--<Button Text="BEGIN REPORT"
+                <!--<Button Text="BEGIN REPORT"
                         Command="{Binding BeginReportCommand}"/>-->
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="tiologo.png"
-                               Grid.Row="3"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               HeightRequest="200"
-                               HorizontalOptions="CenterAndExpand"/>
+                    <Image
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HeightRequest="200"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="tiologo.png" />
                 </Grid>
 
 
                 <Grid BackgroundColor="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
 
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
 
                     </Grid.ColumnDefinitions>
-                    <ImageButton Source="create.png"
-                                 HeightRequest="10"
-                                 Grid.Row="0"
+                    <ImageButton
+                        Grid.Row="0"
                         Grid.Column="0"
-                                 BackgroundColor="White">
-                    </ImageButton>
-                    
-                    
-                    <Button Text="CREATE REPORT"
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="create.png" />
+
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
                         Command="{Binding GetClientAndCasePickersCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
-                        Grid.Row="0"
-                        Grid.Column="1"/>
-                    
-                    <ImageButton Source="read.png"
-                                 HeightRequest="1"
-                                 Grid.Row="0"
-                        Grid.Column="2"
-                                 BackgroundColor="White">
+                        Text="CREATE REPORT"
+                        TextColor="Black" />
 
-                    </ImageButton>
-                    <Button Text="READ REPORT"
+                    <ImageButton
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackgroundColor="White"
+                        HeightRequest="1"
+                        Source="read.png" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        BackgroundColor="LightGray"
                         Command="{Binding ReadSqlCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
-                        Grid.Row="0"
-                        Grid.Column="3"/>
-                    <ImageButton Source="update.png"
-                                 HeightRequest="10"
-                                 Grid.Row="1"
+                        Text="READ REPORT"
+                        TextColor="Black" />
+                    <ImageButton
+                        Grid.Row="1"
                         Grid.Column="0"
-                                 BackgroundColor="White">
-
-                    </ImageButton>
-                    <Button Text="UPDATE REPORT"
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="update.png" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
                         Command="{Binding UpdateCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
+                        Text="UPDATE REPORT"
+                        TextColor="Black" />
+                    <ImageButton
                         Grid.Row="1"
-                        Grid.Column="1"/>
-                    <ImageButton Source="trash.png"
-                                 HeightRequest="10"
-                                 Grid.Row="1"
                         Grid.Column="2"
-                                 BackgroundColor="White">
-
-                    </ImageButton>
-                    <Button Text="DELETE REPORT"
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="trash.png" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        BackgroundColor="LightGray"
                         Command="{Binding DeleteCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
-                        Grid.Row="1"
-                        Grid.Column="3"/>
+                        Text="DELETE REPORT"
+                        TextColor="Black" />
 
-                    <ImageButton Source="search.png"
-                                 HeightRequest="10"
-                                 Grid.Row="2"
+                    <ImageButton
+                        Grid.Row="2"
                         Grid.Column="0"
-                                 BackgroundColor="White">
-
-                    </ImageButton>
-                    <Button Text="CHECK FOR ASSIGNED CASES"
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="search.png" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        BackgroundColor="LightGray"
                         Command="{Binding ReadSqlAssignedCasesCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="14"
-                            Grid.Row="2"
-                        Grid.ColumnSpan="3"
-                            Grid.Column="1"/>
-            </Grid>
+                        Text="CHECK FOR ASSIGNED CASES"
+                        TextColor="Black" />
+                </Grid>
 
 
 
                 <StackLayout BackgroundColor="#FF00BFFF">
 
-                    <Label Text="GENERATE NEW REPORT"
-                       FontSize="22"
-                       HorizontalOptions="Center"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       TextDecorations="Underline"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-                    <Label Text="PLEASE CHOOSE A CASE ID:"
-                   TextColor="White"
-                       FontAttributes="Bold"
-                   FontSize="18"
-                   HorizontalTextAlignment="Center"
-                   IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="GENERATE NEW REPORT"
+                        TextColor="White"
+                        TextDecorations="Underline" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE CHOOSE A CASE ID:"
+                        TextColor="White" />
 
 
 
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                 >
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Choose A Case I.D. ..."
-                    ItemsSource="{Binding CaseInfoModel.CaseInfoModelList}"
-                    ItemDisplayBinding="{Binding CaseId}"
-                    SelectedItem="{Binding SelectedCase}"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                    TitleColor="DarkGray"
-                    TextColor="Black"
-                                
-                    HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Choose A Case I.D. ..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding CaseId}"
+                            ItemsSource="{Binding CaseInfoModel.CaseInfoModelList}"
+                            SelectedItem="{Binding SelectedCase}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
 
-                    <Label Text="PLEASE CHOOSE A CLIENT:"
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="18"
-                   HorizontalTextAlignment="Center"
-                   IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE CHOOSE A CLIENT:"
+                        TextColor="White" />
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                 >
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White"  >
-
-                        </ImageButton>
-                        <Picker Title="Choose A Client..."
-                    ItemsSource="{Binding ClientInfoModel.ClientInfoModelList}"
-                    ItemDisplayBinding="{Binding ClientName}"
-                    SelectedItem="{Binding SelectedClient}"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                    TitleColor="DarkGray"
-                    TextColor="Black"
-                    HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Choose A Client..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding ClientName}"
+                            ItemsSource="{Binding ClientInfoModel.ClientInfoModelList}"
+                            SelectedItem="{Binding SelectedClient}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
 
                     </StackLayout>
@@ -235,35 +232,36 @@
                     TitleColor="Green"
                     TextColor="Purple"
                     HorizontalTextAlignment="Center"/>-->
-                    
-                    
-                <Label Text="PLEASE ENTER DATE OF SURVEILLANCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
-                        <ImageButton Source="calendar.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
-                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
-                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
-                        Format="d"
-                        TextColor="DarkGray"
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Text="PLEASE ENTER DATE OF SURVEILLANCE:"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="calendar.png" />
+                        <DatePicker
+                            Date="{Binding ReportInfoModel.SurveillanceDate}"
+                            Format="d"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                            TextColor="DarkGray" />
                     </StackLayout>
                     <!--<DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
                         MinimumDate="{Binding CaseInfoModel.MinimumDate}"
@@ -273,147 +271,149 @@
                         TextColor="Purple"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"/>-->
 
-                <Label Text="PLEASE ENTER SURVEILLANCE START TIME:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE ENTER SURVEILLANCE START TIME:"
+                        TextColor="White" />
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="clock.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <TimePicker Time="{Binding ReportInfoModel.StartTime}"
-                                TextColor="DarkGray"
-                                   
-                                IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="clock.png" />
+                        <TimePicker
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            TextColor="DarkGray"
+                            Time="{Binding ReportInfoModel.StartTime}" />
                     </StackLayout>
                     <!--<TimePicker Time="{Binding ReportInfoModel.StartTime}"
                                 TextColor="Purple"
                                 BackgroundColor="White"
                                 IsVisible="{Binding ReportInfoModel.CreatingReport}"
                                 HorizontalOptions="FillAndExpand"/>-->
-            
-
-                <Label Text="PLEASE ENTER SURVEILLANCE END TIME:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
 
 
-                        <ImageButton Source="clock.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE ENTER SURVEILLANCE END TIME:"
+                        TextColor="White" />
 
-                        </ImageButton>
-                        <TimePicker Time="{Binding ReportInfoModel.EndTime}"
-                                TextColor="DarkGray"
-                                IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                HorizontalOptions="FillAndExpand"/>
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="clock.png" />
+                        <TimePicker
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            TextColor="DarkGray"
+                            Time="{Binding ReportInfoModel.EndTime}" />
                     </StackLayout>
                     <!--<TimePicker Time="{Binding ReportInfoModel.EndTime}"
                             TextColor="Red"
                             BackgroundColor="DarkBlue"
                             IsVisible="{Binding ReportInfoModel.CreatingReport}"/>-->
 
-                <Label Text="TOTAL HOURS OF ACTIVE SURVEILLANCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="clock.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Label Text="{Binding ReportInfoModel.TotalHoursOfSurveillance, StringFormat='{0:t}'}"
-                       TextColor="Red"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                       HorizontalOptions="FillAndExpand"/>
-                    </StackLayout>
-                    
-                    
-                    <Label Text="PLEASE ENTER SURVEILLANCE START LOCATION:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <Entry Placeholder="-ENTER START LOCATION-"
-                       Text="{Binding ReportInfoModel.StartLocation}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       FontSize="18"
-                       BackgroundColor="White"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                           
-                                 Margin="7"/>
-
-                    <Label Text="IS THE START LOCATION THE SUBJECT'S RESIDENCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SelectedYesNoPicker}"
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                    HorizontalOptions="FillAndExpand"/>
+                        Text="TOTAL HOURS OF ACTIVE SURVEILLANCE:"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="clock.png" />
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            Text="{Binding ReportInfoModel.TotalHoursOfSurveillance, StringFormat='{0:t}'}"
+                            TextColor="Red" />
+                    </StackLayout>
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE ENTER SURVEILLANCE START LOCATION:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Placeholder="-ENTER START LOCATION-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.StartLocation}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="IS THE START LOCATION THE SUBJECT'S RESIDENCE:"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
+                            SelectedItem="{Binding SelectedYesNoPicker}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
                     </StackLayout>
 
 
@@ -427,85 +427,86 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <Label Text="WERE THERE ANY VEHICLES PRESENT AT START LOCATION:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.VehiclesPresentAtStartLocation}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding VehiclePresentAtStartLocationDesc}"
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Text="WERE THERE ANY VEHICLES PRESENT AT START LOCATION:"
+                        TextColor="White" />
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.VehiclesPresentAtStartLocation}"
+                            SelectedItem="{Binding VehiclePresentAtStartLocationDesc}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
                     </StackLayout>
 
 
 
-                    <Label Text="PLEASE ENTER SURVEILLANCE END LOCATION:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    <Entry Placeholder="-ENTER END LOCATION-"
-                       Text="{Binding ReportInfoModel.EndLocation}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                   BackgroundColor="White"
-                   
-                                 Margin="7"/>
-
-                    <Label Text="WAS THERE VIDEO OBTAINED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SubjectVideoConfirmation}"
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Text="PLEASE ENTER SURVEILLANCE END LOCATION:"
+                        TextColor="White" />
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Placeholder="-ENTER END LOCATION-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.EndLocation}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="WAS THERE VIDEO OBTAINED:"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
+                            SelectedItem="{Binding SubjectVideoConfirmation}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
                     </StackLayout>
 
                     <!--<Picker Title="Please Select An Option..."
@@ -518,32 +519,35 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <Label Text="PLEASE ENTER ADDRESS WHERE VIDEO WAS OBTAINED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE ENTER ADDRESS WHERE VIDEO WAS OBTAINED:"
+                        TextColor="White" />
 
-                    <Entry Placeholder="-ADDRESS WHERE VIDEO WAS OBTAINED-"
-                       Text="{Binding ReportInfoModel.AddressWhereVideoWasObtained}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       BackgroundColor="White"
-                       TextColor="Black"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                           Margin="7"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Placeholder="-ADDRESS WHERE VIDEO WAS OBTAINED-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.AddressWhereVideoWasObtained}"
+                        TextColor="Black" />
 
 
-                    <Label Text="DID THE SUBJECT USE ANY MEDICAL DEVICES:"
-                       TextColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-            <!--<Picker Title="Please Select An Option..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="DID THE SUBJECT USE ANY MEDICAL DEVICES:"
+                        TextColor="White" />
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -553,40 +557,40 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.MedicalDevicesUsed}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding MedicalDeviceUsed}"
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.MedicalDevicesUsed}"
+                            SelectedItem="{Binding MedicalDeviceUsed}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
 
                     </StackLayout>
 
-                    <Label Text="DID YOU ATTEMPT TO CONFIRM IF THE SUBJECT WAS HOME:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-            <!--<Picker Title="Please Select An Option..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="DID YOU ATTEMPT TO CONFIRM IF THE SUBJECT WAS HOME:"
+                        TextColor="White" />
+
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -596,28 +600,27 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.AttemptToConfirmSubjectWasHome}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding AttemptToConfirmSubjectHomeType}"
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.AttemptToConfirmSubjectWasHome}"
+                            SelectedItem="{Binding AttemptToConfirmSubjectHomeType}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
 
                     </StackLayout>
@@ -628,15 +631,16 @@
 
 
 
-                    <Label Text="PLEASE DESCRIBE YOUR SURVEILLANCE POSITION:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-                    
-            <!--<Picker Title="Please Select An Option..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE DESCRIBE YOUR SURVEILLANCE POSITION:"
+                        TextColor="White" />
+
+
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -646,42 +650,41 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                                 Margin="7">
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White"
-                                     
-                                 Margin="7"
-                                 
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.SurveillancePositions}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SurveillancePositionDesc}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            Margin="7"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.SurveillancePositions}"
+                            SelectedItem="{Binding SurveillancePositionDesc}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
 
                     </StackLayout>
 
-                    <Label Text="IF SUBJECT WAS SEEN, PLEASE DESCRIBE THE SUBJECT:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-            <!--<Picker Title="Subject's Sex..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="IF SUBJECT WAS SEEN, PLEASE DESCRIBE THE SUBJECT:"
+                        TextColor="White" />
+
+                    <!--<Picker Title="Subject's Sex..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -691,25 +694,26 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Subject's Sex..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.MalesOrFemales}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding MaleOrFemale}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Subject's Sex..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.MalesOrFemales}"
+                            SelectedItem="{Binding MaleOrFemale}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
 
@@ -723,25 +727,26 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Approximate Height..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.Heights}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding Height}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Approximate Height..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.Heights}"
+                            SelectedItem="{Binding Height}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
 
@@ -756,25 +761,26 @@
                         HorizontalTextAlignment="Center"/>-->
 
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Approximate Weight..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.Weights}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding Weight}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Approximate Weight..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.Weights}"
+                            SelectedItem="{Binding Weight}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
                     <!--<Picker Title="Approximate Build..."
@@ -787,25 +793,26 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Approximate Build..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.Builds}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding Build}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Approximate Build..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.Builds}"
+                            SelectedItem="{Binding Build}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
                     <!--<Picker Title="Hair Color..."
@@ -818,25 +825,26 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Hair Color..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.HairColors}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding HairColor}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Hair Color..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.HairColors}"
+                            SelectedItem="{Binding HairColor}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
                     <!--<Picker Title="Hair Length..."
@@ -849,85 +857,91 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Hair Length..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.HairLengths}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding HairLength}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Hair Length..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.HairLengths}"
+                            SelectedItem="{Binding HairLength}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
-                    
-                    <Label Text="VIDEO OBTAINED DETAILS:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
 
-                    <Entry Placeholder="-ENTER DETAILS OF VIDEO OBTAINED-"
-                       Text="{Binding ReportInfoModel.VideoObtainedDetails}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                           Margin="7"
-                           BackgroundColor="White"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="VIDEO OBTAINED DETAILS:"
+                        TextColor="White" />
 
-                    <Label Text="TIME VIDEO WAS OBTAINED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-                <!--<TimePicker Time="{Binding ReportInfoModel.VideoObtainedTime}"
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Placeholder="-ENTER DETAILS OF VIDEO OBTAINED-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.VideoObtainedDetails}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="TIME VIDEO WAS OBTAINED:"
+                        TextColor="White" />
+
+                    <!--<TimePicker Time="{Binding ReportInfoModel.VideoObtainedTime}"
                             TextColor="Red"
                             BackgroundColor="DarkBlue"
                             IsVisible="{Binding ReportInfoModel.CreatingReport}"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="clock.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <TimePicker Time="{Binding ReportInfoModel.VideoObtainedTime}"
-                            TextColor="Red"
+                        <ImageButton
                             BackgroundColor="White"
-                            HorizontalOptions="FillAndExpand"/>
+                            HeightRequest="30"
+                            Source="clock.png" />
+                        <TimePicker
+                            BackgroundColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="Red"
+                            Time="{Binding ReportInfoModel.VideoObtainedTime}" />
 
                     </StackLayout>
-                    
-                    <Label Text="TYPE OF VIDEO OBTAINED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-                <!--<Picker Title="Please Select An Option..."
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="TYPE OF VIDEO OBTAINED:"
+                        TextColor="White" />
+
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -937,36 +951,38 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.TypesOfVideoObtained}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding TypeOfVideoObtained}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.TypesOfVideoObtained}"
+                            SelectedItem="{Binding TypeOfVideoObtained}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
-                    
-                    <Label Text="WHY WAS THE SURVEILLANCE ENDED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
-                    
-                <!--<Picker Title="Surveillance End Reason..."
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="WHY WAS THE SURVEILLANCE ENDED:"
+                        TextColor="White" />
+
+                    <!--<Picker Title="Surveillance End Reason..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -976,382 +992,440 @@
                         IsVisible="{Binding ReportInfoModel.CreatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}">
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Surveillance End Reason..."
-                        TitleColor="DarkGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.SurveillanceEndReasons}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SurveillanceEndReason}"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Surveillance End Reason..."
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.SurveillanceEndReasons}"
+                            SelectedItem="{Binding SurveillanceEndReason}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
                     </StackLayout>
 
-                    <Label Text="PLEASE SUMMARIZE THE SURVEILLANCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Text="PLEASE SUMMARIZE THE SURVEILLANCE:"
+                        TextColor="White" />
 
 
-                    <Entry Placeholder="-ENTER SURVEILLANCE SUMMARY-"
-                       Text="{Binding ReportInfoModel.SurveillanceSummary}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                      BackgroundColor="White"
-                       IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                       Margin="7"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                        Placeholder="-ENTER SURVEILLANCE SUMMARY-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.SurveillanceSummary}"
+                        TextColor="Black" />
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.CreatingReport}">
-                        
-                        
-                        <Button Text="SAVE IN SQL DATABASE"
-                    Command="{Binding CreateSqlCommand}"
-                    IsVisible="{Binding ReportInfoModel.CreatingReport}"
-                    CornerRadius="40"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    FontAttributes="Bold"/>
+                    <Frame
+                        Margin="6"
+                        CornerRadius="20"
+                        HasShadow="True"
+                        IsVisible="{Binding ReportInfoModel.CreatingReport}">
+
+
+                        <Button
+                            BackgroundColor="Green"
+                            Command="{Binding CreateSqlCommand}"
+                            CornerRadius="40"
+                            FontAttributes="Bold"
+                            IsVisible="{Binding ReportInfoModel.CreatingReport}"
+                            Text="SAVE IN SQL DATABASE"
+                            TextColor="White" />
                     </Frame>
-                    <!--READ FROM SQL-->
+                    <!--  READ FROM SQL  -->
 
-                    <Label Text="REPORT DETAILS"
-                           TextColor="Blue"
-                           FontSize="22"
-                           FontAttributes="Bold"
-                           TextDecorations="Underline"
-                           IsVisible="{Binding ReportInfoModel.ReadingReport}"
-                           HorizontalOptions="Center"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ReportInfoModel.ReadingReport}"
+                        Text="REPORT DETAILS"
+                        TextColor="Blue"
+                        TextDecorations="Underline" />
 
-                    <ListView ItemsSource="{Binding ReportInfoModel.ReportInfoModelList}"
-                              Grid.Column="2"
-                              HasUnevenRows="True"
-                              Grid.ColumnSpan="1"
-                              IsVisible="{Binding ReportInfoModel.ReadingReport}">
+                    <ListView
+                        Grid.Column="2"
+                        Grid.ColumnSpan="1"
+                        HasUnevenRows="True"
+                        IsVisible="{Binding ReportInfoModel.ReadingReport}"
+                        ItemsSource="{Binding ReportInfoModel.ReportInfoModelList}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell >
-                                <StackLayout Orientation="Vertical">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical">
 
-                                    <Label Text="IDENTIFIER"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding Identifier}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-
-                                        <Label Text="CASE ID"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                        <Label Text="{Binding CaseId}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="CLIENT NAME"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding ClientName}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="SURVEILLANCE DATE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SurveillanceDate, StringFormat='{0:d}'}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="START LOCATION"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding StartLocation}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                        <Label Text="END LOCATION"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding EndLocation}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="AddressWhereVideoWasObtained"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding AddressWhereVideoWasObtained}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="SubjectVideoConfirmation"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SubjectVideoConfirmation}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="MedicalDeviceUsed"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding MedicalDeviceUsed}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="WERE THERE VEHICLES AT START LOCATION?"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding VehiclePresentAtStartLocationDesc}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="Start Location the Subject's Residence?"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SelectedYesNoPicker}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="AttemptToConfirmSubjectHomeType"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding AttemptToConfirmSubjectHomeType}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="SurveillancePositionDesc"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SurveillancePositionDesc}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="MaleOrFemale"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding MaleOrFemale}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="Height"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding Height}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="Weight"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding Weight}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="Build"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding Build}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="HairColor"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding HairColor}"
-                                           TextColor="White" 
-                                           MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="HairLength"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding HairLength}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="SurveillanceEndReason"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SurveillanceEndReason}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-                                    
-                                    <Label Text="SubjectVideoConfirmation"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SubjectVideoConfirmation}"
-                                           TextColor="White" 
-                                              MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="IDENTIFIER"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding Identifier}"
+                                            TextColor="White" />
 
 
-                                    <Label Text="ADDRESS WHERE VIDEO WAS OBTAINED"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding AddressWhereVideoWasObtained}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CASE ID"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding CaseId}"
+                                            TextColor="White" />
 
-                                    <Label Text="OBTAINED VIDEO'S DETAILS"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding VideoObtainedDetails}"
-                                           TextColor="White"
-                                               MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT NAME"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientName}"
+                                            TextColor="White" />
 
-                                    <Label Text="SURVEILLANCE SUMMARY"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding SurveillanceSummary}"
-                                           TextColor="White"
-                                              MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-                                    
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SURVEILLANCE DATE"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SurveillanceDate, StringFormat='{0:d}'}"
+                                            TextColor="White" />
 
-                                    <Frame></Frame>
-                                </StackLayout>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="START LOCATION"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding StartLocation}"
+                                            TextColor="White" />
 
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="END LOCATION"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding EndLocation}"
+                                            TextColor="White" />
 
-            <!--UPDATE SQL-->
-                    
-                <Label Text="IDENTIFIER TO UPDATE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-            
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="AddressWhereVideoWasObtained"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding AddressWhereVideoWasObtained}"
+                                            TextColor="White" />
 
-                    <Entry Placeholder="-ENTER IDENTIFIER TO UPDATE-"
-                       Text="{Binding ReportInfoModel.Identifier}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       Margin="7"
-                       BackgroundColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SubjectVideoConfirmation"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SubjectVideoConfirmation}"
+                                            TextColor="White" />
 
-                    <Label Text="UPDATE DATE OF SURVEILLANCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    
-                    
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="MedicalDeviceUsed"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding MedicalDeviceUsed}"
+                                            TextColor="White" />
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="WERE THERE VEHICLES AT START LOCATION?"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding VehiclePresentAtStartLocationDesc}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="Start Location the Subject's Residence?"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SelectedYesNoPicker}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="AttemptToConfirmSubjectHomeType"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding AttemptToConfirmSubjectHomeType}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SurveillancePositionDesc"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SurveillancePositionDesc}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="MaleOrFemale"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding MaleOrFemale}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="Height"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding Height}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="Weight"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding Weight}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="Build"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding Build}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="HairColor"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding HairColor}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="HairLength"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding HairLength}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SurveillanceEndReason"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SurveillanceEndReason}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SubjectVideoConfirmation"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SubjectVideoConfirmation}"
+                                            TextColor="White" />
 
 
-                        <ImageButton Source="calendar.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="ADDRESS WHERE VIDEO WAS OBTAINED"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding AddressWhereVideoWasObtained}"
+                                            TextColor="White" />
 
-                        </ImageButton>
-                        <DatePicker Date="{Binding ReportInfoModel.SurveillanceDate}"
-                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
-                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
-                        Format="d"
-                        TextColor="Red"
-                        
-                        HorizontalOptions="FillAndExpand"/>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="OBTAINED VIDEO'S DETAILS"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding VideoObtainedDetails}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="SURVEILLANCE SUMMARY"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding SurveillanceSummary}"
+                                            TextColor="White" />
+
+
+                                        <Frame />
+                                    </StackLayout>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <!--  UPDATE SQL  -->
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Text="IDENTIFIER TO UPDATE:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Placeholder="-ENTER IDENTIFIER TO UPDATE-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.Identifier}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Text="UPDATE DATE OF SURVEILLANCE:"
+                        TextColor="White" />
+
+
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="calendar.png" />
+                        <DatePicker
+                            Date="{Binding ReportInfoModel.SurveillanceDate}"
+                            Format="d"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                            TextColor="Red" />
 
                     </StackLayout>
 
@@ -1399,16 +1473,17 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Entry Placeholder="-UPDATE START LOCATION HERE-"
-                       Text="{Binding ReportInfoModel.StartLocationToBeUpdated}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       Margin="7"
-                       BackgroundColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Placeholder="-UPDATE START LOCATION HERE-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.StartLocationToBeUpdated}"
+                        TextColor="Black" />
 
                     <!--<Entry Placeholder="-UPDATE END LOCATION HERE-"
                        Text="{Binding ReportInfoModel.EndLocationToBeUpdated}"
@@ -1419,26 +1494,28 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Entry Placeholder="-UPDATE END LOCATION HERE-"
-                       Text="{Binding ReportInfoModel.EndLocationToBeUpdated}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       Margin="7"
-                       BackgroundColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Placeholder="-UPDATE END LOCATION HERE-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.EndLocationToBeUpdated}"
+                        TextColor="Black" />
 
-                    <Label Text="UPDATE WAS THERE VIDEO OBTAINED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    
-                    
-                <!--<Picker Title="Please Select An Option..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Text="UPDATE WAS THERE VIDEO OBTAINED:"
+                        TextColor="White" />
+
+
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -1448,26 +1525,27 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="LightGray"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SubjectVideoConfirmation}"
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.YesNoPicker}"
+                            SelectedItem="{Binding SubjectVideoConfirmation}"
+                            TextColor="Black"
+                            TitleColor="LightGray" />
 
                     </StackLayout>
 
@@ -1480,16 +1558,17 @@
                        FontAttributes="Bold"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>-->
 
-                    <Entry Placeholder="-UPDATE WHERE VIDEO WAS OBTAINED-"
-                       Text="{Binding ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       Margin="7"
-                       BackgroundColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Placeholder="-UPDATE WHERE VIDEO WAS OBTAINED-"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ReportInfoModel.AddressWhereVideoWasObtainedToBeUpdated}"
+                        TextColor="Black" />
 
                     <!--<Label Text="UPDATE VEHICLES PRESENT AT START LOCATION:"
                        TextColor="White"
@@ -1497,9 +1576,10 @@
                        FontSize="20"
                        HorizontalTextAlignment="Center"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    
-                    
-                --><!--<Picker Title="Please Select An Option..."
+
+
+                    -->
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -1507,7 +1587,8 @@
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding VehiclePresentAtStartLocationDesc}"
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-                        HorizontalTextAlignment="Center"/>--><!--
+                        HorizontalTextAlignment="Center"/>-->
+                    <!--
 
                     <Frame HasShadow="True"
                            CornerRadius="20"
@@ -1536,15 +1617,15 @@
                         </StackLayout>
                     </Frame>-->
 
-                    
-                    <Label Text="UPDATE ANY MEDICAL DEVICES USED:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-/>
-                <!--<Picker Title="Please Select An Option..."
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Text="UPDATE ANY MEDICAL DEVICES USED:"
+                        TextColor="White" />
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -1554,39 +1635,41 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="LightGray"
-                        FontAttributes="Bold"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.MedicalDevicesUsed}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding MedicalDeviceUsed}"
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.MedicalDevicesUsed}"
+                            SelectedItem="{Binding MedicalDeviceUsed}"
+                            TextColor="Black"
+                            TitleColor="LightGray" />
 
                     </StackLayout>
 
-                    <Label Text="UPDATE YOUR ATTEMPT TO CONFIRM IF SUBJECT WAS HOME:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    
-                    
-                <!--<Picker Title="Please Select An Option..."
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                        Text="UPDATE YOUR ATTEMPT TO CONFIRM IF SUBJECT WAS HOME:"
+                        TextColor="White" />
+
+
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -1596,27 +1679,28 @@
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="7"
-                                 IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="LightGray"
-                                    FontAttributes="Bold"
-                        TextColor="Black"
-                        ItemsSource="{Binding ReportInfoModel.AttemptToConfirmSubjectWasHome}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding AttemptToConfirmSubjectHomeType}"
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ReportInfoModel.AttemptToConfirmSubjectWasHome}"
+                            SelectedItem="{Binding AttemptToConfirmSubjectHomeType}"
+                            TextColor="Black"
+                            TitleColor="LightGray" />
 
                     </StackLayout>
 
@@ -1629,7 +1713,7 @@
                         ItemsSource="{Binding ReportInfoModel.MalesOrFemales}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding MaleOrFemale}"
-                        IsVisible="{Binding ReportInfoModel.UpdatingReport}" 
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>
                     <Picker Title="Approximate Height..."
                         BackgroundColor="Black"
@@ -1638,7 +1722,7 @@
                         ItemsSource="{Binding ReportInfoModel.Heights}"
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding Height}"
-                        IsVisible="{Binding ReportInfoModel.UpdatingReport}" 
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"
                         HorizontalTextAlignment="Center"/>
                 <Picker Title="Approximate Weight..."
                         BackgroundColor="Black"
@@ -1716,9 +1800,10 @@
                        HorizontalTextAlignment="Center"
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
 
-                    
-                    
-                    --><!--<Picker Title="Please Select An Option..."
+
+
+                    -->
+                    <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
                         TextColor="Purple"
@@ -1726,7 +1811,8 @@
                         ItemDisplayBinding="{Binding Value}"
                         SelectedItem="{Binding TypeOfVideoObtained}"
                         IsVisible="{Binding ReportInfoModel.UpdatingReport}"
-                        HorizontalTextAlignment="Center"/>--><!--
+                        HorizontalTextAlignment="Center"/>-->
+                    <!--
 
                     <Frame HasShadow="True"
                            CornerRadius="20"
@@ -1769,7 +1855,8 @@
                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
                     </Frame>
 
-                    --><!--<Label Text=" UPDATE VIDEO OBTAINED DETAILS:"
+                    -->
+                    <!--<Label Text=" UPDATE VIDEO OBTAINED DETAILS:"
                        TextColor="White"
                        FontSize="18"
                        HorizontalTextAlignment="Center"
@@ -1788,90 +1875,96 @@
 
 
 
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ReportInfoModel.UpdatingReport}">
-                <Button Text="UPDATE REPORT"
-                        Command="{Binding UpdateSqlCommand}"
+                    <Frame
+                        Margin="6"
+                        CornerRadius="20"
+                        HasShadow="True"
+                        IsVisible="{Binding ReportInfoModel.UpdatingReport}">
+                        <Button
+                            BackgroundColor="DarkViolet"
+                            Command="{Binding UpdateSqlCommand}"
+                            CornerRadius="40"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            IsVisible="{Binding ReportInfoModel.UpdatingReport}"
+                            Text="UPDATE REPORT"
+                            TextColor="White" />
+                    </Frame>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ReportInfoModel.DeletingReport}"
+                        Text="PLEASE ENTER THE IDENTIFIER OF THE REPORT YOU WOULD LIKE TO DELETE:"
+                        TextColor="White" />
+
+                    <Label
+                        FontAttributes="Bold,Italic"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ReportInfoModel.DeletingReport}"
+                        Text="--THIS ACTION CANNOT BE REVERSED--"
+                        TextColor="red" />
+
+
+                    <Entry
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        IsVisible="{Binding ReportInfoModel.DeletingReport}"
+                        Placeholder="ENTER IDENTIFIER TO DELETE HERE:"
+                        PlaceholderColor="LightGray"
+                        Text="{Binding ReportInfoModel.Identifier}"
+                        TextColor="Black" />
+
+
+                    <Button
+                        BackgroundColor="Red"
+                        Command="{Binding DeleteSqlCommand}"
                         CornerRadius="40"
-                        BackgroundColor="DarkViolet"
-                        TextColor="White"
                         FontAttributes="Bold"
                         FontSize="14"
-                        IsVisible="{Binding ReportInfoModel.UpdatingReport}"/>
-                    </Frame>
-                    <Label Text="PLEASE ENTER THE IDENTIFIER OF THE REPORT YOU WOULD LIKE TO DELETE:"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="White"
-                   HorizontalOptions="Center"
-                   IsVisible="{Binding ReportInfoModel.DeletingReport}"/>
+                        IsVisible="{Binding ReportInfoModel.DeletingReport}"
+                        Text="DELETE REPORT"
+                        TextColor="White" />
 
-                <Label Text="--THIS ACTION CANNOT BE REVERSED--"
-                   TextColor="red"
-                   FontSize="15"
-                   HorizontalTextAlignment="Center"
-                   FontAttributes="Bold,Italic"
-                   IsVisible="{Binding ReportInfoModel.DeletingReport}"/>
+                    <!--  READING FROM ASSIGNED CASES INFO TABLE SQL  -->
 
-            
-                <Entry Placeholder="ENTER IDENTIFIER TO DELETE HERE:"
-                   PlaceholderColor="LightGray"
-                   Text="{Binding ReportInfoModel.Identifier}"
-                   IsVisible="{Binding ReportInfoModel.DeletingReport}"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   FontSize="20"/>
+                    <ListView
+                        HasUnevenRows="True"
+                        IsVisible="{Binding ReportInfoModel.ReadingSqlAssignedCases}"
+                        ItemsSource="{Binding CaseInfoModel.AssignedCasesInfolList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label
+                                            FontSize="18"
+                                            Text="ASSIGNED EMPLOYEE NAME:"
+                                            TextColor="White" />
+                                        <Label Text="{Binding AssignedEmployeeUsername}" TextColor="White" />
 
+                                        <Label
+                                            FontSize="18"
+                                            Text="ASSIGNED CASE I.D.:"
+                                            TextColor="White" />
+                                        <Label Text="{Binding AssignedCaseId}" TextColor="White" />
 
-                <Button Text="DELETE REPORT"
-                    Command="{Binding DeleteSqlCommand}"
-                    CornerRadius="40"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="14"
-                    IsVisible="{Binding ReportInfoModel.DeletingReport}"/>
+                                        <Label
+                                            FontSize="18"
+                                            Text="ASSIGNED DATE:"
+                                            TextColor="White" />
+                                        <Label Text="{Binding AssignedDate}" TextColor="White" />
 
-<!--READING FROM ASSIGNED CASES INFO TABLE SQL-->
-
-                <ListView ItemsSource="{Binding CaseInfoModel.AssignedCasesInfolList}"
-                          IsVisible="{Binding ReportInfoModel.ReadingSqlAssignedCases}"
-                          HasUnevenRows="True"
-                          >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="ASSIGNED EMPLOYEE NAME:"
-                       TextColor="White"
-                       FontSize="18"/>
-                                    <Label Text="{Binding AssignedEmployeeUsername}"
-                       TextColor="White"/>
-
-                                    <Label Text="ASSIGNED CASE I.D.:"
-                       TextColor="White"
-                       FontSize="18"/>
-                                    <Label Text="{Binding AssignedCaseId}"
-                       TextColor="White"/>
-
-                                    <Label Text="ASSIGNED DATE:"
-                       TextColor="White"
-                       FontSize="18"/>
-                                    <Label Text="{Binding AssignedDate}"
-                       TextColor="White"/>
-
-                                    <Label Text="ASSIGNED TIME:"
-                       TextColor="White"
-                       FontSize="18"/>
-                                    <Label Text="{Binding AssignedTime}"
-                       TextColor="White"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                        <Label
+                                            FontSize="18"
+                                            Text="ASSIGNED TIME:"
+                                            TextColor="White" />
+                                        <Label Text="{Binding AssignedTime}" TextColor="White" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                 </StackLayout>
             </StackLayout>

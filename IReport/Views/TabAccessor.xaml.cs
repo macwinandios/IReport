@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Reports.Locator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +10,20 @@ namespace IReport.Views
         public TabAccessor()
         {
             InitializeComponent();
+
+            var reportInfoView = ViewModelLocator.Resolve<ReportInfoView>();
+            reportInfoView.Title = "WRITE REPORT";
+
+            var caseInfoView = ViewModelLocator.Resolve<CaseInfoView>();
+            caseInfoView.Title = "CASE INFO";
+
+            var clientInfoView = ViewModelLocator.Resolve<ClientInfoView>();
+            clientInfoView.Title = "CLIENT INFO";
+
+            // Add pages to tabbed page
+            this.Children.Add(reportInfoView);
+            this.Children.Add(caseInfoView);
+            this.Children.Add(clientInfoView);
         }
     }
 }

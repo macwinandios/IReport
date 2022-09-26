@@ -1,14 +1,13 @@
 ﻿using IReport.Models;
 using IReport.Models.Base;
+using IReport.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using IReport.Services;
 
 namespace IReport.ViewModels
 {
@@ -27,16 +26,15 @@ namespace IReport.ViewModels
         public ReportInfoViewModel(ISql isql)
         {
             _isql = isql;
-
         }
-        ISql _isql;
-        public ReportInfoViewModel()
+
+        public ReportInfoViewModel(ReportInfoModel reportInfoModel, CaseInfoModel caseInfoModel, ClientInfoModel clientInfoModel, LoginModel loginModel, SqlModel sqlModel)
         {
-            ReportInfoModel = new ReportInfoModel();
-            CaseInfoModel = new CaseInfoModel();
-            ClientInfoModel = new ClientInfoModel();
-            LoginModel = new LoginModel();
-            SqlModel = new SqlModel();
+            ReportInfoModel = reportInfoModel;
+            CaseInfoModel = caseInfoModel;
+            ClientInfoModel = clientInfoModel;
+            LoginModel = loginModel;
+            SqlModel = sqlModel;
 
             //NECESSARY TO READ FROM SQL AND POPULATE THE PICKERS WITH DATA
             ObservableCollection<CaseInfoModel> cases = new ObservableCollection<CaseInfoModel>();
@@ -70,6 +68,7 @@ namespace IReport.ViewModels
             ReportInfoModel.SubjectVideoConfirmations = GetSubjectVideoConfirmation().OrderBy(t => t.Value).ToList();
         }
 
+        ISql _isql;
 
         //AFTER WEEKS OF TRYING
         //THIS ALLOWED ME TO BIND MY CASE ID TO THE PICKER'S ITEMDISPLAYBINDING
@@ -234,7 +233,7 @@ namespace IReport.ViewModels
         //READ FROM SQL ASSIGNEDCASESTABLE
         public async void ReadSqlAssignedCasesMethod()
         {
-            
+
             try
             {
                 SqlModel.SqlConnection.Open();
@@ -268,7 +267,7 @@ namespace IReport.ViewModels
                 }
 
 
-               
+
                 assignedCasesReader.Close();
                 SqlModel.SqlConnection.Close();
 
@@ -288,7 +287,7 @@ namespace IReport.ViewModels
         //METHOD READS FROM CASEINFOTABLE AND CLIENTINFOTABLE TO GET CLIENTS AND CASES FROM EACH TABLE
         public async void GetClientAndCasePickersMethod()
         {
-            
+
             try
             {
                 ReportInfoModel.CreatingReport = true;
@@ -300,33 +299,33 @@ namespace IReport.ViewModels
 
                 SqlDataReader caseReader = caseCommand.ExecuteReader();
 
-                    while (caseReader.Read())
+                while (caseReader.Read())
+                {
+
+                    CaseInfoModel.CaseInfoModelList.Insert(0, new CaseInfoModel
                     {
-
-                        CaseInfoModel.CaseInfoModelList.Insert(0, new CaseInfoModel
-                        {
-                            CaseId = caseReader["CaseId"].ToString()
-                        });
+                        CaseId = caseReader["CaseId"].ToString()
+                    });
 
 
-                    }
-                    caseReader.Close();
+                }
+                caseReader.Close();
 
 
-                    SqlCommand clientCommand = new SqlCommand(SqlModel.ClientQuery, SqlModel.SqlConnection);
+                SqlCommand clientCommand = new SqlCommand(SqlModel.ClientQuery, SqlModel.SqlConnection);
 
-                    SqlDataReader clientReader = clientCommand.ExecuteReader();
-                    while (clientReader.Read())
+                SqlDataReader clientReader = clientCommand.ExecuteReader();
+                while (clientReader.Read())
+                {
+                    ClientInfoModel.ClientInfoModelList.Insert(0, new ClientInfoModel
                     {
-                        ClientInfoModel.ClientInfoModelList.Insert(0, new ClientInfoModel
-                        {
-                            ClientName = clientReader["ClientName"].ToString()
-                        });
-                    }
-                    clientReader.Close();
-                    SqlModel.SqlConnection.Close();
-                
-                
+                        ClientName = clientReader["ClientName"].ToString()
+                    });
+                }
+                clientReader.Close();
+                SqlModel.SqlConnection.Close();
+
+
             }
             catch (Exception ex)
             {
@@ -408,11 +407,11 @@ namespace IReport.ViewModels
             ReportInfoModel.ReadingReport = true;
             try
             {
-                    SqlModel.SqlConnection.Open();
+                SqlModel.SqlConnection.Open();
 
-                    SqlCommand reportCommand = new SqlCommand(SqlModel.ReportQuery, SqlModel.SqlConnection);
+                SqlCommand reportCommand = new SqlCommand(SqlModel.ReportQuery, SqlModel.SqlConnection);
 
-                    SqlDataReader reportReader = reportCommand.ExecuteReader();
+                SqlDataReader reportReader = reportCommand.ExecuteReader();
 
                 while (reportReader.Read())
                 {
@@ -447,9 +446,9 @@ namespace IReport.ViewModels
 
                 }
                 reportReader.Close();
-                    SqlModel.SqlConnection.Close();
+                SqlModel.SqlConnection.Close();
 
-                
+
             }
             catch (Exception ex)
             {
@@ -483,7 +482,7 @@ namespace IReport.ViewModels
                 SqlModel.SqlConnection.Open();
 
 
-                if( ReportInfoModel.EndLocationToBeUpdated != string.Empty)
+                if (ReportInfoModel.EndLocationToBeUpdated != string.Empty)
                 {
                     string queryString = $"UPDATE dbo.ReportInfoTable SET EndLocation = '{ReportInfoModel.EndLocationToBeUpdated}'  WHERE Identifier ='{ReportInfoModel.Identifier}'";
 
@@ -520,7 +519,7 @@ namespace IReport.ViewModels
                 }
                 await Application.Current.MainPage.DisplayAlert("SUCCESSFULLY UPDATED", "CLICK OK TO PROCEED", "OK");
             }
-                    
+
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("NOT YET", ex.Message, "OK");
