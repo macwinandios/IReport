@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IReport.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,11 +8,11 @@ namespace IReport.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CaseInfoView : ContentPage
     {
-        public CaseInfoView()
+        public CaseInfoView(CaseInfoViewModel caseInfoVM)
         {
             InitializeComponent();
-            ///BindingContext = App.Locator.CaseInfoViewModel;
 
+            BindingContext = caseInfoVM;
         }
     }
 }

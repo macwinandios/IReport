@@ -1,20 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:IReport.ViewModels"
-             x:Class="IReport.Views.ClientInfoView">
+<ContentPage
+    x:Class="IReport.Views.ClientInfoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform ="iOS" Value ="0,40,0,0"/>
+            <On Platform="iOS" Value="0,40,0,0" />
         </OnPlatform>
-
     </ContentPage.Padding>
 
-    <ContentPage.BindingContext>
-        <local:ClientInfoViewModel/>
-    </ContentPage.BindingContext>
-    
     <ContentPage.Content>
 
         <ScrollView>
@@ -28,148 +23,160 @@
 
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
 
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
 
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="tiologo.png"
-                               Grid.Row="2"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               HeightRequest="200"
-                               HorizontalOptions="CenterAndExpand"/>
+                    <Image
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HeightRequest="200"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="tiologo.png" />
                 </Grid>
-                
-                
+
+
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
 
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
 
                     </Grid.ColumnDefinitions>
-                    <ImageButton Source="create.png"
-                                 HeightRequest="10"
-                                 Grid.Row="0"
+                    <ImageButton
+                        Grid.Row="0"
                         Grid.Column="0"
-                                 BackgroundColor="White">
-                    </ImageButton>
-                    
-                    <Button Text="CREATE CLIENT"
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="create.png" />
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
                         Command="{Binding CreateCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
+                        Text="CREATE CLIENT"
+                        TextColor="Black" />
+
+                    <ImageButton
                         Grid.Row="0"
-                        Grid.Column="1"/>
-
-                    <ImageButton Source="read.png"
-                                 HeightRequest="1"
-                                 Grid.Row="0"
                         Grid.Column="2"
-                                 BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        HeightRequest="1"
+                        Source="read.png" />
 
-                    <Button Text="READ CLIENTS"
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        BackgroundColor="LightGray"
                         Command="{Binding ReadSqlCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
-                        Grid.Row="0"
-                        Grid.Column="3"/>
+                        Text="READ CLIENTS"
+                        TextColor="Black" />
 
-                    <ImageButton Source="update.png"
-                                 HeightRequest="10"
-                                 Grid.Row="1"
+                    <ImageButton
+                        Grid.Row="1"
                         Grid.Column="0"
-                                 BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="update.png" />
 
 
-                    <Button Text="UPDATE CLIENT"
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="LightGray"
                         Command="{Binding UpdateCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
+                        Text="UPDATE CLIENT"
+                        TextColor="Black" />
+
+                    <ImageButton
                         Grid.Row="1"
-                        Grid.Column="1"/>
-
-                    <ImageButton Source="trash.png"
-                                 HeightRequest="10"
-                                 Grid.Row="1"
                         Grid.Column="2"
-                                 BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        HeightRequest="10"
+                        Source="trash.png" />
 
-                    <Button Text="DELETE CLIENT"
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        BackgroundColor="LightGray"
                         Command="{Binding DeleteCommand}"
                         CornerRadius="40"
-                        BackgroundColor="LightGray"
-                        TextColor="Black"
                         FontAttributes="Bold"
                         FontSize="12"
-                        Grid.Row="1"
-                        Grid.Column="3"/>
+                        Text="DELETE CLIENT"
+                        TextColor="Black" />
 
                 </Grid>
 
                 <StackLayout BackgroundColor="#FF00BFFF">
 
 
-                <Label Text="CLIENT DETAILS"
-                       FontSize="22"
-                       HorizontalOptions="Center"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       TextDecorations="Underline"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="CLIENT DETAILS"
+                        TextColor="White"
+                        TextDecorations="Underline" />
 
-                <Label Text="UPDATE CLIENT DETAILS"
-                       FontSize="22"
-                       HorizontalOptions="Center"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       TextDecorations="Underline"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT DETAILS"
+                        TextColor="White"
+                        TextDecorations="Underline" />
 
-                <Label Text="IDENTIFIER TO UPDATE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="IDENTIFIER TO UPDATE:"
+                        TextColor="White" />
 
-                    <Entry Placeholder="- - -IDENTIFIER- - -"
-                       Text="{Binding ClientInfoModel.Identifier}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -IDENTIFIER- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.Identifier}"
+                        TextColor="Black" />
 
                     <!--<Label Text="IDENTIFIER:"
                        TextColor="White"
@@ -191,419 +198,465 @@
                     </Frame>-->
 
 
-                    <Label Text="ENTER CLIENT NAME:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT NAME:"
+                        TextColor="White" />
 
-                        <Entry Placeholder="- - -CLIENT NAME- - -"
-                       Text="{Binding ClientInfoModel.ClientName}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE CLIENT NAME:"
-                       TextColor="White"
-                       FontSize="18"
-                           FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <Entry Placeholder="- - -CLIENT NAME- - -"
-                       Text="{Binding ClientInfoModel.ClientName}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-
-                    <Label Text="ENTER CLIENT EMAIL:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -CLIENT EMAIL ADDRESS- - -"
-                       Text="{Binding ClientInfoModel.ClientEmail}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE CLIENT EMAIL:"
-                       TextColor="White"
-                       FontSize="18"
-                           FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                        <Entry Placeholder="- - -CLIENT EMAIL ADDRESS- - -"
-                       Text="{Binding ClientInfoModel.ClientEmail}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    <Label Text="ENTER CLIENT PHONE NUMBER:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -CLIENT PHONE NUMBER- - -"
-                       Text="{Binding ClientInfoModel.ClientPhoneNumber}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    <Label Text="UPDATE CLIENT PHONE NUMBER:"
-                       TextColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    
-                        <Entry Placeholder="- - -CLIENT PHONE NUMBER- - -"
-                       Text="{Binding ClientInfoModel.ClientPhoneNumber}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="ENTER CLIENT ADDRESS:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -CLIENT ADDRESS- - -"
-                       Text="{Binding ClientInfoModel.ClientAddress}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    <Label Text="UPDATE CLIENT ADDRESS:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                        <Entry Placeholder="- - -CLIENT ADDRESS- - -"
-                       Text="{Binding ClientInfoModel.ClientAddress}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="ENTER CLIENT'S MAIN CONTACT NAME:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -MAIN CONTACT NAME- - -"
-                       Text="{Binding ClientInfoModel.ClientMainContactName}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE CLIENT'S MAIN CONTACT NAME:"
-                       TextColor="White"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    
-                        <Entry Placeholder="- - -MAIN CONTACT NAME- - -"
-                       Text="{Binding ClientInfoModel.ClientMainContactName}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    
-                    
-                    <Label Text="ENTER CLIENT'S MAIN CONTACT PHONE NUMBER:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -MAIN CONTACT PHONE NUMBER- - -"
-                       Text="{Binding ClientInfoModel.ClientMainContactPhoneNumber}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE CLIENT'S MAIN CONTACT PHONE NUMBER:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    
-                        <Entry Placeholder="- - -MAIN CONTACT PHONE NUMBER- - -"
-                       Text="{Binding ClientInfoModel.ClientMainContactPhoneNumber}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="ENTER CLIENT'S PRICE PER HOUR:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -PRICE PER HOUR- - -"
-                       Text="{Binding ClientInfoModel.PricePerHour}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE CLIENT'S PRICE PER HOUR:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                        <Entry Placeholder="- - -PRICE PER HOUR- - -"
-                       Text="{Binding ClientInfoModel.PricePerHour}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="ENTER NUMBER OF HOURS TO BILL:"
-                       TextColor="White"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -NUMBER OF HOURS TO BILL- - -"
-                       Text="{Binding ClientInfoModel.NumberOfHoursBilledToDate}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    
-                    <Label Text="UPDATE NUMBER OF HOURS TO BILL:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                        <Entry Placeholder="- - -NUMBER OF HOURS TO BILL- - -"
-                       Text="{Binding ClientInfoModel.NumberOfHoursBilledToDate}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="TOTAL AMOUNT BILLED TO DATE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-
-                    <Label Text="{Binding ClientInfoModel.TotalAmountBilledToDate, StringFormat='AMOUNT BILLED TO DATE:{0:C}'}"
-                       TextColor="Green"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATED AMOUNT BILLED TO DATE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <Label Text="{Binding ClientInfoModel.TotalAmountBilledToDate, StringFormat='AMOUNT BILLED TO DATE:{0:C}'}"
-                       TextColor="Green"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"
-                       BackgroundColor="White"
-                       Margin="7"/>
-                    
-
-                    <Label Text="ENTER AN AMOUNT THE CLIENT HAS PAID:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                        <Entry Placeholder="- - -AMOUNT PAID TO DATE- - -"
-                       Text="{Binding ClientInfoModel.TotalPaidToDate}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-                    
-                    
-                    <Label Text="UPDATE AMOUNT THE CLIENT HAS PAID:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <Entry Placeholder="- - -AMOUNT PAID TO DATE- - -"
-                       Text="{Binding ClientInfoModel.TotalPaidToDate}"
-                       PlaceholderColor="DarkGray"
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <Label Text="BALANCE DUE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-
-                    <Label Text="{Binding ClientInfoModel.BalanceDue, StringFormat='Balance Due:{0:C}'}"
-                       TextColor="Red"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-
-                    <Label Text="UPDATED BALANCE DUE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -CLIENT NAME- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientName}"
+                        TextColor="Black" />
 
 
-                    <Label Text="{Binding ClientInfoModel.BalanceDue, StringFormat='Balance Due:{0:C}'}"
-                       TextColor="Red"
-                       BackgroundColor="White"
-                       Margin="7"
-                       FontAttributes="Bold"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-                    
-                    
-                    <Label Text="CLIENT SINCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT NAME:"
+                        TextColor="White" />
 
-                    
-                        <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                                 IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
-                                     Margin="7">
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -CLIENT NAME- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientName}"
+                        TextColor="Black" />
 
 
-                            <ImageButton Source="calendar.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT EMAIL:"
+                        TextColor="White" />
 
-                            </ImageButton>
-                            <DatePicker Date="{Binding ClientInfoModel.ClientSince}"
-                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
-                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
-                        Format="d"
-                        TextColor="Red"
-                        HorizontalOptions="FillAndExpand"/>
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -CLIENT EMAIL ADDRESS- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientEmail}"
+                        TextColor="Black" />
 
 
-                        </StackLayout>
-                    
-                    
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT EMAIL:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -CLIENT EMAIL ADDRESS- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientEmail}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT PHONE NUMBER:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -CLIENT PHONE NUMBER- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientPhoneNumber}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT PHONE NUMBER:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -CLIENT PHONE NUMBER- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientPhoneNumber}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT ADDRESS:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -CLIENT ADDRESS- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientAddress}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT ADDRESS:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -CLIENT ADDRESS- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientAddress}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT'S MAIN CONTACT NAME:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -MAIN CONTACT NAME- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientMainContactName}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT'S MAIN CONTACT NAME:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -MAIN CONTACT NAME- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientMainContactName}"
+                        TextColor="Black" />
+
+
+
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT'S MAIN CONTACT PHONE NUMBER:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -MAIN CONTACT PHONE NUMBER- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientMainContactPhoneNumber}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT'S MAIN CONTACT PHONE NUMBER:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -MAIN CONTACT PHONE NUMBER- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.ClientMainContactPhoneNumber}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER CLIENT'S PRICE PER HOUR:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -PRICE PER HOUR- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.PricePerHour}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE CLIENT'S PRICE PER HOUR:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -PRICE PER HOUR- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.PricePerHour}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER NUMBER OF HOURS TO BILL:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -NUMBER OF HOURS TO BILL- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.NumberOfHoursBilledToDate}"
+                        TextColor="Black" />
+
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE NUMBER OF HOURS TO BILL:"
+                        TextColor="White" />
+
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -NUMBER OF HOURS TO BILL- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.NumberOfHoursBilledToDate}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="TOTAL AMOUNT BILLED TO DATE:"
+                        TextColor="White" />
+
+                    <Label
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="{Binding ClientInfoModel.TotalAmountBilledToDate, StringFormat='AMOUNT BILLED TO DATE:{0:C}'}"
+                        TextColor="Green" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATED AMOUNT BILLED TO DATE:"
+                        TextColor="White" />
+
+                    <Label
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="{Binding ClientInfoModel.TotalAmountBilledToDate, StringFormat='AMOUNT BILLED TO DATE:{0:C}'}"
+                        TextColor="Green" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="ENTER AN AMOUNT THE CLIENT HAS PAID:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Placeholder="- - -AMOUNT PAID TO DATE- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.TotalPaidToDate}"
+                        TextColor="Black" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATE AMOUNT THE CLIENT HAS PAID:"
+                        TextColor="White" />
+
+                    <Entry
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Placeholder="- - -AMOUNT PAID TO DATE- - -"
+                        PlaceholderColor="DarkGray"
+                        Text="{Binding ClientInfoModel.TotalPaidToDate}"
+                        TextColor="Black" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="BALANCE DUE:"
+                        TextColor="White" />
+
+                    <Label
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="{Binding ClientInfoModel.BalanceDue, StringFormat='Balance Due:{0:C}'}"
+                        TextColor="Red" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="UPDATED BALANCE DUE:"
+                        TextColor="White" />
+
+
+                    <Label
+                        Margin="7"
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Text="{Binding ClientInfoModel.BalanceDue, StringFormat='Balance Due:{0:C}'}"
+                        TextColor="Red" />
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="CLIENT SINCE:"
+                        TextColor="White" />
+
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="calendar.png" />
+                        <DatePicker
+                            Date="{Binding ClientInfoModel.ClientSince}"
+                            Format="d"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                            TextColor="Red" />
+
+
+                    </StackLayout>
+
+
                     <!--<DatePicker Date="{Binding ClientInfoModel.ClientSince}"
                         MinimumDate="{Binding CaseInfoModel.MinimumDate}"
                         MaximumDate="{Binding CaseInfoModel.MaximumDate}"
@@ -612,35 +665,37 @@
                         TextColor="Red"
                         IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>-->
 
-                <Label Text="UPDATE CLIENT SINCE:"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ClientInfoModel.UpdatingClient}"
-                                 Margin="7">
+                        Text="UPDATE CLIENT SINCE:"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                        Orientation="Horizontal">
 
 
-                        <ImageButton Source="calendar.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <DatePicker Date="{Binding ClientInfoModel.ClientSince}"
-                        MinimumDate="{Binding CaseInfoModel.MinimumDate}"
-                        MaximumDate="{Binding CaseInfoModel.MaximumDate}"
-                        Format="d"
-                        TextColor="Red"
-                        HorizontalOptions="FillAndExpand"/>
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="calendar.png" />
+                        <DatePicker
+                            Date="{Binding ClientInfoModel.ClientSince}"
+                            Format="d"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="{Binding CaseInfoModel.MaximumDate}"
+                            MinimumDate="{Binding CaseInfoModel.MinimumDate}"
+                            TextColor="Red" />
 
 
                     </StackLayout>
-                    
+
                     <!--<DatePicker Date="{Binding ClientInfoModel.ClientSince}"
                         MinimumDate="{Binding CaseInfoModel.MinimumDate}"
                         MaximumDate="{Binding CaseInfoModel.MaximumDate}"
@@ -649,37 +704,39 @@
                         TextColor="Red"
                         IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>-->
 
-                <Label Text="DOES THE CLIENT HAVE AN ACTIVE CASE?"
-                        TextColor="White"
-                       FontAttributes="Bold"
-                        FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.CreatingNewClient}"/>
-
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand"
-                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
-                                 Margin="7">
-
-
-                        <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                        </ImageButton>
-                        <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
+                    <Label
                         FontAttributes="Bold"
-                        TextColor="Black"
-                        ItemsSource="{Binding ClientInfoModel.YesNoIDontKnowPicker}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SelectedYesNoIDontKnowPicker}"
-                        HorizontalOptions="FillAndExpand"/>
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Text="DOES THE CLIENT HAVE AN ACTIVE CASE?"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Margin="7"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                        Orientation="Horizontal">
+
+
+                        <ImageButton
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            Source="dropdownarrow.png" />
+                        <Picker
+                            Title="Please Select An Option..."
+                            FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Value}"
+                            ItemsSource="{Binding ClientInfoModel.YesNoIDontKnowPicker}"
+                            SelectedItem="{Binding SelectedYesNoIDontKnowPicker}"
+                            TextColor="Black"
+                            TitleColor="DarkGray" />
 
 
                     </StackLayout>
-                    
+
                     <!--<Picker Title="Please Select An Option..."
                         BackgroundColor="Black"
                         TitleColor="Green"
@@ -690,36 +747,39 @@
                         IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
                         HorizontalTextAlignment="Center"/>-->
 
-                <Label Text="DOES THE CLIENT HAS AN ACTIVE CASE?"
-                        TextColor="White"
-                       FontAttributes="Bold"
-                        FontSize="18"
-                       HorizontalTextAlignment="Center"
-                       IsVisible="{Binding ClientInfoModel.UpdatingClient}"/>
-
-                    <Frame HasShadow="True"
-                           CornerRadius="20"
-                           Margin="6"
-                           IsVisible="{Binding ClientInfoModel.UpdatingClient}">
-                        <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="White"
-                                 HorizontalOptions="FillAndExpand">
-
-
-                            <ImageButton Source="dropdownarrow.png"
-                                 HeightRequest="30"
-                                     BackgroundColor="White">
-
-                            </ImageButton>
-                            <Picker Title="Please Select An Option..."
-                        TitleColor="DarkGray"
+                    <Label
                         FontAttributes="Bold"
-                        TextColor="Black"
-                        ItemsSource="{Binding ClientInfoModel.YesNoIDontKnowPicker}"
-                        ItemDisplayBinding="{Binding Value}"
-                        SelectedItem="{Binding SelectedYesNoIDontKnowPicker}"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding ClientInfoModel.UpdatingClient}"
-                        HorizontalOptions="FillAndExpand"/>
+                        Text="DOES THE CLIENT HAS AN ACTIVE CASE?"
+                        TextColor="White" />
+
+                    <Frame
+                        Margin="6"
+                        CornerRadius="20"
+                        HasShadow="True"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}">
+                        <StackLayout
+                            BackgroundColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+
+
+                            <ImageButton
+                                BackgroundColor="White"
+                                HeightRequest="30"
+                                Source="dropdownarrow.png" />
+                            <Picker
+                                Title="Please Select An Option..."
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                                ItemDisplayBinding="{Binding Value}"
+                                ItemsSource="{Binding ClientInfoModel.YesNoIDontKnowPicker}"
+                                SelectedItem="{Binding SelectedYesNoIDontKnowPicker}"
+                                TextColor="Black"
+                                TitleColor="DarkGray" />
 
 
                         </StackLayout>
@@ -733,222 +793,257 @@
                         SelectedItem="{Binding SelectedYesNoIDontKnowPicker}"
                         IsVisible="{Binding ClientInfoModel.UpdatingClient}"
                         HorizontalTextAlignment="Center"/>-->
-                    <Frame HasShadow="True"
-                           CornerRadius="40"
-                           Margin="6"
-                           IsVisible="{Binding ClientInfoModel.UpdatingClient}">
-                        <Button Text="UPDATE IN SQL DATABASE"
-                        Command="{Binding UpdateSqlCommand}"
+                    <Frame
+                        Margin="6"
                         CornerRadius="40"
-                        IsVisible="{Binding ClientInfoModel.UpdatingClient}"
-                        BackgroundColor="Purple"
-                        TextColor="White"/>
+                        HasShadow="True"
+                        IsVisible="{Binding ClientInfoModel.UpdatingClient}">
+                        <Button
+                            BackgroundColor="Purple"
+                            Command="{Binding UpdateSqlCommand}"
+                            CornerRadius="40"
+                            IsVisible="{Binding ClientInfoModel.UpdatingClient}"
+                            Text="UPDATE IN SQL DATABASE"
+                            TextColor="White" />
                     </Frame>
-                    
-                    <Frame HasShadow="True"
-                           CornerRadius="40"
-                           Margin="6"
-                           IsVisible="{Binding ClientInfoModel.CreatingNewClient}">
-                        <Button Text="SAVE IN SQL DATABASE"
-                        Command="{Binding CreateSqlCommand}"
+
+                    <Frame
+                        Margin="6"
                         CornerRadius="40"
-                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
-                        BackgroundColor="Green"
-                        TextColor="White"/>
+                        HasShadow="True"
+                        IsVisible="{Binding ClientInfoModel.CreatingNewClient}">
+                        <Button
+                            BackgroundColor="Green"
+                            Command="{Binding CreateSqlCommand}"
+                            CornerRadius="40"
+                            IsVisible="{Binding ClientInfoModel.CreatingNewClient}"
+                            Text="SAVE IN SQL DATABASE"
+                            TextColor="White" />
                     </Frame>
-                    
-                    <Label Text="PLEASE ENTER THE IDENTIFIER OF THE CLIENT YOU WOULD LIKE TO DELETE:"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="White"
-                   HorizontalOptions="Center"
-                   IsVisible="{Binding ClientInfoModel.DeletingClient}"/>
 
-                <Label Text="THIS ACTION CANNOT BE REVERSED"
-                   TextColor="Red"
-                   FontSize="14"
-                   HorizontalTextAlignment="Center"
-                   FontAttributes="Bold,Italic"
-                   IsVisible="{Binding ClientInfoModel.DeletingClient}"/>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ClientInfoModel.DeletingClient}"
+                        Text="PLEASE ENTER THE IDENTIFIER OF THE CLIENT YOU WOULD LIKE TO DELETE:"
+                        TextColor="White" />
 
-
-                <Entry Placeholder="ENTER IDENTIFIER TO DELETE HERE:"
-                   PlaceholderColor="Red"
-                   Text="{Binding ReportInfoModel.Identifier}"
-                   IsVisible="{Binding ClientInfoModel.DeletingClient}"
-                   TextColor="White"
-                   FontSize="20"/>
+                    <Label
+                        FontAttributes="Bold,Italic"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding ClientInfoModel.DeletingClient}"
+                        Text="THIS ACTION CANNOT BE REVERSED"
+                        TextColor="Red" />
 
 
-                <Button Text="DELETE CLIENT"
-                    Command="{Binding DeleteSqlCommand}"
-                    CornerRadius="40"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="14"
-                    IsVisible="{Binding ClientInfoModel.DeletingClient}"/>
-
-                    
-                <Label Text="EXISTING CLIENT'S DETAILS:"
-                       IsVisible="{Binding ClientInfoModel.ReadingClient}"
-                       FontAttributes="Bold"
-                       FontSize="22"
-                       TextColor="White"/>
-                    
-                <ListView ItemsSource="{Binding ClientInfoModel.ClientInfoModelList}"
-                          IsVisible="{Binding ClientInfoModel.ReadingClient}"
-                          HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical">
-
-                                    <Label Text="IDENTIFIER"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding Identifier}"
-                                           TextColor="White" 
-                                           MinimumWidthRequest="100" 
-                                           FontSize="18"
-                                           FontAttributes="Bold"
-                                           />
-                                    
-                                    <Label Text="CLIENT NAME"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    
-                                    <Label Text="{Binding ClientName}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-                                    
-                                    <Label Text="CLIENT EMAIL"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    
-                                    <Label Text="{Binding ClientEmail}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="CLIENT PHONE NUMBER"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="{Binding ClientPhoneNumber}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="CLIENT ADDRESS"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding ClientAddress}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="CLIENT MAIN CONTACT NAME"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding ClientMainContactName}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="MAIN CONTACTPHONE NUMBER"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding ClientMainContactPhoneNumber}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="PRICE PER HOUR"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding PricePerHour}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="NUMBER OF HOURS BILLED TO DATE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding NumberOfHoursBilledToDate}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="TOTAL AMOUNT BILLED TO DATE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding TotalAmountBilledToDate}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="TOTAL PAID TO DATE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding TotalPaidToDate}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-
-                                    <Label Text="BALANCE DUE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding BalanceDue}"
-                                           TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="CLIENT SINCE"
-                                           TextColor="Blue"
-                                           FontSize="20"
-                                           FontAttributes="Bold"/>
-                                    
-                                <Label Text="{Binding ClientSince}"
-                                       TextColor="White"
-                                           MinimumWidthRequest="100"
-                                           FontSize="18"
-                                           FontAttributes="Bold"/>
-                                        <Frame></Frame>
-                                    
-                                    
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    <Entry
+                        FontSize="20"
+                        IsVisible="{Binding ClientInfoModel.DeletingClient}"
+                        Placeholder="ENTER IDENTIFIER TO DELETE HERE:"
+                        PlaceholderColor="Red"
+                        Text="{Binding ReportInfoModel.Identifier}"
+                        TextColor="White" />
 
 
+                    <Button
+                        BackgroundColor="Red"
+                        Command="{Binding DeleteSqlCommand}"
+                        CornerRadius="40"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        IsVisible="{Binding ClientInfoModel.DeletingClient}"
+                        Text="DELETE CLIENT"
+                        TextColor="White" />
 
-            </StackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        IsVisible="{Binding ClientInfoModel.ReadingClient}"
+                        Text="EXISTING CLIENT'S DETAILS:"
+                        TextColor="White" />
+
+                    <ListView
+                        HasUnevenRows="True"
+                        IsVisible="{Binding ClientInfoModel.ReadingClient}"
+                        ItemsSource="{Binding ClientInfoModel.ClientInfoModelList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical">
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="IDENTIFIER"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding Identifier}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT NAME"
+                                            TextColor="Blue" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientName}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT EMAIL"
+                                            TextColor="Blue" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientEmail}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT PHONE NUMBER"
+                                            TextColor="Blue" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientPhoneNumber}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT ADDRESS"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientAddress}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT MAIN CONTACT NAME"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientMainContactName}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="MAIN CONTACTPHONE NUMBER"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientMainContactPhoneNumber}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="PRICE PER HOUR"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding PricePerHour}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="NUMBER OF HOURS BILLED TO DATE"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding NumberOfHoursBilledToDate}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="TOTAL AMOUNT BILLED TO DATE"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding TotalAmountBilledToDate}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="TOTAL PAID TO DATE"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding TotalPaidToDate}"
+                                            TextColor="White" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="BALANCE DUE"
+                                            TextColor="Blue" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding BalanceDue}"
+                                            TextColor="White" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            Text="CLIENT SINCE"
+                                            TextColor="Blue" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            MinimumWidthRequest="100"
+                                            Text="{Binding ClientSince}"
+                                            TextColor="White" />
+                                        <Frame />
+
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+
+                </StackLayout>
             </StackLayout>
 
         </ScrollView>

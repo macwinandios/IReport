@@ -1,18 +1,12 @@
-﻿using IReport.Models.Base;
-using IReport.Services;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
-using System.Text;
 using System.Security.Cryptography;
-using System.Windows.Input;
-using Xamarin.Forms;
+using System.Text;
 
 namespace IReport.Models
 {
     public class SqlModel
     {
-         
         static SqlModel()
         {
             SqlConnection = new SqlConnection(SqlConnectionString);
@@ -21,18 +15,19 @@ namespace IReport.Models
             CaseQueryCommand = new SqlCommand(CaseQuery, SqlConnection);
             ReportQueryCommand = new SqlCommand(ReportQuery, SqlConnection);
         }
+
         public static string HashedString(string _stringToHash)
         {
             SHA1CryptoServiceProvider _sHA1CryptoServiceProvider = new SHA1CryptoServiceProvider();
 
             byte[] _stringBytes = Encoding.ASCII.GetBytes(_stringToHash);
-            byte[] _encryptedBytes = _sHA1CryptoServiceProvider.ComputeHash(_stringBytes);   
+            byte[] _encryptedBytes = _sHA1CryptoServiceProvider.ComputeHash(_stringBytes);
             return Convert.ToBase64String(_encryptedBytes);
-        } 
+        }
 
-       
+
         public static string ServerName { get; set; } = "172.31.0.1";
-        public  static string DatabaseName { get; set; } = "CompanyDB";
+        public static string DatabaseName { get; set; } = "CompanyDB";
         public static string ServerUsername { get; set; } = "Johnny";
         public static string ServerPassword { get; set; } = "November15";
         public static string ClientQuery { get; set; } = "Select * from dbo.ClientInfoTable";
@@ -48,7 +43,7 @@ namespace IReport.Models
 
         public static SqlConnection SqlConnection { get; set; }
         public static SqlDataReader SqlDataReader { get; set; }
-        public static SqlDataReader ExecuteReader { get; set; } 
+        public static SqlDataReader ExecuteReader { get; set; }
         public static SqlCommand ClientQueryCommand { get; set; }
         public static SqlCommand CaseQueryCommand { get; set; }
         public static SqlCommand ReportQueryCommand { get; set; }

@@ -4,13 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Text;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using IReport.Services;
-using System.Net.Http;
-using Newtonsoft.Json;
 
 namespace IReport.ViewModels
 {
@@ -21,20 +17,19 @@ namespace IReport.ViewModels
     /// 
     public class ClientInfoViewModel : ViewModelBase
     {
-        
-
-        public ClientInfoViewModel()
+        public ClientInfoViewModel(SqlModel sqlModel, ClientInfoModel clientInfoModel, CaseInfoModel caseInfoModel)
         {
-            SqlModel = new SqlModel();
-            ClientInfoModel = new ClientInfoModel();
-            CaseInfoModel = new CaseInfoModel();
+            SqlModel = sqlModel;
+            ClientInfoModel = clientInfoModel;
+            CaseInfoModel = caseInfoModel;
 
-        ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
+            ObservableCollection<ClientInfoModel> clients = new ObservableCollection<ClientInfoModel>();
             ClientInfoModel.ClientInfoModelList = clients;
 
             ClientInfoModel.YesNoIDontKnowPicker = GetYesNoIDontKnowPicker().OrderBy(t => t.Value).ToList();
 
         }
+
         //PRIVATE MEMBER OF PICKER'S SELECTED ITEM
         ClientInfoModel _selectedYesNoIDontKnowPicker;
 
@@ -45,15 +40,15 @@ namespace IReport.ViewModels
 
         //PRIVATE ICOMMAND MEMBERS
         //PUBLIC ICOMMAND PROPERTIES AT END OF CLASS
-        private ICommand _createSqlCommand;
-        private ICommand _readSqlCommand;
-        private ICommand _updateSqlCommand;
-        private ICommand _deleteSqlCommand;
-        private ICommand _createCommand;
-        private ICommand _updateCommand;
-        private ICommand _deleteCommand;
-        private ICommand _getClientAndCasePickersCommand;
-       
+        ICommand _createSqlCommand;
+        ICommand _readSqlCommand;
+        ICommand _updateSqlCommand;
+        ICommand _deleteSqlCommand;
+        ICommand _createCommand;
+        ICommand _updateCommand;
+        ICommand _deleteCommand;
+        ICommand _getClientAndCasePickersCommand;
+
 
         public SqlModel SqlModel
         {
@@ -86,23 +81,26 @@ namespace IReport.ViewModels
             }
         }
 
-        
+
         //these 4 provide ISVISIBLE only
         public ICommand CreateNewClientCommand { get; }
         public void CreateNewClientMethod()
         {
             ClientInfoModel.CreatingNewClient = true;
         }
+
         public ICommand ReadClientCommand { get; }
         public void ReadClientMethod()
         {
             ClientInfoModel.ReadingClient = true;
         }
+
         public ICommand UpdateClientCommand { get; }
         public void UpdateClientMethod()
         {
             ClientInfoModel.UpdatingClient = true;
         }
+
         public ICommand DeleteClientCommand { get; }
         public void DeleteClientMethod()
         {
@@ -124,7 +122,7 @@ namespace IReport.ViewModels
             try
             {
                 SqlModel.SqlConnection.Open();
-                if(ClientInfoModel.ClientName != string.Empty)
+                if (ClientInfoModel.ClientName != string.Empty)
                 {
                     SqlCommand sqlSaveAndReadCommand = new SqlCommand("SELECT * FROM dbo.ClientInfoTable WHERE ClientName = '" + ClientInfoModel.ClientName + "'", SqlModel.SqlConnection);
 

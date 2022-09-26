@@ -1,12 +1,8 @@
-﻿using IReport.Models;
-using IReport.Models.Base;
+﻿using IReport.Models.Base;
 using IReport.ViewModels;
 using IReport.Views;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
 using Unity;
 using Xamarin.Forms;
 
